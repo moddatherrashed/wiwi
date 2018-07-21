@@ -15,6 +15,9 @@ class CatagoryViewerScreen extends Component {
 
     })
 
+    ////////// in the resturant component should be tab navigator from the App.js
+    //shows two screens in All whcih is all items and offers screen which is the offers
+
     render() {
         const { navigation } = this.props;
         const ItemTitle = navigation.getParam('ItemTitle');
