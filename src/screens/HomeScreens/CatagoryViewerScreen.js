@@ -4,12 +4,42 @@ import { View, Text } from 'react-native'
 
 
 class CatagoryViewerScreen extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    static navigationOptions = ({ navigation }) => ({
+
+        title: `${navigation.state.params.ItemTitle}`,
+
+
+    })
+
     render() {
-        return (
-            <View>
-                <Text>CatagoryViewerScreen</Text>
-            </View>
-        )
+        const { navigation } = this.props;
+        const ItemTitle = navigation.getParam('ItemTitle');
+        switch (ItemTitle) {
+            case 'Resturant':
+                return (
+                    <View><Text>Change Language</Text></View>
+                )
+                break;
+            case 'Home':
+                return (
+                    <View><Text>Change Language</Text></View>
+                )
+                break;
+            case 'Electronic':
+                return (
+                    <View><Text>Change Language</Text></View>
+                )
+                break;
+            case 'Market':
+                return (
+                    <View><Text>Send Report</Text></View>
+                )
+                break;
+        }
     }
 }
 

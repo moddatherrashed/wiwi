@@ -9,7 +9,7 @@ import CartScreen from './src/screens/CartScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import FavoriteScreen from './src/screens/FavoriteScreen'
 import SettingsViewerScreen from './src/screens/settingScreens/SettingsViewerScreen'
-
+import CatagoryViewerScreen from './src/screens/HomeScreens/CatagoryViewerScreen'
 const tabNavigator = createBottomTabNavigator({
   Welcome: {
     screen: HomeScreen,
@@ -81,6 +81,7 @@ const AppStackNavigator = createStackNavigator({
         </TouchableOpacity>,
     }
   },
-  SettingsViewerScreen: { screen: SettingsViewerScreen }
+  SettingsViewerScreen: { screen: SettingsViewerScreen },
+  CatagoryViewerScreen: { screen: CatagoryViewerScreen }
 })
 export default AppStackNavigator

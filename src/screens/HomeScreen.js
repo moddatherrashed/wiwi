@@ -143,15 +143,19 @@ class HomeScreen extends Component {
                     }}
                     data={this.state.menuItems}
                     renderItem={({ item }) =>
-                        <View style={{
-                            padding: 15,
-                            width: viewportWidth * 0.5,
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('CatagoryViewerScreen', {
+                                ItemTitle: item.ItemTitle
+                            })}
+                            style={{
+                                padding: 15,
+                                width: viewportWidth * 0.5,
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}>
                             <Image source={item.itemUrl} style={{ height: viewportWidth * 0.2, width: viewportWidth * 0.2 }} />
                             <Text style={{ textAlign: 'center', padding: 2, fontSize: viewportWidth * 0.03 }}>{item.ItemTitle}</Text>
-                        </View>
+                        </TouchableOpacity>
                     }
                 />
             </ScrollView>
