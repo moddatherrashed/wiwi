@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-
+import ResturantComponent from './../../components/HomeScreenComponents/ResturantComponent'
 
 
 class CatagoryViewerScreen extends Component {
@@ -21,7 +21,7 @@ class CatagoryViewerScreen extends Component {
         switch (ItemTitle) {
             case 'Resturant':
                 return (
-                    <View><Text>Change Language</Text></View>
+                    <ResturantComponent />
                 )
                 break;
             case 'Home':
