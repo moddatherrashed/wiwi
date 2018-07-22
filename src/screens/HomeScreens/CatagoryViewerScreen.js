@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import ResturantComponent from './../../components/HomeScreenComponents/ResturantComponent'
-
+import ResturantsListComponent from './../../components/HomeScreenComponents/ResturantsListComponent'
 
 class CatagoryViewerScreen extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class CatagoryViewerScreen extends Component {
         switch (ItemTitle) {
             case 'Resturant':
                 return (
-                    <ResturantComponent />
+                    <ResturantsListComponent />
                 )
                 break;
             case 'Home':
