@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import { TouchableOpacity } from 'react-native'
-import { createStackNavigator } from 'react-navigation'
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
 import Image from 'react-native-remote-svg'
-import { createBottomTabNavigator } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import CartScreen from './src/screens/CartScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import FavoriteScreen from './src/screens/FavoriteScreen'
 import SettingsViewerScreen from './src/screens/settingScreens/SettingsViewerScreen'
 import CatagoryViewerScreen from './src/screens/HomeScreens/CatagoryViewerScreen'
+import AllItemsScreen from './src/screens/HomeScreens/AllItemsScreen'
+import OfferItemScreen from './src/screens/HomeScreens/OfferItemScreen'
+import ResturantsListComponent from './src/components/HomeScreenComponents/ResturantsListComponent'
+
 const tabNavigator = createBottomTabNavigator({
   Welcome: {
     screen: HomeScreen,
@@ -66,6 +69,24 @@ tabNavigator.navigationOptions = ({ navigation }) => {
     headerTitle,
   };
 };
+
+const ResturantTopTabNavigator = createMaterialTopTabNavigator({
+  All: { screen: AllItemsScreen },
+  Offer: { screen: OfferItemScreen }
+}, {
+    tabBarOptions: {
+      activeTintColor: 'black',
+      inactiveTintColor: 'gray',
+      style: {
+        backgroundColor: 'white'
+      },
+      indicatorStyle: {
+        backgroundColor : 'red'
+      }
+    }
+  }
+)
+
 const AppStackNavigator = createStackNavigator({
   LoginScreen: {
     screen: LoginScreen
@@ -82,6 +103,9 @@ const AppStackNavigator = createStackNavigator({
     }
   },
   SettingsViewerScreen: { screen: SettingsViewerScreen },
-  CatagoryViewerScreen: { screen: CatagoryViewerScreen }
+  CatagoryViewerScreen: { screen: CatagoryViewerScreen },
+  ResturantsListComponent: { screen: ResturantsListComponent },
+  topTabNAvigator: { screen: ResturantTopTabNavigator },
+
 })
 export default AppStackNavigator

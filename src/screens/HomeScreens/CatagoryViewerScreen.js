@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import ResturantComponent from './../../components/HomeScreenComponents/ResturantComponent'
 import ResturantsListComponent from './../../components/HomeScreenComponents/ResturantsListComponent'
+
 
 class CatagoryViewerScreen extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class CatagoryViewerScreen extends Component {
         switch (ItemTitle) {
             case 'Resturant':
                 return (
-                    <ResturantsListComponent />
+                    <ResturantsListComponent navigation={this.props.navigation} />
                 )
                 break;
             case 'Home':
@@ -45,5 +45,4 @@ class CatagoryViewerScreen extends Component {
         }
     }
 }
-
 export default CatagoryViewerScreen

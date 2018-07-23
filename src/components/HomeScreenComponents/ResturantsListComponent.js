@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity } from 'react-native'
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
+import AllItemsScreen from './../../screens/HomeScreens/AllItemsScreen'
+import OfferItemScreen from './../../screens/HomeScreens/OfferItemScreen'
+import CatagoryViewerScreen from '../../screens/HomeScreens/CatagoryViewerScreen';
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -32,6 +36,10 @@ class ResturantsListComponent extends Component {
             ]
         }
     }
+
+    static navigationOptions = {
+        header: null
+    }
     render() {
         return (
             <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
@@ -45,6 +53,10 @@ class ResturantsListComponent extends Component {
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('topTabNAvigator')
+                            }
+                            }
                             style={{
                                 flexDirection: 'row',
                                 backgroundColor: '#FFFFFF',
@@ -74,4 +86,6 @@ class ResturantsListComponent extends Component {
     }
 }
 
+
 export default ResturantsListComponent
+
