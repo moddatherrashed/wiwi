@@ -8,11 +8,14 @@ class ProductComponent extends Component {
         return (
             <View style={{
                 backgroundColor: 'white',
-                margin: 10,
-                elevation: 1,
-                width: viewportWidth / 2,
-                height: viewportWidth / 1.5,
-                justifyContent : 'space-between'
+                margin: 5,
+                elevation: 3,
+                shadowOffset: { height: 0, width: 0 },
+                shadowColor: 'black',
+                shadowOpacity: 0.2,
+                width: viewportWidth / 2 - 15,
+                height: viewportWidth / 1.5 - 15,
+                justifyContent: 'space-between'
             }}>
                 <ImageBackground
                     source={{ uri: 'https://images5.alphacoders.com/415/415257.jpg' }}
@@ -42,7 +45,7 @@ class ProductComponent extends Component {
                         flex: 1.4,
                         flexDirection: 'row',
                         justifyContent: 'center',
-                        alignItems : 'center'
+                        alignItems: 'center'
                     }}>
                         <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24 }} />
                         <Text>1</Text>
