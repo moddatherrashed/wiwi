@@ -63,7 +63,6 @@ class ProductListScreen extends Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             style={{
-                                margin: 5
                             }}>
                             <ProductComponent navigation={this.props.navigation} />
                         </TouchableOpacity>

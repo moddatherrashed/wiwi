@@ -14,7 +14,7 @@ class ProductComponent extends Component {
                 shadowColor: 'black',
                 shadowOpacity: 0.2,
                 width: viewportWidth / 2 - 15,
-                height: viewportWidth / 1.5 - 15,
+                //height: viewportWidth / 1.5 - 15,
                 justifyContent: 'space-between'
             }}>
                 <ImageBackground
@@ -22,7 +22,7 @@ class ProductComponent extends Component {
                     style={{
                         flex: 2.6,
                         flexDirection: 'row',
-
+                        height: viewportWidth / 2.5,
                     }}>
                     <TouchableOpacity style={{ height: 24, width: 26, margin: 5, flex: 1.3 }}>
                         <Image source={require('../../ProductIcons/Favo.png')} style={{ height: 24, width: 26 }} />
@@ -38,8 +38,8 @@ class ProductComponent extends Component {
                         flex: 1,
                         alignItems: 'center'
                     }}>
-                        <Text>name</Text>
-                        <Text>price</Text>
+                        <Text style={{ fontWeight: '700', padding: 5, textAlign: 'center' }}>Maker Beef Burger Meal</Text>
+                        <Text>3.87 JOD</Text>
                     </View>
                     <View style={{
                         flex: 1.4,
@@ -47,9 +47,9 @@ class ProductComponent extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24 }} />
-                        <Text>1</Text>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24 }} />
+                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24, padding: 5 }} />
+                        <Text style={{ padding: 20 }}>1</Text>
+                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24, padding: 5 }} />
                     </View>
                 </View>
             </View>
