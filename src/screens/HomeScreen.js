@@ -96,8 +96,6 @@ class HomeScreen extends Component {
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>Offers</Text>
-                <ProductComponent />
-
                 <View>
                     <ViewPagerComponent
                         renderItem={this._renderItem}

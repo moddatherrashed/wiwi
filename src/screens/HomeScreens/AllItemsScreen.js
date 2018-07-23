@@ -12,7 +12,7 @@ class AllItemScreen extends Component {
 
     render() {
         return (
-            <ResturantComponent />
+            <ResturantComponent navigation={this.props.navigation}/>
         )
     }
 }

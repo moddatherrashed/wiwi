@@ -44,6 +44,11 @@ class ResturantComponent extends Component {
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('ProductListScreen', {
+                                    name: item.name
+                                })
+                            }}
                             style={{
                                 flexDirection: 'row',
                                 backgroundColor: '#FFFFFF',
