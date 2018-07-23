@@ -3,6 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, FlatList, Dimensions, ImageBa
 import Image from 'react-native-remote-svg'
 import ViewPagerComponent from '../components/ViewPagerComponent'
 import { Pagination } from 'react-native-snap-carousel'
+import ProductComponent from '../components/HomeScreenComponents/ProductComponent'
 
 const sliderWidth = Dimensions.get('window').width
 const itemWidth = (Dimensions.get('window').height) * 0.49
@@ -95,6 +96,8 @@ class HomeScreen extends Component {
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>Offers</Text>
+                <ProductComponent />
+
                 <View>
                     <ViewPagerComponent
                         renderItem={this._renderItem}
