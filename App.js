@@ -81,11 +81,18 @@ const ResturantTopTabNavigator = createMaterialTopTabNavigator({
         backgroundColor: 'white'
       },
       indicatorStyle: {
-        backgroundColor : 'red'
+        backgroundColor: '#638bba'
       }
     }
   }
 )
+
+ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
+  return {
+    title: `${navigation.state.params.resturantName}`,
+  };
+};
+
 
 const AppStackNavigator = createStackNavigator({
   LoginScreen: {
@@ -105,7 +112,9 @@ const AppStackNavigator = createStackNavigator({
   SettingsViewerScreen: { screen: SettingsViewerScreen },
   CatagoryViewerScreen: { screen: CatagoryViewerScreen },
   ResturantsListComponent: { screen: ResturantsListComponent },
-  topTabNAvigator: { screen: ResturantTopTabNavigator },
+  topTabNAvigator: {
+    screen: ResturantTopTabNavigator
+  },
 
 })
 export default AppStackNavigator

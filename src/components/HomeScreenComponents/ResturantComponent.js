@@ -30,6 +30,7 @@ class ResturantComponent extends Component {
             ]
         }
     }
+
     render() {
         return (
             <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>

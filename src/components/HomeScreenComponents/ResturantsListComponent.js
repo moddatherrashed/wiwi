@@ -37,9 +37,6 @@ class ResturantsListComponent extends Component {
         }
     }
 
-    static navigationOptions = {
-        header: null
-    }
     render() {
         return (
             <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
@@ -54,7 +51,9 @@ class ResturantsListComponent extends Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('topTabNAvigator')
+                                this.props.navigation.navigate('topTabNAvigator', {
+                                    resturantName: item.name
+                                })
                             }
                             }
                             style={{
