@@ -13,6 +13,7 @@ import AllItemsScreen from './src/screens/HomeScreens/AllItemsScreen'
 import OfferItemScreen from './src/screens/HomeScreens/OfferItemScreen'
 import ResturantsListComponent from './src/components/HomeScreenComponents/ResturantsListComponent'
 import ProductListScreen from './src/screens/HomeScreens/ProductListScreen'
+import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 
 const tabNavigator = createBottomTabNavigator({
   Welcome: {
@@ -116,7 +117,8 @@ const AppStackNavigator = createStackNavigator({
   topTabNAvigator: {
     screen: ResturantTopTabNavigator
   },
-  ProductListScreen: { screen: ProductListScreen }
+  ProductListScreen: { screen: ProductListScreen },
+  ProductViewerScreen: { screen: ProductViewerScreen }
 
 })
 export default AppStackNavigator

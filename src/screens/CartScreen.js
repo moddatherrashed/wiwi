@@ -34,7 +34,7 @@ class CartScreen extends Component {
     }
     render() {
         return (
-            <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
+            <View style={{ flex: 1, backgroundColor: 'red' }}>
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     contentContainerStyle={{
@@ -69,7 +69,7 @@ class CartScreen extends Component {
                         </TouchableOpacity>
                     }
                 />
-            </ScrollView>
+            </View>
         )
     }
 }
