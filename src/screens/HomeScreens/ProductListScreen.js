@@ -62,6 +62,9 @@ class ProductListScreen extends Component {
                     data={this.state.products}
                     renderItem={({ item }) =>
                         <TouchableOpacity
+                            onPress={() => {
+                                this.props.navigation.navigate('ProductViewerScreen')
+                            }}
                             style={{
                             }}>
                             <ProductComponent navigation={this.props.navigation} />
