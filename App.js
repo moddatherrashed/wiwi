@@ -21,7 +21,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Dashboard',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Dashboard.svg')} style={{ height: 24, width: 24 }} />
+        <Image source={require('./src/Icons/Dashboard.png')} style={{ height: 24, width: 24 }} />
       )
     }
   },
@@ -30,7 +30,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Cart',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Cart.svg')} style={{ height: 24, width: 24 }} />
+        <Image source={require('./src/Icons/Cart.png')} style={{ height: 24, width: 26 }} />
       )
     }
   },
@@ -39,7 +39,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Favorite',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Favorite.svg')} style={{ height: 24, width: 24 }} />
+        <Image source={require('./src/Icons/Favorite.png')} style={{ height: 24, width: 26 }} />
       )
     }
   },
@@ -48,7 +48,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Settings.svg')} style={{ height: 24, width: 24 }} />
+        <Image source={require('./src/Icons/Account.png')} style={{ height: 24, width: 26 }} />
       )
     }
   }
@@ -97,11 +97,8 @@ ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
 
 
 const AppStackNavigator = createStackNavigator({
-  ProductViewerScreen: { screen: ProductViewerScreen }
-  ,
-  LoginScreen: {
-    screen: LoginScreen
-  },
+
+  LoginScreen: { screen: LoginScreen },
   HomeScreen: {
     screen: tabNavigator,
     navigationOptions: {
@@ -109,17 +106,17 @@ const AppStackNavigator = createStackNavigator({
       headerLeft: null,
       headerRight:
         <TouchableOpacity onPress={() => { alert('pressed') }} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
-          <Image source={require('./src/Icons/Search.svg')} style={{ height: 25, width: 25, marginRight: 8 }} />
+          <Image source={require('./src/Icons/Search.png')} style={{ height: 25, width: 25, marginRight: 8 }} />
         </TouchableOpacity>,
     }
   },
   SettingsViewerScreen: { screen: SettingsViewerScreen },
   CatagoryViewerScreen: { screen: CatagoryViewerScreen },
   ResturantsListComponent: { screen: ResturantsListComponent },
-  topTabNAvigator: {
-    screen: ResturantTopTabNavigator
-  },
+  topTabNAvigator: { screen: ResturantTopTabNavigator },
   ProductListScreen: { screen: ProductListScreen },
+  ProductViewerScreen: { screen: ProductViewerScreen }
+
 
 })
 export default AppStackNavigator

@@ -48,22 +48,22 @@ class HomeScreen extends Component {
             menuItems: [
                 {
                     id: 1,
-                    itemUrl: require('../Icons/Market.svg'),
+                    itemUrl: require('../Icons/Market.png'),
                     ItemTitle: 'Market'
                 },
                 {
                     id: 2,
-                    itemUrl: require('../Icons/Home.svg'),
+                    itemUrl: require('../Icons/Home.png'),
                     ItemTitle: 'Home'
                 },
                 {
                     id: 3,
-                    itemUrl: require('../Icons/Restaurant.svg'),
+                    itemUrl: require('../Icons/Restaurant.png'),
                     ItemTitle: 'Resturant'
                 },
                 {
                     id: 4,
-                    itemUrl: require('../Icons/Electronic.svg'),
+                    itemUrl: require('../Icons/Electronic.png'),
                     ItemTitle: 'Electronic'
                 },
             ]
@@ -74,7 +74,7 @@ class HomeScreen extends Component {
 
         tabBarLabel: 'Dashboard',
         tabBarIcon: () => (
-            <Image source={require('../Icons/Dashboard.svg')} style={{ height: 24, width: 24 }} />
+            <Image source={require('../Icons/Dashboard.png')} style={{ height: 24, width: 24 }} />
         )
 
     }

@@ -12,32 +12,32 @@ class SettingsScreen extends Component {
             settingList: [
                 {
                     id: '1',
-                    image: require('../Icons/ChangeMobileNumber.svg'),
+                    image: require('../Icons/ChangeMobileNumber.png'),
                     title: 'Change Mobile Number'
                 },
                 {
                     id: '2',
-                    image: require('../Icons/OrderHistory.svg'),
+                    image: require('../Icons/OrderHistory.png'),
                     title: 'Order History'
                 },
                 {
                     id: '3',
-                    image: require('../Icons/ChangeLanguage.svg'),
+                    image: require('../Icons/ChangeLanguage.png'),
                     title: 'Change Language'
                 },
                 {
                     id: '4',
-                    image: require('../Icons/SendReport.svg'),
+                    image: require('../Icons/SendReport.png'),
                     title: 'Send Report'
                 },
                 {
                     id: '5',
-                    image: require('../Icons/ContactUs.svg'),
+                    image: require('../Icons/ContactUs.png'),
                     title: 'Contact Us'
                 },
                 {
                     id: '6',
-                    image: require('../Icons/Logout.svg'),
+                    image: require('../Icons/Logout.png'),
                     title: 'Logout'
                 }
             ]
