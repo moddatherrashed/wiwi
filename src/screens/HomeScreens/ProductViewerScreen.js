@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { Button } from 'native-base'
 
 class ProductViewerScreen extends Component {
@@ -9,7 +9,7 @@ class ProductViewerScreen extends Component {
     }
     render() {
         return (
-            <View style={{ flex: 4, backgroundColor: 'white' }}>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={{ flex: 1.5 }}>
                     <Image
                         resizeMode='contain'
@@ -73,7 +73,7 @@ class ProductViewerScreen extends Component {
                         </Button>
                     </View>
                 </View>
-            </View >
+            </ScrollView >
         );
     }
 }

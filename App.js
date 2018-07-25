@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Image } from 'react-native'
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
-import Image from 'react-native-remote-svg'
 import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import CartScreen from './src/screens/CartScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
@@ -21,7 +20,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Dashboard',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Dashboard.png')} style={{ height: 24, width: 24 }} />
+        <Image resizeMode='contain' source={require('./src/Icons/Dashboard.png')} style={{ height: 24, width: 24 }} />
       )
     }
   },
@@ -30,7 +29,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Cart',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Cart.png')} style={{ height: 24, width: 26 }} />
+        <Image resizeMode='contain' source={require('./src/Icons/Cart.png')} style={{ height: 24, width: 24 }} />
       )
     }
   },
@@ -39,7 +38,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Favorite',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Favorite.png')} style={{ height: 24, width: 26 }} />
+        <Image resizeMode='contain' source={require('./src/Icons/Favorite.png')} style={{ height: 24, width: 24 }} />
       )
     }
   },
@@ -48,7 +47,7 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: () => (
-        <Image source={require('./src/Icons/Account.png')} style={{ height: 24, width: 26 }} />
+        <Image resizeMode='contain' source={require('./src/Icons/Account.png')} style={{ height: 24, width: 24 }} />
       )
     }
   }
