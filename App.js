@@ -96,7 +96,6 @@ ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
 
 
 const AppStackNavigator = createStackNavigator({
-
   LoginScreen: { screen: LoginScreen },
   HomeScreen: {
     screen: tabNavigator,
@@ -114,7 +113,8 @@ const AppStackNavigator = createStackNavigator({
   ResturantsListComponent: { screen: ResturantsListComponent },
   topTabNAvigator: { screen: ResturantTopTabNavigator },
   ProductListScreen: { screen: ProductListScreen },
-  ProductViewerScreen: { screen: ProductViewerScreen }
+  ProductViewerScreen: { screen: ProductViewerScreen },
+
 
 
 })

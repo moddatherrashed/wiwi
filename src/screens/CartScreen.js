@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, Image, Dimensions, FlatList, TouchableOpacity } from 'react-native'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -34,7 +34,7 @@ class CartScreen extends Component {
     }
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     contentContainerStyle={{
