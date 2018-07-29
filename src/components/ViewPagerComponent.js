@@ -67,7 +67,7 @@ const ViewPagerComponent = (props) => {
         <Carousel
             layout={'default'}
             ref={(c) => { this._carousel = c; }}
-            data={props.entiry}
+            data={props.offers}
             renderItem={props.renderItem}
             sliderWidth={props.sliderWidth}
             itemWidth={props.itemWidth}
