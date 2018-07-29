@@ -92,11 +92,6 @@ class LoginScreen extends React.Component {
         }).start()
     }
     render() {
-        const headerTextOpacity = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: [1, 0]
-        })
-
         const marginTop = this.loginHeight.interpolate({
             inputRange: [215, SCREEN_HEIGHT],
             outputRange: [25, 30]
@@ -104,30 +99,6 @@ class LoginScreen extends React.Component {
         const headerBackArrowOpacity = this.loginHeight.interpolate({
             inputRange: [215, SCREEN_HEIGHT],
             outputRange: [0, 1]
-        })
-        const backgroundColorLogo = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: ['white', 'red']
-        })
-        const textColorLogo = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: ['black', 'white']
-        })
-        const borderRadiusLogo = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: [50, 25]
-        })
-        const logoHeight = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: [100, 50]
-        })
-        const logoWidth = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: [100, 50]
-        })
-        const logoFontSize = this.loginHeight.interpolate({
-            inputRange: [215, SCREEN_HEIGHT],
-            outputRange: [26, 15]
         })
         const GetFasterOpacity = this.loginHeight.interpolate({
             inputRange: [215, SCREEN_HEIGHT],
