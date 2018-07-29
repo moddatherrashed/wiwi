@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -28,7 +28,7 @@ class CartScreen extends Component {
     }
     render() {
         return (
-            <View style={styles.screenStyle}>
+            <ScrollView style={styles.screenStyle}>
                 <FlatList
                     contentContainerStyle={styles.flatListContainerStyle}
                     data={this.state.cartMainList}
@@ -51,7 +51,7 @@ class CartScreen extends Component {
                         </TouchableOpacity>
                     }
                 />
-            </View>
+            </ScrollView>
         )
     }
 }
