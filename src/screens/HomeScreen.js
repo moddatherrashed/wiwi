@@ -3,7 +3,6 @@ import { View, Text, ScrollView, TouchableOpacity, FlatList, Dimensions, ImageBa
 import Image from 'react-native-remote-svg'
 import ViewPagerComponent from '../components/ViewPagerComponent'
 import { Pagination } from 'react-native-snap-carousel'
-import ProductComponent from '../components/HomeScreenComponents/ProductComponent'
 
 const sliderWidth = Dimensions.get('window').width
 const itemWidth = (Dimensions.get('window').height) * 0.49
