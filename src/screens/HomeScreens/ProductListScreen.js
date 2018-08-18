@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
 
 class ProductListScreen extends Component {
@@ -48,17 +48,12 @@ class ProductListScreen extends Component {
     }
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <View style={styles.screenContainerStyle}>
                 <FlatList
                     horizontal={false}
                     numColumns={2}
                     keyExtractor={item => item.id}
-                    contentContainerStyle={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: 7,
-                        paddingBottom: 10
-                    }}
+                    contentContainerStyle={styles.listConatinerStyle}
                     data={this.state.products}
                     renderItem={({ item }) =>
                         <TouchableOpacity
@@ -77,4 +72,16 @@ class ProductListScreen extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    screenContainerStyle: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+    listConatinerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 7,
+        paddingBottom: 10
+    }
+})
 export default ProductListScreen

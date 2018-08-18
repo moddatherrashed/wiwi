@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView, StyleSheet } from 'react-native'
 import { Button } from 'native-base'
 
 const viewportWidth = Dimensions.get('window').width
@@ -16,16 +16,12 @@ class ProductViewerScreen extends Component {
     }
     render() {
         return (
-            <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
-                <View style={{ width: viewportWidth, height: viewportWidth / 1.5 }}>
+            <ScrollView style={styles.scrollScreenContainerStyle}>
+                <View style={styles.screenViewContainerStyle}>
                     <Image
                         resizeMode='cover'
                         source={{ uri: 'https://images5.alphacoders.com/415/415257.jpg' }}
-                        style={{
-                            height: null,
-                            width: null,
-                            flex: 1
-                        }}
+                        style={styles.imageStyle}
                     />
                 </View>
                 <View style={{ borderWidth: 0.5, borderColor: '#B8B8B8', height: this.scalling(100), margin: this.scalling(15) }}>
@@ -57,7 +53,7 @@ class ProductViewerScreen extends Component {
                 </View>
                 <View style={{
                     alignSelf: 'center',
-                    margin : this.scalling(10)
+                    margin: this.scalling(10)
                 }}>
                     <Button rounded
                         style={{
@@ -74,4 +70,20 @@ class ProductViewerScreen extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    scrollScreenContainerStyle: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+    screenViewContainerStyle: {
+        width: viewportWidth,
+        height: viewportWidth / 1.5
+    },
+    imageStyle: {
+        height: null,
+        width: null,
+        flex: 1
+    }
+})
 export default ProductViewerScreen;

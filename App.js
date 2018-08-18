@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TouchableOpacity, Image } from 'react-native'
+import { TouchableOpacity, Image, StyleSheet } from 'react-native'
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
 import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
@@ -20,7 +20,10 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Dashboard',
       tabBarIcon: () => (
-        <Image resizeMode='contain' source={require('./src/Icons/Dashboard.png')} style={{ height: 24, width: 24 }} />
+        <Image
+          resizeMode='contain'
+          source={require('./src/Icons/Dashboard.png')}
+          style={styles.tabIcon} />
       )
     }
   },
@@ -29,7 +32,10 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Cart',
       tabBarIcon: () => (
-        <Image resizeMode='contain' source={require('./src/Icons/Cart.png')} style={{ height: 24, width: 24 }} />
+        <Image
+          resizeMode='contain'
+          source={require('./src/Icons/Cart.png')}
+          style={styles.tabIcon} />
       )
     }
   },
@@ -38,7 +44,10 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Favorite',
       tabBarIcon: () => (
-        <Image resizeMode='contain' source={require('./src/Icons/Favorite.png')} style={{ height: 24, width: 24 }} />
+        <Image
+          resizeMode='contain'
+          source={require('./src/Icons/Favorite.png')}
+          style={styles.tabIcon} />
       )
     }
   },
@@ -47,7 +56,10 @@ const tabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: () => (
-        <Image resizeMode='contain' source={require('./src/Icons/Account.png')} style={{ height: 24, width: 24 }} />
+        <Image
+          resizeMode='contain'
+          source={require('./src/Icons/Account.png')}
+          style={styles.tabIcon} />
       )
     }
   }
@@ -60,12 +72,10 @@ const tabNavigator = createBottomTabNavigator({
       inactiveTintColor: 'grey'
     }
   })
+
 tabNavigator.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
-
-  // You can do whatever you like here to pick the title based on the route name
   let headerTitle = routeName;
-
   return {
     headerTitle,
   };
@@ -78,12 +88,8 @@ const ResturantTopTabNavigator = createMaterialTopTabNavigator({
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',
-      style: {
-        backgroundColor: 'white'
-      },
-      indicatorStyle: {
-        backgroundColor: '#638bba'
-      }
+      style: { backgroundColor: 'white' },
+      indicatorStyle: { backgroundColor: '#638bba' }
     }
   }
 )
@@ -103,8 +109,8 @@ const AppStackNavigator = createStackNavigator({
       title: 'Welcome',
       headerLeft: null,
       headerRight:
-        <TouchableOpacity onPress={() => { alert('pressed') }} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
-          <Image source={require('./src/Icons/Search.png')} style={{ height: 25, width: 25, marginRight: 8 }} />
+        <TouchableOpacity onPress={() => { alert('pressed') }} style={styles.searchBtnContainer}>
+          <Image source={require('./src/Icons/Search.png')} style={styles.searchIcon} />
         </TouchableOpacity>,
     }
   },
@@ -115,4 +121,23 @@ const AppStackNavigator = createStackNavigator({
   ProductListScreen: { screen: ProductListScreen },
   ProductViewerScreen: { screen: ProductViewerScreen },
 })
+
+const styles = StyleSheet.create({
+  tabIcon: {
+    height: 24,
+    width: 24
+  },
+  searchBtnContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%'
+  },
+  searchIcon: {
+    height: 25,
+    width: 25,
+    marginRight: 8
+  }
+})
+
 export default AppStackNavigator

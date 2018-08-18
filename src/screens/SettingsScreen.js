@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ScrollView, Dimensions, Text, TouchableOpacity, FlatList } from 'react-native'
+import { View, StyleSheet, Dimensions, Text, TouchableOpacity, FlatList } from 'react-native'
 import Image from 'react-native-remote-svg'
 import { createStackNavigator } from 'react-navigation'
 
@@ -45,11 +45,9 @@ class SettingsScreen extends Component {
     }
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <View style={styles.screenContainer}>
                 <FlatList
-                    contentContainerStyle={{
-                        margin: 2,
-                    }}
+                    contentContainerStyle={styles.contentContainerStyle}
                     data={this.state.settingList}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
@@ -58,58 +56,73 @@ class SettingsScreen extends Component {
                                 id: item.id,
                                 title: item.title
                             })}
-                            style={{
-                                flexDirection: 'row',
-                                backgroundColor: '#FFFFFF',
-                                elevation: 15,
-                                shadowOffset: { height: 0, width: 0 },
-                                shadowColor: 'black',
-                                shadowOpacity: 0.3,
-                                width: '100%',
-                                borderBottomWidth: 0.5,
-                                borderBottomColor: 'gray',
-                                padding: 5
-                            }}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            style={styles.singleItemStyle}>
+                            <View style={styles.singleItemInnerConatiner}>
                                 <Image
-                                    style={{ height: viewportWidth * 0.1, width: viewportWidth * 0.11, margin: 4 }}
+                                    style={styles.imageItemStyle}
                                     source={item.image}
                                     resizeMode='contain'
                                 />
-                                <Text style={{ color: 'black', margin: 10 }}>{item.title}</Text>
+                                <Text style={styles.textItemStyle}>{item.title}</Text>
 
                             </View>
                         </TouchableOpacity>
                     }
                 />
-                <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end', right: 0, bottom: 0 }}>
-                    <Image source={require('../BG/Pattern.png')} style={{ width: viewportWidth * 0.55, height: viewportWidth * 0.4, padding: 5, alignSelf: 'flex-end', right: 0, bottom: 0 }} />
+                <View style={styles.logoBackgroundContainerStyle}>
+                    <Image source={require('../BG/Pattern.png')} style={styles.logoBackgroundStyle} />
                 </View>
             </View>
         )
     }
 }
-/*
-const settingStack = createStackNavigator({
-    Settings: {
-        screen: SettingsScreen,
-        navigationOptions: {
-            header: null
-        }
+const styles = StyleSheet.create({
+    screenContainer: {
+        flex: 1,
+        backgroundColor: 'white'
     },
-    SettingsViewerScreen: { screen: SettingsViewerScreen }
-})
-
-settingStack.navigationOptions = ({ navigation }) => {
-    let tabBarVisible = true;
-    if (navigation.state.index > 0) {
-        tabBarVisible = false;
+    contentContainerStyle: {
+        margin: 2,
+    },
+    singleItemStyle: {
+        flexDirection: 'row',
+        backgroundColor: '#FFFFFF',
+        elevation: 15,
+        shadowOffset: { height: 0, width: 0 },
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        width: '100%',
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'gray',
+        padding: 5
+    },
+    singleItemInnerConatiner: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    imageItemStyle: {
+        height: viewportWidth * 0.1,
+        width: viewportWidth * 0.11,
+        margin: 4
+    },
+    textItemStyle: {
+        color: 'black',
+        margin: 10
+    },
+    logoBackgroundContainerStyle: {
+        flex: 1,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        right: 0,
+        bottom: 0
+    },
+    logoBackgroundStyle: {
+        width: viewportWidth * 0.55,
+        height: viewportWidth * 0.4,
+        padding: 5,
+        alignSelf: 'flex-end',
+        right: 0,
+        bottom: 0
     }
-
-    return {
-        tabBarVisible,
-    };
-};
-*/
-
+})
 export default SettingsScreen
