@@ -1,18 +1,17 @@
-import React from 'react'
-import { Text, View, Dimensions, ImageBackground } from 'react-native'
+import React, { Component } from 'react'
+import { ImageBackground, View, Dimensions, Image, Text } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { Button, Item, Input, Label } from 'native-base'
-import Image from 'react-native-remote-svg'
 
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
 
-class LoginScreen extends React.Component {
+class RegisterScreen extends Component {
+
     static navigationOptions = {
         header: null
     }
-
     render() {
         return (
             <ImageBackground
@@ -34,21 +33,33 @@ class LoginScreen extends React.Component {
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
+                        <Label style={{ color: 'white' }}>Email</Label>
+                        <Input
+                            keyboardType="numeric"
+                            style={{ fontSize: 20, padding: 10, color: 'white' }}
+                            underlineColorAndroid='transparent' />
+                    </Item>
+                    <Item floatingLabel style={{ marginTop: 10 }}>
                         <Label style={{ color: 'white' }}>Password</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
+                    <Item floatingLabel style={{ marginTop: 10 }}>
+                        <Label style={{ color: 'white' }}>Confirm Password</Label>
+                        <Input
+                            keyboardType="numeric"
+                            style={{ fontSize: 20, padding: 10, color: 'white' }}
+                            underlineColorAndroid='transparent' />
+                    </Item>
                 </View>
-                <Text style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>Forget Password?</Text>
                 <View style={{
                     alignSelf: 'center',
                     flex: 1,
                     justifyContent: 'center'
                 }}>
                     <Button rounded
-                        onPress={() => { this.props.navigation.navigate('HomeScreen') }}
                         style={{
                             backgroundColor: 'white',
                             borderRadius: 25,
@@ -56,11 +67,11 @@ class LoginScreen extends React.Component {
                             alignItems: 'center',
                             width: 200,
                         }} >
-                        <Text style={{ fontWeight: '700', color: '#638bba' }}>Login</Text>
+                        <Text style={{ fontWeight: '700', color: '#638bba' }}>Register</Text>
                     </Button>
 
                     <Button rounded
-                        onPress={() => { this.props.navigation.navigate('RegisterScreen') }}
+                        onPress={() => { this.props.navigation.goBack() }}
                         style={{
                             backgroundColor: '#638bba',
                             borderRadius: 25,
@@ -71,11 +82,12 @@ class LoginScreen extends React.Component {
                             marginTop: 20,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Register</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>Cancel</Text>
                     </Button>
                 </View>
             </ImageBackground>
-        )
+        );
     }
 }
-export default LoginScreen
+
+export default RegisterScreen;

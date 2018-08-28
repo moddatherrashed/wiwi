@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { TouchableOpacity, Image, StyleSheet } from 'react-native'
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
@@ -13,6 +13,7 @@ import OfferItemScreen from './src/screens/HomeScreens/OfferItemScreen'
 import ResturantsListComponent from './src/components/HomeScreenComponents/ResturantsListComponent'
 import ProductListScreen from './src/screens/HomeScreens/ProductListScreen'
 import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
+import RegisterScreen from './src/screens/RegisterScreen'
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -121,6 +122,7 @@ ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
 
 const AppStackNavigator = createStackNavigator({
   LoginScreen: { screen: LoginScreen },
+  RegisterScreen: { screen: RegisterScreen },
   HomeScreen: {
     screen: tabNavigator,
     navigationOptions: {
@@ -138,6 +140,7 @@ const AppStackNavigator = createStackNavigator({
   topTabNAvigator: { screen: ResturantTopTabNavigator },
   ProductListScreen: { screen: ProductListScreen },
   ProductViewerScreen: { screen: ProductViewerScreen },
+
 })
 
 
