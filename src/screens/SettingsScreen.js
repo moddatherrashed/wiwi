@@ -12,8 +12,8 @@ class SettingsScreen extends Component {
             settingList: [
                 {
                     id: '1',
-                    image: require('../Icons/ChangeMobileNumber.png'),
-                    title: 'Change Mobile Number'
+                    image: require('../Icons/Location.png'),
+                    title: 'Location'
                 },
                 {
                     id: '2',
@@ -22,21 +22,31 @@ class SettingsScreen extends Component {
                 },
                 {
                     id: '3',
+                    image: require('../Icons/ChangeMobileNumber.png'),
+                    title: 'Change Mobile Number'
+                },
+                {
+                    id: '4',
+                    image: require('../Icons/changePassword.png'),
+                    title: 'Change Password'
+                },
+                {
+                    id: '5',
                     image: require('../Icons/ChangeLanguage.png'),
                     title: 'Change Language'
                 },
                 {
-                    id: '4',
+                    id: '6',
                     image: require('../Icons/SendReport.png'),
                     title: 'Send Report'
                 },
                 {
-                    id: '5',
+                    id: '7',
                     image: require('../Icons/ContactUs.png'),
                     title: 'Contact Us'
                 },
                 {
-                    id: '6',
+                    id: '8',
                     image: require('../Icons/Logout.png'),
                     title: 'Logout'
                 }

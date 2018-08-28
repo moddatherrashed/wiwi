@@ -15,7 +15,7 @@ class HomeScreen extends Component {
         headerRight:
             <TouchableOpacity onPress={() => { alert('pressed') }} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }
             }>
-                <Image source={require('../Icons/Search.svg')} style={{ height: 25, width: 25, marginRight: 8 }} />
+                <Image source={require('../Icons/Search.png')} resizeMode='contain' style={{ height: 25, width: 25, marginRight: 8 }} />
             </TouchableOpacity >
     }
     constructor(props) {

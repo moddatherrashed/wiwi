@@ -18,7 +18,6 @@ class ChangeNumberComponent extends Component {
                     marginLeft: 20,
                     marginRight: 20
                 }}>
-
                     <View
                         style={{ flexDirection: 'row', flex: 1, alignItems: 'center', padding: 5 }}>
                         <Text style={{ fontSize: 20, paddingHorizontal: 10, color: '#000000' }}>+962</Text>
