@@ -41,12 +41,11 @@ class OrderHistoryComponent extends Component {
     }
     render() {
         return (
-            <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
-                    contentContainerStyle={{ margin: 2 }}
                     contentContainerStyle={{
                         padding: 10,
-                        flex: 2
+                        backgroundColor: 'white'
                     }}
                     data={this.state.HistoryList}
                     keyExtractor={item => item.id}
@@ -81,9 +80,6 @@ class OrderHistoryComponent extends Component {
                         </TouchableOpacity>
                     }
                 />
-                <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end', right: 0, bottom: 0 }}>
-                    <Image source={require('./../../BG/Pattern.png')} style={{ width: viewportWidth * 0.55, height: viewportWidth * 0.4, padding: 5, alignSelf: 'flex-end', right: 0, bottom: 0 }} />
-                </View>
             </ScrollView>
         )
     }
