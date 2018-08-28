@@ -47,9 +47,9 @@ class ProductComponent extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24, padding: 5 }} />
+                        <Image source={require('../../Icons/Plus.png')} style={{ height: 24, width: 24, padding: 5 }} />
                         <Text style={{ padding: 20 }}>1</Text>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24, padding: 5 }} />
+                        <Image source={require('../../Icons/Minus.png')} style={{ height: 24, width: 24, padding: 5 }} />
                     </View>
                 </View>
             </View>
