@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.stts.wiwiapp"
+    },
+    "android": {
+      "package": "com.stts.wiwiapp"
     }
   }
 }

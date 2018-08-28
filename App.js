@@ -14,6 +14,24 @@ import ResturantsListComponent from './src/components/HomeScreenComponents/Restu
 import ProductListScreen from './src/screens/HomeScreens/ProductListScreen'
 import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 
+const styles = StyleSheet.create({
+  tabIcon: {
+    height: 24,
+    width: 24
+  },
+  searchBtnContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%'
+  },
+  searchIcon: {
+    height: 25,
+    width: 25,
+    marginRight: 8
+  }
+})
+
 const tabNavigator = createBottomTabNavigator({
   Welcome: {
     screen: HomeScreen,
@@ -122,22 +140,5 @@ const AppStackNavigator = createStackNavigator({
   ProductViewerScreen: { screen: ProductViewerScreen },
 })
 
-const styles = StyleSheet.create({
-  tabIcon: {
-    height: 24,
-    width: 24
-  },
-  searchBtnContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    width: '100%'
-  },
-  searchIcon: {
-    height: 25,
-    width: 25,
-    marginRight: 8
-  }
-})
 
 export default AppStackNavigator

@@ -22,12 +22,12 @@ class LoginScreen extends React.Component {
                     <Animatable.View
                         animation="zoomIn" iterationCount={1}
                         style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Image source={require('../Icons/logowhite.png')} style={{ height: SCREEN_HEIGHT * 0.25, width: SCREEN_WIDTH * 0.25, marginTop: 30 }} />
+                        <Image source={require('../Icons/logowhite.png')} resizeMode='contain' style={{ height: SCREEN_HEIGHT * 0.25, width: SCREEN_WIDTH * 0.25, marginTop: 30 }} />
                     </Animatable.View>
                 </View>
                 <TextInput
                     keyboardType="numeric"
-                    style={{ fontSize: 20, margin: 10, marginTop: 30, borderBottomColor: 'white', borderBottomWidth: 1 }}
+                    style={{ fontSize: 20, margin: 10, marginTop: 80, borderBottomColor: 'white', borderBottomWidth: 1 }}
                     placeholder="Enter your number"
                     underlineColorAndroid='transparent' />
                 <TextInput
@@ -44,6 +44,7 @@ class LoginScreen extends React.Component {
                     justifyContent: 'flex-end'
                 }}>
                     <Button rounded
+                        onPress={() => { this.props.navigation.navigate('HomeScreen') }}
                         style={{
                             backgroundColor: 'white',
                             borderRadius: 25,
