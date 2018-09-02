@@ -14,6 +14,8 @@ import ResturantsListComponent from './src/components/HomeScreenComponents/Restu
 import ProductListScreen from './src/screens/HomeScreens/ProductListScreen'
 import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 import RegisterScreen from './src/screens/RegisterScreen'
+import SearchScreen from './src/screens/SearchScreen'
+
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -125,13 +127,15 @@ const AppStackNavigator = createStackNavigator({
   RegisterScreen: { screen: RegisterScreen },
   HomeScreen: {
     screen: tabNavigator,
-    navigationOptions: {
-      title: 'Welcome',
-      headerLeft: null,
-      headerRight:
-        <TouchableOpacity onPress={() => { alert('pressed') }} style={styles.searchBtnContainer}>
-          <Image source={require('./src/Icons/Search.png')} style={styles.searchIcon} />
-        </TouchableOpacity>,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: 'Welcome',
+        headerLeft: null,
+        headerRight:
+          <TouchableOpacity onPress={() => { navigation.navigate('SearchScreen') }} style={styles.searchBtnContainer}>
+            <Image source={require('./src/Icons/Search.png')} style={styles.searchIcon} />
+          </TouchableOpacity>,
+      }
     }
   },
   SettingsViewerScreen: { screen: SettingsViewerScreen },
@@ -140,7 +144,7 @@ const AppStackNavigator = createStackNavigator({
   topTabNAvigator: { screen: ResturantTopTabNavigator },
   ProductListScreen: { screen: ProductListScreen },
   ProductViewerScreen: { screen: ProductViewerScreen },
-
+  SearchScreen: { screen: SearchScreen }
 })
 
 

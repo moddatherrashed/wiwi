@@ -9,11 +9,12 @@ const itemWidth = (Dimensions.get('window').height) * 0.49
 const viewportWidth = Dimensions.get('window').width
 
 class HomeScreen extends Component {
+    
     static navigationOptions = {
         title: 'Welcome',
         headerLeft: null,
         headerRight:
-            <TouchableOpacity onPress={() => { alert('pressed') }} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }
+            <TouchableOpacity onPress={() => {}} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }
             }>
                 <Image source={require('../Icons/Search.png')} resizeMode='contain' style={{ height: 25, width: 25, marginRight: 8 }} />
             </TouchableOpacity >
