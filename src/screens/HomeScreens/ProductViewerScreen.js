@@ -40,11 +40,11 @@ class ProductViewerScreen extends Component {
                 <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>Quantity</Text>
                 <View style={{ height: this.scalling(50), borderWidth: 0.5, borderColor: '#B8B8B8', margin: this.scalling(15), flexDirection: 'row', flex: 1.5, justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableOpacity style={{ height: this.scalling(24), width: this.scalling(24), alignSelf: 'center' }}>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: null, width: null, flex: 1 }} />
+                        <Image source={require('../../Icons/Plus.png')} style={{ height: null, width: null, flex: 1 }} />
                     </TouchableOpacity>
                     <Text style={{ fontSize: this.scalling(18), textAlign: 'center', flex: 0.5 }}>1</Text>
                     <TouchableOpacity style={{ height: this.scalling(24), width: this.scalling(24), alignSelf: 'center' }}>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: null, width: null, flex: 1 }} />
+                        <Image source={require('../../Icons/Minus.png')} style={{ height: null, width: null, flex: 1 }} />
                     </TouchableOpacity>
                 </View>
                 <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>Notes</Text>

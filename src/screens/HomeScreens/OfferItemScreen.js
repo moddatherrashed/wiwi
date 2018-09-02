@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import ResturantComponent from './../../components/HomeScreenComponents/ResturantComponent'
 
 class OfferItemScreen extends Component {
     constructor(props) {
@@ -8,11 +9,7 @@ class OfferItemScreen extends Component {
 
     render() {
         return (
-            <View>
-                <Text>
-                    offerScreen
-                </Text>
-            </View>
+            <ResturantComponent navigation={this.props.navigation} />
         )
     }
 }
