@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Dimensions, Text, TouchableOpacity, FlatList } from 'react-native'
 import Image from 'react-native-remote-svg'
-import { createStackNavigator } from 'react-navigation'
+import Modal from 'react-native-modal'
+import { Button } from 'native-base'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -50,9 +51,11 @@ class SettingsScreen extends Component {
                     image: require('../Icons/Logout.png'),
                     title: 'Logout'
                 }
-            ]
+            ],
+            isVisible: false
         }
     }
+
     render() {
         return (
             <View style={styles.screenContainer}>
@@ -62,10 +65,12 @@ class SettingsScreen extends Component {
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
-                            onPress={() => this.props.navigation.navigate('SettingsViewerScreen', {
-                                id: item.id,
-                                title: item.title
-                            })}
+                            onPress={() => {
+                                item.id !== '1' ? this.props.navigation.navigate('SettingsViewerScreen', {
+                                    id: item.id,
+                                    title: item.title
+                                }) : this.setState({ isVisible: true })
+                            }}
                             style={styles.singleItemStyle}>
                             <View style={styles.singleItemInnerConatiner}>
                                 <Image
@@ -82,7 +87,39 @@ class SettingsScreen extends Component {
                 <View style={styles.logoBackgroundContainerStyle}>
                     <Image source={require('../BG/Pattern.png')} style={styles.logoBackgroundStyle} />
                 </View>
-            </View>
+                <Modal
+                    isVisible={this.state.isVisible}
+                    backdropColor='#638bba'
+                    onBackdropPress={() => this.setState({ isVisible: false })}
+                >
+                    <View style={{ height: viewportWidth * 0.7, width: viewportWidth * 0.9, backgroundColor: 'white', borderRadius: 5, alignSelf: 'center', elevation: 5 }}>
+                        <View style={{ flex: 1, paddingHorizontal: 10, borderBottomWidth: 1, borderBottomColor: '#C8C8C8', justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '700' }}>Select Language</Text>
+                        </View>
+                        <View style={{ flex: 2, justifyContent: 'center' }}>
+                            <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
+                                <Image source={require('../Icons/Uncheck.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                                <Text style={{ fontSize: 17, flex: 0.8 }}>Arabic</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
+                                <Image source={require('../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                                <Text style={{ fontSize: 17, flex: 0.8 }}>English</Text>
+                            </View>
+                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', borderTopColor: '#C8C8C8', borderTopWidth: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <Button transparent
+                                style={{ margin: 15, alignSelf: 'center' }}>
+                                <Text style={{ fontSize: 17, color: '#638bba' }}>Cancel</Text>
+                            </Button>
+                            <Button transparent
+                                style={{ margin: 15, alignSelf: 'center' }}>
+                                <Text style={{ fontSize: 17, color: '#638bba' }}>Ok</Text>
+                            </Button>
+
+                        </View>
+                    </View>
+                </Modal>
+            </View >
         )
     }
 }
