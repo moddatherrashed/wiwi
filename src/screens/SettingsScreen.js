@@ -66,7 +66,7 @@ class SettingsScreen extends Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
-                                item.id !== '1' ? this.props.navigation.navigate('SettingsViewerScreen', {
+                                item.id !== '5' ? this.props.navigation.navigate('SettingsViewerScreen', {
                                     id: item.id,
                                     title: item.title
                                 }) : this.setState({ isVisible: true })
@@ -98,11 +98,11 @@ class SettingsScreen extends Component {
                         </View>
                         <View style={{ flex: 2, justifyContent: 'center' }}>
                             <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
-                                <Image source={require('../Icons/Uncheck.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                            <Image source={require('../Icons/Uncheck.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
                                 <Text style={{ fontSize: 17, flex: 0.8 }}>Arabic</Text>
                             </View>
                             <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
-                                <Image source={require('../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                            <Image source={require('../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
                                 <Text style={{ fontSize: 17, flex: 0.8 }}>English</Text>
                             </View>
                         </View>
