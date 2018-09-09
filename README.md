@@ -3,7 +3,7 @@
 
 # Demo 
 
-![](https://github.com/moddatherrashed/github-users-search/blob/master/src/demo.gif?raw=true)
+![](https://github.com/moddatherrashed/wiwi/blob/master/src/demo.gif?raw=true)
 
 
 
