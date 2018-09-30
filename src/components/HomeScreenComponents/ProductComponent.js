@@ -4,6 +4,13 @@ import { ImageBackground, Text, View, Dimensions, Image, TouchableOpacity } from
 const viewportWidth = Dimensions.get('window').width
 
 class ProductComponent extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            productQuintity: 1
+        }
+    }
     render() {
         return (
             <View style={{
@@ -47,9 +54,22 @@ class ProductComponent extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Image source={require('../../Icons/Plus.png')} style={{ height: 24, width: 24, padding: 5 }} />
-                        <Text style={{ padding: 20 }}>1</Text>
-                        <Image source={require('../../Icons/Minus.png')} style={{ height: 24, width: 24, padding: 5 }} />
+                        <TouchableOpacity onPress={() => {
+                            this.setState({
+                                productQuintity: this.state.productQuintity + 1
+                            })
+                        }}>
+                            <Image source={require('../../Icons/Plus.png')} style={{ height: 24, width: 24, padding: 5 }} />
+                        </TouchableOpacity>
+                        <Text style={{ padding: 20 }}>{this.state.productQuintity}</Text>
+                        <TouchableOpacity onPress={() => {
+                            if (this.state.productQuintity > 1)
+                                this.setState({
+                                    productQuintity: this.state.productQuintity - 1
+                                })
+                        }}>
+                            <Image source={require('../../Icons/Minus.png')} style={{ height: 24, width: 24, padding: 5 }} />
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

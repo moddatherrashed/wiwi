@@ -8,7 +8,9 @@ const viewportWidth = Dimensions.get('window').width
 class ProductViewerScreen extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            productQuintity: 1
+        }
     }
 
     scalling(size) {
@@ -39,11 +41,25 @@ class ProductViewerScreen extends Component {
                 </View>
                 <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>Quantity</Text>
                 <View style={{ height: this.scalling(50), borderWidth: 0.5, borderColor: '#B8B8B8', margin: this.scalling(15), flexDirection: 'row', flex: 1.5, justifyContent: 'center', alignItems: 'center' }}>
-                    <TouchableOpacity style={{ height: this.scalling(24), width: this.scalling(24), alignSelf: 'center' }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.setState({
+                                productQuintity: this.state.productQuintity + 1
+                            })
+                        }}
+                        style={{ height: this.scalling(24), width: this.scalling(24), alignSelf: 'center' }}
+                    >
                         <Image source={require('../../Icons/Plus.png')} style={{ height: null, width: null, flex: 1 }} />
                     </TouchableOpacity>
-                    <Text style={{ fontSize: this.scalling(18), textAlign: 'center', flex: 0.5 }}>1</Text>
-                    <TouchableOpacity style={{ height: this.scalling(24), width: this.scalling(24), alignSelf: 'center' }}>
+                    <Text style={{ fontSize: this.scalling(18), textAlign: 'center', flex: 0.5 }}>{this.state.productQuintity}</Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            if (this.state.productQuintity > 1)
+                                this.setState({
+                                    productQuintity: this.state.productQuintity - 1
+                                })
+                        }}
+                        style={{ height: this.scalling(24), width: this.scalling(24), alignSelf: 'center' }}>
                         <Image source={require('../../Icons/Minus.png')} style={{ height: null, width: null, flex: 1 }} />
                     </TouchableOpacity>
                 </View>
