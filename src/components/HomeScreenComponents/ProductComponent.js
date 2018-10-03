@@ -8,10 +8,12 @@ class ProductComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            productQuintity: 1
+            productQuintity: 1,
+            isFavo: false,
         }
     }
     render() {
+        const { productName, productImage, productPrice } = this.props
         return (
             <View style={{
                 backgroundColor: 'white',
@@ -25,7 +27,7 @@ class ProductComponent extends Component {
                 justifyContent: 'space-between'
             }}>
                 <ImageBackground
-                    source={{ uri: 'https://images5.alphacoders.com/415/415257.jpg' }}
+                    source={{ uri: productImage }}
                     style={{
                         flex: 2.6,
                         flexDirection: 'row',
@@ -45,8 +47,8 @@ class ProductComponent extends Component {
                         flex: 1,
                         alignItems: 'center'
                     }}>
-                        <Text style={{ fontWeight: '700', padding: 5, textAlign: 'center' }}>Maker Beef Burger Meal</Text>
-                        <Text>3.87 JOD</Text>
+                        <Text style={{ fontWeight: '700', padding: 5, textAlign: 'center' }}>{productName}</Text>
+                        <Text>{productPrice} JOD</Text>
                     </View>
                     <View style={{
                         flex: 1.4,

@@ -10,42 +10,55 @@ class ProductListScreen extends Component {
             products: [
                 {
                     id: 1,
-                    //    itemUrl: require('../Icons/Market.svg'),
-                    ItemTitle: 'Market'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
+
                 },
                 {
                     id: 2,
-                    //  itemUrl: require('../Icons/Home.svg'),
-                    ItemTitle: 'Home'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
                 },
                 {
                     id: 3,
-                    //  itemUrl: require('../Icons/Restaurant.svg'),
-                    ItemTitle: 'Resturant'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
                 },
                 {
                     id: 4,
-                    //  itemUrl: require('../Icons/Electronic.svg'),
-                    ItemTitle: 'Electronic'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
                 },
                 {
                     id: 5,
-                    //  itemUrl: require('../Icons/Home.svg'),
-                    ItemTitle: 'Home'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
                 },
                 {
                     id: 6,
-                    //  itemUrl: require('../Icons/Restaurant.svg'),
-                    ItemTitle: 'Resturant'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
                 },
                 {
                     id: 7,
-                    //  itemUrl: require('../Icons/Electronic.svg'),
-                    ItemTitle: 'Electronic'
+                    productImage: 'https://images5.alphacoders.com/415/415257.jpg',
+                    productName: 'meal beef',
+                    productPrice: 2.80
                 },
             ]
         }
     }
+
+    static navigationOptions = ({ navigation }) => ({
+        title: `${navigation.state.params.name}`,
+    })
+
     render() {
         return (
             <View style={styles.screenContainerStyle}>
@@ -58,11 +71,19 @@ class ProductListScreen extends Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.navigation.navigate('ProductViewerScreen')
+                                this.props.navigation.navigate('ProductViewerScreen', {
+                                    productName: item.productName,
+                                    productImage: item.productImage,
+                                    productPrice: item.productPrice
+                                })
                             }}
                             style={{
                             }}>
-                            <ProductComponent navigation={this.props.navigation} />
+                            <ProductComponent
+                                productName={item.productName}
+                                productPrice={item.productPrice}
+                                productImage={item.productImage}
+                                navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }
                 />

@@ -16,13 +16,18 @@ class ProductViewerScreen extends Component {
     scalling(size) {
         return viewportWidth * (size / viewportWidth)
     }
+
+    static navigationOptions = ({ navigation }) => ({
+        title: `${navigation.state.params.productName}`
+    })
     render() {
+        const { navigation } = this.props
         return (
             <ScrollView style={styles.scrollScreenContainerStyle}>
                 <View style={styles.screenViewContainerStyle}>
                     <Image
                         resizeMode='cover'
-                        source={{ uri: 'https://images5.alphacoders.com/415/415257.jpg' }}
+                        source={{ uri: navigation.getParam('productImage') }}
                         style={styles.imageStyle}
                     />
                 </View>
@@ -30,7 +35,7 @@ class ProductViewerScreen extends Component {
                     <View style={{
                         flexDirection: 'row'
                     }}>
-                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>5.30 JOD</Text>
+                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>{navigation.getParam('productPrice')} JOD</Text>
                         <View style={{ padding: this.scalling(5), flex: 0.5 }}>
                             <TouchableOpacity style={{ height: this.scalling(22), width: this.scalling(24), alignSelf: 'flex-end' }}>
                                 <Image source={require('../../ProductIcons/addToFavo.png')} style={{ height: null, width: null, flex: 1 }} />
