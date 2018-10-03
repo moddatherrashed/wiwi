@@ -19,7 +19,11 @@ class SearchScreen extends Component {
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={{ height: 60, marginTop: 20, flexDirection: 'row', justifyContent: 'center', backgroundColor: 'white', borderBottomColor: '#D8D8D8', borderBottomWidth: 1 }}>
-                    <TouchableOpacity style={{ flex: 0.1, height: 60, justifyContent: 'center', alignItems: 'center' }} >
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.props.navigation.goBack()
+                        }}
+                        style={{ flex: 0.1, height: 60, justifyContent: 'center', alignItems: 'center' }} >
                         <Icon name='arrow-back' style={{ fontSize: 22, color: 'black' }} />
                     </TouchableOpacity>
                     <View style={{ flex: 0.9, padding: 10, justifyContent: 'center', height: 60 }}>
