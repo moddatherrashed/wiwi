@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import OrderScreenComponent from '../../components/SettingScreenComponent/OrderHistoryComponent'
 import ChangeNumberComponent from '../../components/SettingScreenComponent/ChangeNumberComponent'
 import ChangePassword from '../../components/SettingScreenComponent/ChangePassword'
-
+import SendReportComponent from '../../components/SettingScreenComponent/SendReportComponent'
 class SettingsViewerScreen extends Component {
     constructor(props) {
         super(props)
@@ -47,7 +47,7 @@ class SettingsViewerScreen extends Component {
                 break;
             case '6':
                 return (
-                    <View><Text>send report</Text></View>
+                    <SendReportComponent />
                 )
                 break;
             case '7':
