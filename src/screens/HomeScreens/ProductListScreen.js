@@ -11,44 +11,44 @@ class ProductListScreen extends Component {
                 {
                     id: 1,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef 12',
                     productPrice: 2.80
 
                 },
                 {
                     id: 2,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef 43',
                     productPrice: 2.80
                 },
                 {
                     id: 3,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef 55',
                     productPrice: 2.80
                 },
                 {
                     id: 4,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef 221',
                     productPrice: 2.80
                 },
                 {
                     id: 5,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef 432',
                     productPrice: 2.80
                 },
                 {
                     id: 6,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef rr',
                     productPrice: 2.80
                 },
                 {
                     id: 7,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
-                    productName: 'meal beef',
+                    productName: 'meal beef 88',
                     productPrice: 2.80
                 },
             ]
@@ -56,10 +56,11 @@ class ProductListScreen extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: `${navigation.state.params.name}`,
+        title: `${navigation.state.params.catagoryName}`,
     })
 
     render() {
+        const { catagoryName, resturantName } = this.props.navigation.state.params
         return (
             <View style={styles.screenContainerStyle}>
                 <FlatList
@@ -74,12 +75,15 @@ class ProductListScreen extends Component {
                                 this.props.navigation.navigate('ProductViewerScreen', {
                                     productName: item.productName,
                                     productImage: item.productImage,
-                                    productPrice: item.productPrice
+                                    productPrice: item.productPrice,
+                                    catagoryName: catagoryName,
+                                    resturantName: resturantName
                                 })
                             }}
                             style={{
                             }}>
                             <ProductComponent
+                                productId={item.id}
                                 productName={item.productName}
                                 productPrice={item.productPrice}
                                 productImage={item.productImage}

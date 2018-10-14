@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity } from 'react-native'
-import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
-import AllItemsScreen from './../../screens/HomeScreens/AllItemsScreen'
-import OfferItemScreen from './../../screens/HomeScreens/OfferItemScreen'
-import CatagoryViewerScreen from '../../screens/HomeScreens/CatagoryViewerScreen';
 
 const viewportWidth = Dimensions.get('window').width
 
+//ResturantListComponent  ==> two tabs (offer tab) and (all items tab) ==> ResturantComponent ==> product list screen ==> product component 
 class ResturantsListComponent extends Component {
     constructor(props) {
         super(props)
@@ -52,7 +49,8 @@ class ResturantsListComponent extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('topTabNAvigator', {
-                                    resturantName: item.name
+                                    resturantName: item.name,
+
                                 })
                             }
                             }

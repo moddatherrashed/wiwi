@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ImageBackground, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native'
+import AsyncStorageController from '../../controllers/AsyncStorageController'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -9,11 +10,23 @@ class ProductComponent extends Component {
         super(props)
         this.state = {
             productQuintity: 1,
-            isFavo: false,
+            isFavo: '',
         }
     }
+
+    componentWillMount() {
+        const { catagoryName, resturantName } = this.props.navigation.state.params
+        const { productId, productName } = this.props
+        AsyncStorageController.isFavorite(productId, productName, catagoryName, resturantName).then((value) => {
+            value
+                ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
+                : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
+        })
+
+    }
     render() {
-        const { productName, productImage, productPrice } = this.props
+        const { productName, productImage, productPrice, productId } = this.props
+        const { catagoryName, resturantName } = this.props.navigation.state.params
         return (
             <View style={{
                 backgroundColor: 'white',
@@ -23,7 +36,6 @@ class ProductComponent extends Component {
                 shadowColor: 'black',
                 shadowOpacity: 0.2,
                 width: viewportWidth / 2 - 15,
-                //height: viewportWidth / 1.5 - 15,
                 justifyContent: 'space-between'
             }}>
                 <ImageBackground
@@ -33,8 +45,28 @@ class ProductComponent extends Component {
                         flexDirection: 'row',
                         height: viewportWidth / 2.5,
                     }}>
-                    <TouchableOpacity style={{ height: 24, width: 26, margin: 5, flex: 1.3 }}>
-                        <Image source={require('../../ProductIcons/Favo.png')} style={{ height: 24, width: 26 }} />
+                    <TouchableOpacity
+                        style={{ height: 24, width: 26, margin: 5, flex: 1.3 }}
+                        onPress={() => {
+                            if (this.state.isFavo === require('../../ProductIcons/Favo.png')) {
+                                this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
+                                AsyncStorageController.setItem(
+                                    {
+                                        id: productId,
+                                        name: productName,
+                                        image: productImage,
+                                        price: productPrice,
+                                        catagoryName: catagoryName,
+                                        resturantName: resturantName
+                                    }
+                                )
+                            } else {
+                                this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
+                                AsyncStorageController.deleteItem(productName)
+                            }
+                        }}
+                    >
+                        <Image source={this.state.isFavo} style={{ height: 24, width: 26 }} />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ height: 24, width: 24, margin: 5, flex: 1.3, alignItems: 'flex-end' }}>
                         <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24 }} />

@@ -8,7 +8,7 @@ class ResturantComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            allItems: [
+            catagories: [
                 {
                     id: '1',
                     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScCNoitmgIfQmqbwDM2SIiMCDWQpoyYnZ6Mdo2Y3uLD4Mp6UicYQ',
@@ -40,13 +40,14 @@ class ResturantComponent extends Component {
                         padding: 10,
                         flex: 2
                     }}
-                    data={this.state.allItems}
+                    data={this.state.catagories}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('ProductListScreen', {
-                                    name: item.name
+                                    catagoryName: item.name,
+                                    resturantName: this.props.navigation.state.params.resturantName
                                 })
                             }}
                             style={{

@@ -4,17 +4,20 @@ import Image from 'react-native-remote-svg'
 import ViewPagerComponent from '../components/ViewPagerComponent'
 import { Pagination } from 'react-native-snap-carousel'
 
+import { AsyncStorage } from 'react-native'
+
+
 const sliderWidth = Dimensions.get('window').width
 const itemWidth = (Dimensions.get('window').height) * 0.49
 const viewportWidth = Dimensions.get('window').width
 
 class HomeScreen extends Component {
-    
+
     static navigationOptions = {
         title: 'Welcome',
         headerLeft: null,
         headerRight:
-            <TouchableOpacity onPress={() => {}} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }
+            <TouchableOpacity onPress={() => { }} style={{ justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }
             }>
                 <Image source={require('../Icons/Search.png')} resizeMode='contain' style={{ height: 25, width: 25, marginRight: 8 }} />
             </TouchableOpacity >
@@ -77,6 +80,7 @@ class HomeScreen extends Component {
             </ImageBackground>
         );
     }
+
     render() {
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
