@@ -32,6 +32,7 @@ class ResturantComponent extends Component {
     }
 
     render() {
+        const { resturantImage, resturantName } = this.props.navigation.state.params
         return (
             <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
                 <FlatList
@@ -47,7 +48,8 @@ class ResturantComponent extends Component {
                             onPress={() => {
                                 this.props.navigation.navigate('ProductListScreen', {
                                     catagoryName: item.name,
-                                    resturantName: this.props.navigation.state.params.resturantName
+                                    resturantName: resturantName,
+                                    resturantImage: resturantImage
                                 })
                             }}
                             style={{

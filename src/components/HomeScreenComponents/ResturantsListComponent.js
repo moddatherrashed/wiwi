@@ -13,22 +13,16 @@ class ResturantsListComponent extends Component {
                     id: '1',
                     image: 'http://www.clicksides.com/wp-content/uploads/2018/04/FireFly-Burger.png',
                     name: 'Firefly',
-                    date: '20/04/2018',
-                    price: '100 JOD'
                 },
                 {
                     id: '2',
                     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/280px-McDonald%27s_Golden_Arches.svg.png',
                     name: 'McDonalds',
-                    date: '14/03/2018',
-                    price: '20 JOD'
                 },
                 {
                     id: '3',
                     image: 'https://is4-ssl.mzstatic.com/image/thumb/Purple118/v4/56/90/3a/56903aa7-079f-7c9f-5d75-ace99992139e/mzl.lxkstsco.jpg/246x0w.jpg',
-                    name: 'Burger Makers',
-                    date: '14/03/2018',
-                    price: '20 JOD'
+                    name: 'Burger Makers'
                 }
             ]
         }
@@ -50,7 +44,7 @@ class ResturantsListComponent extends Component {
                             onPress={() => {
                                 this.props.navigation.navigate('topTabNAvigator', {
                                     resturantName: item.name,
-
+                                    resturantImage : item.image
                                 })
                             }
                             }

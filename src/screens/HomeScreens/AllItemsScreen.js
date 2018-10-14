@@ -9,7 +9,6 @@ class AllItemScreen extends Component {
     }
 
 
-
     render() {
         return (
             <ResturantComponent navigation={this.props.navigation}/>

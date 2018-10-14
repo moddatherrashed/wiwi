@@ -60,7 +60,7 @@ class ProductListScreen extends Component {
     })
 
     render() {
-        const { catagoryName, resturantName } = this.props.navigation.state.params
+        const { catagoryName, resturantName, resturantImage } = this.props.navigation.state.params
         return (
             <View style={styles.screenContainerStyle}>
                 <FlatList
@@ -76,8 +76,6 @@ class ProductListScreen extends Component {
                                     productName: item.productName,
                                     productImage: item.productImage,
                                     productPrice: item.productPrice,
-                                    catagoryName: catagoryName,
-                                    resturantName: resturantName
                                 })
                             }}
                             style={{

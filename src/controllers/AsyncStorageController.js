@@ -24,33 +24,38 @@ let AsyncStorageController = {
             alert("Error retrieving favorite items === " + error);
         }
     },
-    deleteItem: (itemName) => {
-        let favoritesList = AsyncStorageController.getItems()
+    deleteItem: async (itemName) => {
+        let favoritesList = JSON.parse(await AsyncStorage.getItem(pointerName))
         if (favoritesList !== null) {
             let index = favoritesList.findIndex(x => x.name == itemName);
             favoritesList.splice(index, 1)
-            AsyncStorageController.setItem(JSON.stringify(favoritesList))
+            AsyncStorage.setItem(pointerName, JSON.stringify(favoritesList))
         }
     },
     isFavorite: async (itemId, itemName, catagoryName, resturantName) => {
-        let favoritesList = JSON.parse(await AsyncStorage.getItem(pointerName))
-        //alert(favoritesList)
-        if (favoritesList === null) {
-            // alert('inside isFavorite')
-            return false
-        } else {
-            for (let i = 0; i < favoritesList.length; i++) {
-                if (favoritesList[i].id === itemId
-                    && favoritesList[i].name === itemName
-                    && favoritesList[i].resturantName === resturantName
-                    && favoritesList[i].catagoryName === catagoryName) {
-                    alert(catagoryName)
-                    return true
-                }
 
+        try {
+            let favoritesList = JSON.parse(await AsyncStorage.getItem(pointerName))
+
+            //alert(favoritesList)
+            if (favoritesList === null) {
+                // alert('inside isFavorite')
+                return false
+            } else {
+                for (let i = 0; i < favoritesList.length; i++) {
+                    if (favoritesList[i].id === itemId
+                        && favoritesList[i].name === itemName
+                        && favoritesList[i].resturantName === resturantName
+                        && favoritesList[i].catagoryName === catagoryName) {
+                        return true
+                    }
+
+                }
             }
+            return false
+        } catch (err) {
+            alert(err)
         }
-        return false
     }
 }
 
