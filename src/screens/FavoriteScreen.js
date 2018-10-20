@@ -1,47 +1,100 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
-
+import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native'
+import AsyncStorageController from '../controllers/AsyncStorageController'
+import { NavigationEvents } from 'react-navigation'
 const viewportWidth = Dimensions.get('window').width
 
 class FavoriteScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            FavoritesList: [
-                {
-                    id: '1',
-                    image: 'http://freevectorlogo.net/wp-content/uploads/2012/12/carrefour-logo-vector-400x400.png',
-                    name: 'Carrefour'
-                },
-                {
-                    id: '2',
-                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/280px-McDonald%27s_Golden_Arches.svg.png',
-                    name: 'McDonalds'
+            favoritesList: [],
+            resturantsList: []
+        }
+    }
+
+    removeDuplicates = (myArr, prop) => {
+        return myArr.filter((obj, pos, arr) => {
+            return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+        });
+    }
+
+
+    async  componentDidMount() {
+        try {
+            await AsyncStorage.getItem('FavoritesItems').then((value) => {
+                let values = JSON.parse(value)
+
+                let filterdValues = []
+                let idCounter = 0
+                for (let i of values) {
+
+                    filterdValues.push({ id: idCounter, resturantName: i.resturantName, resturantImage: i.resturantImage, items: { id: idCounter, itemName: i.name, itemImg: i.image } })
+                    idCounter++
                 }
-            ]
+
+                this.setState({
+                    resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
+                    favoritesList: values
+                })
+                alert(JSON.stringify(filterdValues))
+            })
+        } catch (error) {
+            alert("Error retrieving favorite items === " + error);
         }
     }
     render() {
         return (
             <ScrollView style={styles.screenStyle}>
+                <NavigationEvents
+                    onWillFocus={async () => {
+                        try {
+                            await AsyncStorage.getItem('FavoritesItems').then((value) => {
+                                let values = JSON.parse(value)
 
+                                let filterdValues = []
+                                let idCounter = 0
+                                for (let i of values) {
+
+                                    filterdValues.push({ id: idCounter, resturantName: i.resturantName, resturantImage: i.resturantImage, items: { id: idCounter, itemName: i.name, itemImg: i.image } })
+                                    idCounter++
+                                }
+
+                                this.setState({
+                                    resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
+                                    favoritesList: values
+                                })
+                                //alert(JSON.stringify(filterdValues))
+                            })
+                        } catch (error) {
+                            alert("Error retrieving favorite items === " + error);
+                        }
+                    }}
+                />
                 <FlatList
                     contentContainerStyle={styles.flatListConatinerStyle}
-                    data={this.state.FavoritesList}
-                    keyExtractor={item => item.id}
+                    data={this.state.resturantsList}
+                    keyExtractor={item => (item.id).toString()}
                     renderItem={({ item }) =>
                         <TouchableOpacity
+                            onPress={() => {
+                                for (let i of this.state.favoritesList) {
+                                    if (item.resturantName === i.resturantName) {
+                                        //navigate item.items to the next screen to view it 
+                                    }
+                                }
+                            }}
                             style={styles.itemMainContainerStyle}>
                             <View style={styles.itemContainerStyle}>
                                 <View style={styles.itemImageContainerStyle}>
                                     <Image
                                         style={styles.itemImageStyle}
-                                        source={{ uri: item.image }}
+                                        source={{ uri: item.resturantImage }}
                                         resizeMode='contain'
                                     />
                                 </View>
                                 <View style={styles.itemTextContainerStyle}>
-                                    <Text style={styles.itemTextStyle}>{item.name}</Text>
+                                    <Text style={styles.itemTextStyle}>{item.resturantName}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>

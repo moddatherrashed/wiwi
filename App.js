@@ -88,6 +88,7 @@ const tabNavigator = createBottomTabNavigator({
   {
     swipeEnabled: true,
     lazy: true,
+    animationEnabled: false,
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'grey'
