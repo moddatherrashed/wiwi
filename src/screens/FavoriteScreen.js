@@ -47,29 +47,39 @@ class FavoriteScreen extends Component {
         return (
             <ScrollView style={styles.screenStyle}>
                 <NavigationEvents
-                    onWillFocus={async () => {
-                        try {
-                            await AsyncStorage.getItem('FavoritesItems').then((value) => {
-                                let values = JSON.parse(value)
+                    onWillFocus={
+                        async () => {
+                            try {
+                                await AsyncStorage.getItem('FavoritesItems').then((value) => {
+                                    let values = JSON.parse(value)
 
-                                let filterdValues = []
-                                let idCounter = 0
-                                for (let i of values) {
+                                    let filterdValues = []
+                                    let idCounter = 0
+                                    for (let i of values) {
 
-                                    filterdValues.push({ id: idCounter, resturantName: i.resturantName, resturantImage: i.resturantImage, items: { id: idCounter, itemName: i.name, itemImg: i.image } })
-                                    idCounter++
-                                }
+                                        filterdValues.push({
+                                            id: idCounter,
+                                            resturantName: i.resturantName,
+                                            resturantImage: i.resturantImage,
+                                            items: {
+                                                id: idCounter,
+                                                itemName: i.name,
+                                                itemImg: i.image
+                                            }
+                                        })
+                                        idCounter++
+                                    }
 
-                                this.setState({
-                                    resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
-                                    favoritesList: values
+                                    this.setState({
+                                        resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
+                                        favoritesList: values
+                                    })
+                                    //alert(JSON.stringify(filterdValues))
                                 })
-                                //alert(JSON.stringify(filterdValues))
-                            })
-                        } catch (error) {
-                            alert("Error retrieving favorite items === " + error);
-                        }
-                    }}
+                            } catch (error) {
+                                alert("Error retrieving favorite items === " + error);
+                            }
+                        }}
                 />
                 <FlatList
                     contentContainerStyle={styles.flatListConatinerStyle}
@@ -81,6 +91,7 @@ class FavoriteScreen extends Component {
                                 for (let i of this.state.favoritesList) {
                                     if (item.resturantName === i.resturantName) {
                                         //navigate item.items to the next screen to view it 
+                                        
                                     }
                                 }
                             }}
