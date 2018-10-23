@@ -6,7 +6,7 @@ class FavoritesViewerScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            products: []
         }
     }
 
@@ -28,8 +28,8 @@ class FavoritesViewerScreen extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('ProductViewerScreen', {
-                                    productName: item.productName,
-                                    productImage: item.productImage,
+                                    productName: item.itemName,
+                                    productImage: item.itemImg,
                                     productPrice: item.productPrice,
                                 })
                             }}

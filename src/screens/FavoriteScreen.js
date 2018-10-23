@@ -91,7 +91,9 @@ class FavoriteScreen extends Component {
                                 for (let i of this.state.favoritesList) {
                                     if (item.resturantName === i.resturantName) {
                                         //navigate item.items to the next screen to view it 
-                                        
+                                        this.props.navigation.navigate('', {
+                                            porducts: items
+                                        })
                                     }
                                 }
                             }}
