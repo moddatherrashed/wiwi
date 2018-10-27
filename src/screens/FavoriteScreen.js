@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native'
-import AsyncStorageController from '../controllers/AsyncStorageController'
 import { NavigationEvents } from 'react-navigation'
 const viewportWidth = Dimensions.get('window').width
 
@@ -9,7 +8,8 @@ class FavoriteScreen extends Component {
         super(props)
         this.state = {
             favoritesList: [],
-            resturantsList: []
+            resturantsList: [],
+            itemsSingle: []
         }
     }
 
@@ -26,18 +26,35 @@ class FavoriteScreen extends Component {
                 let values = JSON.parse(value)
 
                 let filterdValues = []
+                let itemsSingle = []
                 let idCounter = 0
+                console.log(values)
                 for (let i of values) {
 
-                    filterdValues.push({ id: idCounter, resturantName: i.resturantName, resturantImage: i.resturantImage, items: { id: idCounter, itemName: i.name, itemImg: i.image } })
+                    filterdValues.push({
+                        id: idCounter,
+                        resturantName: i.resturantName,
+                        resturantImage: i.resturantImage
+                    })
+
+                    itemsSingle.push({
+                        id: idCounter,
+                        itemName: i.name,
+                        itemImg: i.image,
+                        itemPrice: i.price,
+                        resturnatName: i.resturantName
+                    })
                     idCounter++
                 }
-
+                console.log(filterdValues)
                 this.setState({
                     resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
-                    favoritesList: values
+                    favoritesList: values,
+                    itemsSingle: itemsSingle
                 })
-                alert(JSON.stringify(filterdValues))
+                console.log(this.state.resturantsList)
+                // alert("favorites list"+JSON.stringify(this.state.favoritesList))
+
             })
         } catch (error) {
             alert("Error retrieving favorite items === " + error);
@@ -54,27 +71,34 @@ class FavoriteScreen extends Component {
                                     let values = JSON.parse(value)
 
                                     let filterdValues = []
+                                    let itemsSingle = []
                                     let idCounter = 0
+                                    console.log(values)
                                     for (let i of values) {
 
                                         filterdValues.push({
                                             id: idCounter,
                                             resturantName: i.resturantName,
-                                            resturantImage: i.resturantImage,
-                                            items: {
-                                                id: idCounter,
-                                                itemName: i.name,
-                                                itemImg: i.image
-                                            }
+                                            resturantImage: i.resturantImage
+                                        })
+
+                                        itemsSingle.push({
+                                            id: idCounter,
+                                            itemName: i.name,
+                                            itemImg: i.image,
+                                            itemPrice: i.price,
+                                            resturnatName: i.resturantName
                                         })
                                         idCounter++
                                     }
-
+                                    console.log(filterdValues)
                                     this.setState({
                                         resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
-                                        favoritesList: values
+                                        favoritesList: values,
+                                        itemsSingle: itemsSingle
                                     })
-                                    //alert(JSON.stringify(filterdValues))
+                                    console.log(this.state.resturantsList)
+                                    // alert("favorites list"+JSON.stringify(this.state.favoritesList))
                                 })
                             } catch (error) {
                                 alert("Error retrieving favorite items === " + error);
@@ -88,14 +112,31 @@ class FavoriteScreen extends Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
-                                for (let i of this.state.favoritesList) {
-                                    if (item.resturantName === i.resturantName) {
-                                        //navigate item.items to the next screen to view it 
-                                        this.props.navigation.navigate('', {
-                                            porducts: items
+                                let collecteditems = []
+                                let idCounter = 0
+                                for (let i of this.state.itemsSingle) {
+                                    if (item.resturantName === i.resturnatName) {
+                                        //loop over till you fill all items and send it to the next screen  
+                                        console.log('it is true !!!!!!!!!')
+                                        collecteditems.push({
+                                            id: idCounter,
+                                            itemName: i.itemName,
+                                            itemImg: i.itemImg,
+                                            itemPrice: i.itemPrice
                                         })
+
                                     }
+                                    idCounter++
                                 }
+                                console.log('here for the clock listener ==============================')
+                                console.log(collecteditems)
+                                console.log('here for the clock listener ==============================')
+
+
+                                this.props.navigation.navigate('FavoritesViewerScreen', {
+                                    resturantItems: collecteditems
+                                })
+                                // alert('on press event ' + JSON.stringify(item.items) + 'this is i.items' + JSON.stringify(this.state.favoritesList.items))
                             }}
                             style={styles.itemMainContainerStyle}>
                             <View style={styles.itemContainerStyle}>

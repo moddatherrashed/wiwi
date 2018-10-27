@@ -15,7 +15,7 @@ import ProductListScreen from './src/screens/HomeScreens/ProductListScreen'
 import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 import RegisterScreen from './src/screens/RegisterScreen'
 import SearchScreen from './src/screens/SearchScreen'
-
+import FavoritesViewerScreen from './src/screens/FavoritesScreen/FavoritesViewerScreen'
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -145,7 +145,8 @@ const AppStackNavigator = createStackNavigator({
   topTabNAvigator: { screen: ResturantTopTabNavigator },
   ProductListScreen: { screen: ProductListScreen },
   ProductViewerScreen: { screen: ProductViewerScreen },
-  SearchScreen: { screen: SearchScreen }
+  SearchScreen: { screen: SearchScreen },
+  FavoritesViewerScreen: { screen: FavoritesViewerScreen }
 })
 
 

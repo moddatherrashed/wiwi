@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
+
+const viewportWidth = Dimensions.get('window').width
+
 class FavoritesViewerScreen extends Component {
 
     constructor(props) {
@@ -11,17 +14,24 @@ class FavoritesViewerScreen extends Component {
     }
 
     componentDidMount() {
+        //let { products } = this.props.navigation.state.params
         this.setState({
-            FavoriteItems: this.props.navigation.state.params.items
+            products: this.props.navigation.getParam('resturantItems')
         })
+
+        //alert(JSON.stringify(this.props.navigation.state.params.products))
+        // console.log("================== HERE IS THE SINGLE RESTURANT ITEMS ==================")
+        // console.log(this.props.navigation.getParam('resturantItems'))
     }
     render() {
+        //alert('THIS IS THE PARAMS ' + JSON.stringify(this.state.porducts))
+
         return (
             <View>
                 <FlatList
                     horizontal={false}
                     numColumns={2}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => (item.id).toString()}
                     contentContainerStyle={styles.listConatinerStyle}
                     data={this.state.products}
                     renderItem={({ item }) =>
@@ -37,9 +47,9 @@ class FavoritesViewerScreen extends Component {
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                productName={item.productName}
-                                productPrice={item.productPrice}
-                                productImage={item.productImage}
+                                productName={item.itemName}
+                                productPrice={item.itemPrice}
+                                productImage={item.itemImg}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }
@@ -48,5 +58,51 @@ class FavoritesViewerScreen extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    screenStyle: {
+        flex: 3,
+        backgroundColor: 'white'
+    },
+    flatListConatinerStyle: {
+        padding: 10,
+        flex: 2
+    },
+    itemMainContainerStyle: {
+        flexDirection: 'row',
+        backgroundColor: '#FFFFFF',
+        margin: 5,
+        elevation: 1,
+        shadowOffset: { height: 0, width: 0 },
+        shadowColor: 'black',
+        shadowOpacity: 0.2
+    },
+    itemContainerStyle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 4
+    },
+    itemImageContainerStyle: {
+        padding: 6,
+        flex: 2
+    },
+    itemImageStyle: {
+        height: viewportWidth * 0.21,
+        width: viewportWidth * 0.21
+    },
+    itemTextContainerStyle: {
+        padding: 6,
+        flex: 2
+    },
+    itemTextStyle: {
+        color: 'black',
+        marginLeft: 12,
+        marginTop: 10,
+        marginBottom: 2,
+        fontWeight: '700',
+        fontSize: 20
+    }
+})
+
 
 export default FavoritesViewerScreen;
