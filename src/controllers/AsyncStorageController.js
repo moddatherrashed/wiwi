@@ -19,10 +19,6 @@ let AsyncStorageController = {
     },
     getItems: async () => {
         try {
-            //IMPORTANT NOTE 
-            //===================================================================================================
-            //here an error occurs because first time when it does initilize it takes it as NULL not as an object
-            //===================================================================================================
             return JSON.parse(await AsyncStorage.getItem(pointerName))
         } catch (error) {
             alert("Error retrieving favorite items === " + error);

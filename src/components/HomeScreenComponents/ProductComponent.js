@@ -70,7 +70,7 @@ class ProductComponent extends Component {
                         <Image source={this.state.isFavo} style={{ height: 24, width: 26 }} />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ height: 24, width: 24, margin: 5, flex: 1.3, alignItems: 'flex-end' }}>
-                        <Image source={require('../../ProductIcons/addtocart.png')} style={{ height: 24, width: 24 }} />
+                        <Image source={require('../../ProductIcons/AddToCart.png')} style={{ height: 24, width: 24 }} />
                     </TouchableOpacity>
                 </ImageBackground>
                 <View style={{
