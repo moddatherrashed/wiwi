@@ -4,6 +4,8 @@ import OrderScreenComponent from '../../components/SettingScreenComponent/OrderH
 import ChangeNumberComponent from '../../components/SettingScreenComponent/ChangeNumberComponent'
 import ChangePassword from '../../components/SettingScreenComponent/ChangePassword'
 import SendReportComponent from '../../components/SettingScreenComponent/SendReportComponent'
+import LocationScreenComponent from '../../components/SettingScreenComponent/LocationScreenComponent'
+
 class SettingsViewerScreen extends Component {
     constructor(props) {
         super(props)
@@ -22,7 +24,7 @@ class SettingsViewerScreen extends Component {
         switch (id) {
             case '1':
                 return (
-                    <View><Text>Change loation</Text></View>
+                    <LocationScreenComponent/>
                 )
                 break;
             case '2':

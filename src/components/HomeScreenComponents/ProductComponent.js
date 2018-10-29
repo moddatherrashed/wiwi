@@ -17,8 +17,7 @@ class ProductComponent extends Component {
     }
 
     componentDidMount() {
-        //const { catagoryName, resturantName } = this.props.navigation.state.params
-        const { productId, productName, resturantName } = this.props
+        const { productName, resturantName } = this.props
         FavoritesController.isFavorite(productName, resturantName).then((value) => {
             value
                 ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
@@ -30,7 +29,6 @@ class ProductComponent extends Component {
                 ? this.setState({ isInCart: require('../../Icons/Cancel.png') })
                 : this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
         })
-
     }
     render() {
         const { productName, productImage, productPrice, productId } = this.props
