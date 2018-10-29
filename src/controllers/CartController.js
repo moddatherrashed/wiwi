@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
-const pointerName = 'FavoritesItems'
+const pointerName = 'CartItems'
 
-let AsyncStorageController = {
+let FavoritesController = {
     setItem: async (value) => {
         try {
             const retrievedItems = await AsyncStorage.getItem(pointerName);
@@ -56,4 +56,4 @@ let AsyncStorageController = {
     }
 }
 
-module.exports = AsyncStorageController
+module.exports = FavoritesController

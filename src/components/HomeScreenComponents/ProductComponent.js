@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ImageBackground, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native'
-import AsyncStorageController from '../../controllers/AsyncStorageController'
+import FavoritesController from '../../controllers/FavoritesController'
+import CartController from '../../controllers/CartController'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -11,16 +12,23 @@ class ProductComponent extends Component {
         this.state = {
             productQuintity: 1,
             isFavo: null,
+            isInCart: null
         }
     }
 
     componentDidMount() {
         //const { catagoryName, resturantName } = this.props.navigation.state.params
         const { productId, productName, resturantName } = this.props
-        AsyncStorageController.isFavorite(productName, resturantName).then((value) => {
+        FavoritesController.isFavorite(productName, resturantName).then((value) => {
             value
                 ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
                 : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
+        })
+
+        CartController.isFavorite(productName, resturantName).then((value) => {
+            value
+                ? this.setState({ isInCart: require('../../Icons/Cancel.png') })
+                : this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
         })
 
     }
@@ -50,7 +58,7 @@ class ProductComponent extends Component {
                         onPress={() => {
                             if (this.state.isFavo === require('../../ProductIcons/Favo.png')) {
                                 this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
-                                AsyncStorageController.setItem(
+                                FavoritesController.setItem(
                                     {
                                         id: productId,
                                         name: productName,
@@ -63,7 +71,7 @@ class ProductComponent extends Component {
                                 )
                             } else {
                                 this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
-                                AsyncStorageController.deleteItem(productName)
+                                FavoritesController.deleteItem(productName)
                             }
                         }}
                     >
@@ -71,8 +79,27 @@ class ProductComponent extends Component {
                             <Image source={this.state.isFavo} style={{ flex: 1 }} />
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ height: 24, width: 24, margin: 5, flex: 1.3, alignItems: 'flex-end' }}>
-                        <Image source={require('../../ProductIcons/AddToCart.png')} style={{ height: 24, width: 24 }} />
+                    <TouchableOpacity style={{ height: 24, width: 24, margin: 5, flex: 1.3, alignItems: 'flex-end' }}
+                        onPress={() => {
+                            if (this.state.isInCart === require('../../ProductIcons/AddToCart.png')) {
+                                this.setState({ isInCart: require('../../Icons/Cancel.png') })
+                                CartController.setItem(
+                                    {
+                                        id: productId,
+                                        name: productName,
+                                        image: productImage,
+                                        price: productPrice,
+                                        catagoryName: catagoryName,
+                                        resturantName: resturantName,
+                                        resturantImage: resturantImage
+                                    }
+                                )
+                            } else {
+                                this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
+                                CartController.deleteItem(productName)
+                            }
+                        }}>
+                        <Image source={this.state.isInCart} style={{ height: 24, width: 24 }} />
                     </TouchableOpacity>
                 </ImageBackground>
                 <View style={{
@@ -109,7 +136,7 @@ class ProductComponent extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </View >
         )
     }
 }
