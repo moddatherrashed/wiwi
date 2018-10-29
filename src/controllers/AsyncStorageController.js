@@ -32,21 +32,18 @@ let AsyncStorageController = {
             AsyncStorage.setItem(pointerName, JSON.stringify(favoritesList))
         }
     },
-    isFavorite: async (itemId, itemName, catagoryName, resturantName) => {
+    isFavorite: async (itemName, resturantName) => {
 
         try {
             let favoritesList = JSON.parse(await AsyncStorage.getItem(pointerName))
 
             //alert(favoritesList)
             if (favoritesList === null) {
-                // alert('inside isFavorite')
                 return false
             } else {
                 for (let i = 0; i < favoritesList.length; i++) {
-                    if (favoritesList[i].id === itemId
-                        && favoritesList[i].name === itemName
-                        && favoritesList[i].resturantName === resturantName
-                        && favoritesList[i].catagoryName === catagoryName) {
+                    if (favoritesList[i].name === itemName
+                        && favoritesList[i].resturantName === resturantName) {
                         return true
                     }
 

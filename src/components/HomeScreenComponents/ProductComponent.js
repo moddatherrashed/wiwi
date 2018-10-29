@@ -14,10 +14,10 @@ class ProductComponent extends Component {
         }
     }
 
-    componentWillMount() {
-        const { catagoryName, resturantName } = this.props.navigation.state.params
-        const { productId, productName } = this.props
-        AsyncStorageController.isFavorite(productId, productName, catagoryName, resturantName).then((value) => {
+    componentDidMount() {
+        //const { catagoryName, resturantName } = this.props.navigation.state.params
+        const { productId, productName, resturantName } = this.props
+        AsyncStorageController.isFavorite(productName, resturantName).then((value) => {
             value
                 ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
                 : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
@@ -67,7 +67,9 @@ class ProductComponent extends Component {
                             }
                         }}
                     >
-                        <Image source={this.state.isFavo} style={{ height: 24, width: 26 }} />
+                        <View style={{ height: 30, width: 30, backgroundColor: 'white' }}>
+                            <Image source={this.state.isFavo} style={{ flex: 1 }} />
+                        </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ height: 24, width: 24, margin: 5, flex: 1.3, alignItems: 'flex-end' }}>
                         <Image source={require('../../ProductIcons/AddToCart.png')} style={{ height: 24, width: 24 }} />

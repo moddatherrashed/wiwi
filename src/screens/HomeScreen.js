@@ -82,6 +82,7 @@ class HomeScreen extends Component {
     }
 
     render() {
+       // AsyncStorage.clear()
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>Offers</Text>

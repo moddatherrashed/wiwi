@@ -85,6 +85,8 @@ class ProductListScreen extends Component {
                                 productName={item.productName}
                                 productPrice={item.productPrice}
                                 productImage={item.productImage}
+                                catagoryName={catagoryName}
+                                resturantName={resturantName}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }

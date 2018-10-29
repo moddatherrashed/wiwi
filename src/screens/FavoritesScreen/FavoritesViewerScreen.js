@@ -14,17 +14,14 @@ class FavoritesViewerScreen extends Component {
     }
 
     componentDidMount() {
-        //let { products } = this.props.navigation.state.params
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
 
-        //alert(JSON.stringify(this.props.navigation.state.params.products))
-        // console.log("================== HERE IS THE SINGLE RESTURANT ITEMS ==================")
-        // console.log(this.props.navigation.getParam('resturantItems'))
+        console.log('favorites object contains')
     }
     render() {
-        //alert('THIS IS THE PARAMS ' + JSON.stringify(this.state.porducts))
+        console.log(this.state.products)
 
         return (
             <View>
@@ -50,6 +47,7 @@ class FavoritesViewerScreen extends Component {
                                 productName={item.itemName}
                                 productPrice={item.itemPrice}
                                 productImage={item.itemImg}
+                                resturantName={item.resturantName}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }
