@@ -31,9 +31,9 @@ export default class LocationScreenComponent extends Component {
             {
                 coordinate: {
                     latitude: 31.939347,
-                    longitude:  36.006956,
+                    longitude: 36.006956,
                 },
-                title: "Az zarqa",
+                title: "Home",
                 description: "bla bla strees, bulding number 20",
                 image: Images[0],
             },
@@ -42,7 +42,7 @@ export default class LocationScreenComponent extends Component {
                     latitude: 45.524698,
                     longitude: -122.6655507,
                 },
-                title: "Amman",
+                title: "Work",
                 description: "bla bla street, bulding number 44",
                 image: Images[1],
             },
@@ -51,8 +51,8 @@ export default class LocationScreenComponent extends Component {
                     latitude: 45.5230786,
                     longitude: -122.6701034,
                 },
-                title: "Third Best Place",
-                description: "This is the third best place in Portland",
+                title: "Moddather's place",
+                description: "This is the third best place in Amman",
                 image: Images[2],
             },
             {
@@ -60,14 +60,14 @@ export default class LocationScreenComponent extends Component {
                     latitude: 45.521016,
                     longitude: -122.6561917,
                 },
-                title: "Fourth Best Place",
-                description: "This is the fourth best place in Portland",
+                title: "Party",
+                description: "This is the fourth best place in Irbid",
                 image: Images[3],
             },
         ],
         region: {
             latitude: 31.939347,
-            longitude:  36.006956,
+            longitude: 36.006956,
             latitudeDelta: 0.0009,
             longitudeDelta: 0.0008,
         },
@@ -178,13 +178,29 @@ export default class LocationScreenComponent extends Component {
                     {this.state.markers.map((marker, index) => (
                         <View style={styles.card} key={index}>
                             <View style={styles.textContent}>
-                                <Text numberOfLines={1} style={styles.cardtitle}>{marker.title}</Text>
-                                <Text numberOfLines={1} style={styles.cardDescription}>
+                                <View style={{ flexDirection: 'row', flex: 3 }}>
+                                    <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                                        <Image source={require('../../Icons/logowhite.png')} resizeMode='contain' style={{ height: 35, width: 35 }} />
+                                    </View>
+                                    <View style={{ flex: 1, alignItems: 'center' }}>
+                                        <Text style={styles.cardtitle}>{marker.title}</Text>
+                                    </View>
+                                    <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                        <Image source={require('../../Icons/cancelWhite.png')} resizeMode='contain' style={{ height: 30, width: 30 }} />
+                                    </View>
+                                </View>
+                                <Text style={styles.cardDescription}>
                                     {marker.description}
                                 </Text>
                             </View>
                         </View>
                     ))}
+                    <View style={styles.card}>
+                        <View style={styles.textContent}>
+                            <Text style={styles.cardtitle}>set your current location</Text>
+                            <Text style={styles.cardtitle}>drag the ping to choose your location</Text>
+                        </View>
+                    </View>
                 </Animated.ScrollView>
             </View>
         );
@@ -209,7 +225,8 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 3,
         borderColor: '#FFFFFF',
-        borderWidth: 1,
+        borderWidth: 2,
+        borderRadius: 15,
         backgroundColor: "#638bba",
         marginHorizontal: 10,
         shadowColor: "#000",
@@ -230,6 +247,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     cardtitle: {
+        textAlign: 'center',
         fontSize: 18,
         color: '#FFFFFF',
         marginTop: 5,

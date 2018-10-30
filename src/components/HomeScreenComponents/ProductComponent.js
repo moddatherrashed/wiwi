@@ -73,8 +73,8 @@ class ProductComponent extends Component {
                             }
                         }}
                     >
-                        <View style={{ height: 30, width: 30, backgroundColor: 'white' }}>
-                            <Image source={this.state.isFavo} style={{ flex: 1 }} />
+                        <View style={{ height: 24, width: 26 }}>
+                            <Image source={this.state.isFavo} resizeMode="contain" style={{ flex: 1, height: null, width: null }} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ height: 24, width: 24, margin: 5, flex: 1.3, alignItems: 'flex-end' }}
