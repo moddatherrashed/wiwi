@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import MapView from "react-native-maps";
+import { Icon } from 'native-base'
 
 const Images = [
     { uri: "https://i.imgur.com/sNam9iJ.jpg" },
@@ -197,8 +198,18 @@ export default class LocationScreenComponent extends Component {
                     ))}
                     <View style={styles.card}>
                         <View style={styles.textContent}>
-                            <Text style={styles.cardtitle}>set your current location</Text>
-                            <Text style={styles.cardtitle}>drag the ping to choose your location</Text>
+                            <Text style={{ fontWeight: '700', color: '#FFFFFF', textAlign : 'center' }}>Choose your location</Text>
+                            <View style={{ flexDirection: 'row', flex: 2, alignItems: 'center' }}>
+                                <View style={{ flex: 1, alignItems: 'center' }}>
+                                    <Icon name='md-locate' style={{ padding: 4, fontSize: 28, color: '#FFFFFF' }} />
+                                    <Text style={{ color: '#FFFFFF' }}>Current location</Text>
+                                </View>
+                                <View style={{ flex: 1, alignItems: 'center' }}>
+                                    <Icon name='ios-pin' style={{ padding: 4, fontSize: 28, color: '#FFFFFF' }} />
+                                    <Text style={{ color: '#FFFFFF' }}>Drag the marker</Text>
+                                </View>
+                            </View>
+
                         </View>
                     </View>
                 </Animated.ScrollView>
@@ -216,6 +227,7 @@ const styles = StyleSheet.create({
         bottom: 30,
         left: 0,
         right: 0,
+        padding : 5,
         paddingVertical: 10,
     },
     endPadding: {
