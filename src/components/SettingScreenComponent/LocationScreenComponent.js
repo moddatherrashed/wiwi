@@ -131,6 +131,7 @@ export default class LocationScreenComponent extends Component {
         return (
             <View style={styles.container}>
                 <MapView
+                    onPress={(event) => console.log(event.nativeEvent.coordinate)}
                     ref={map => this.map = map}
                     initialRegion={this.state.region}
                     style={styles.container}
@@ -198,7 +199,7 @@ export default class LocationScreenComponent extends Component {
                     ))}
                     <View style={styles.card}>
                         <View style={styles.textContent}>
-                            <Text style={{ fontWeight: '700', color: '#FFFFFF', textAlign : 'center' }}>Choose your location</Text>
+                            <Text style={{ fontWeight: '700', color: '#FFFFFF', textAlign: 'center' }}>Choose your location</Text>
                             <View style={{ flexDirection: 'row', flex: 2, alignItems: 'center' }}>
                                 <View style={{ flex: 1, alignItems: 'center' }}>
                                     <Icon name='md-locate' style={{ padding: 4, fontSize: 28, color: '#FFFFFF' }} />
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
         bottom: 30,
         left: 0,
         right: 0,
-        padding : 5,
+        padding: 5,
         paddingVertical: 10,
     },
     endPadding: {
