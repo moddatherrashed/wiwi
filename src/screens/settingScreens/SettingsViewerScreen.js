@@ -5,6 +5,8 @@ import ChangeNumberComponent from '../../components/SettingScreenComponent/Chang
 import ChangePassword from '../../components/SettingScreenComponent/ChangePassword'
 import SendReportComponent from '../../components/SettingScreenComponent/SendReportComponent'
 import LocationScreenComponent from '../../components/SettingScreenComponent/LocationScreenComponent'
+import ContactUsComponent from '../../components/SettingScreenComponent/ContactUsComponent'
+
 
 class SettingsViewerScreen extends Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class SettingsViewerScreen extends Component {
         switch (id) {
             case '1':
                 return (
-                    <LocationScreenComponent/>
+                    <LocationScreenComponent />
                 )
                 break;
             case '2':
@@ -54,7 +56,7 @@ class SettingsViewerScreen extends Component {
                 break;
             case '7':
                 return (
-                    <View><Text>contact us</Text></View>
+                    <ContactUsComponent />
                 )
                 break;
             case '8':

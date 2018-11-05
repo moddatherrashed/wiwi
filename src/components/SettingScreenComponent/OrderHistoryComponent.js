@@ -80,6 +80,22 @@ class OrderHistoryComponent extends Component {
                         </TouchableOpacity>
                     }
                 />
+                <View style={{
+                    flex: 1,
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end',
+                    right: 0,
+                    bottom: 0
+                }}>
+                    <Image source={require('../../BG/Pattern.png')} style={{
+                        width: viewportWidth * 0.55,
+                        height: viewportWidth * 0.4,
+                        padding: 5,
+                        alignSelf: 'flex-end',
+                        right: 0,
+                        bottom: 0
+                    }} />
+                </View>
             </ScrollView>
         )
     }

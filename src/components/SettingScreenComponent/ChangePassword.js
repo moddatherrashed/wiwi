@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Label, Input, Item } from 'native-base'
-import { View, Text } from 'react-native'
+import { View, Text, Image, Dimensions } from 'react-native'
+
+const viewportWidth = Dimensions.get('window').width
 
 class ChangePassword extends Component {
 
@@ -47,6 +49,23 @@ class ChangePassword extends Component {
                         }} >
                         <Text style={{ fontWeight: '700', color: 'white' }}>Change</Text>
                     </Button>
+                </View>
+
+                <View style={{
+                    flex: 1,
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end',
+                    right: 0,
+                    bottom: 0
+                }}>
+                    <Image source={require('../../BG/Pattern.png')} style={{
+                        width: viewportWidth * 0.55,
+                        height: viewportWidth * 0.4,
+                        padding: 5,
+                        alignSelf: 'flex-end',
+                        right: 0,
+                        bottom: 0
+                    }} />
                 </View>
             </View>
         );
