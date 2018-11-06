@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ImageBackground, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native'
 import FavoritesController from '../../controllers/FavoritesController'
 import CartController from '../../controllers/CartController'
+import { NavigationEvents } from 'react-navigation'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -44,6 +45,22 @@ class ProductComponent extends Component {
                 width: viewportWidth / 2 - 15,
                 justifyContent: 'space-between'
             }}>
+                <NavigationEvents
+                    onWillFocus={() => {
+                        const { productName, resturantName } = this.props
+                        FavoritesController.isFavorite(productName, resturantName).then((value) => {
+                            value
+                                ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
+                                : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
+                        })
+
+                        CartController.isFavorite(productName, resturantName).then((value) => {
+                            value
+                                ? this.setState({ isInCart: require('../../Icons/Cancel.png') })
+                                : this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
+                        })
+                    }}
+                />
                 <ImageBackground
                     source={{ uri: productImage }}
                     style={{

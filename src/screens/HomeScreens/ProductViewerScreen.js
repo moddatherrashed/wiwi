@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView, StyleSheet } from 'react-native'
 import { Button } from 'native-base'
+import FavoritesController from '../../controllers/FavoritesController'
+import CartController from '../../controllers/CartController'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -9,8 +11,26 @@ class ProductViewerScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            productQuintity: 1
+            productQuintity: 1,
+            isFavo: null,
+            isInCart: '',
+
         }
+    }
+
+    componentDidMount() {
+        const { productName, resturantName } = this.props.navigation.state.params
+        FavoritesController.isFavorite(productName, resturantName).then((value) => {
+            value
+                ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
+                : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
+        })
+
+        CartController.isFavorite(productName, resturantName).then((value) => {
+            value
+                ? this.setState({ isInCart: 'Remove From Cart' })
+                : this.setState({ isInCart: 'Add To Cart' })
+        })
     }
 
     scalling(size) {
@@ -21,13 +41,14 @@ class ProductViewerScreen extends Component {
         title: `${navigation.state.params.productName}`
     })
     render() {
-        const { navigation } = this.props
+        const { catagoryName, resturantName, resturantImage, productName, productImage, productPrice, productId, productDescription, productQuantity } = this.props.navigation.state.params
+
         return (
             <ScrollView style={styles.scrollScreenContainerStyle}>
                 <View style={styles.screenViewContainerStyle}>
                     <Image
                         resizeMode='cover'
-                        source={{ uri: navigation.getParam('productImage') }}
+                        source={{ uri: productImage }}
                         style={styles.imageStyle}
                     />
                 </View>
@@ -35,14 +56,34 @@ class ProductViewerScreen extends Component {
                     <View style={{
                         flexDirection: 'row'
                     }}>
-                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>{navigation.getParam('productPrice')} JOD</Text>
+                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>{productPrice} JOD</Text>
                         <View style={{ padding: this.scalling(5), flex: 0.5 }}>
-                            <TouchableOpacity style={{ height: this.scalling(22), width: this.scalling(24), alignSelf: 'flex-end' }}>
-                                <Image source={require('../../ProductIcons/addToFavo.png')} style={{ height: null, width: null, flex: 1 }} />
+                            <TouchableOpacity
+                                onPress={() => {
+                                    if (this.state.isFavo === require('../../ProductIcons/Favo.png')) {
+                                        this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
+                                        FavoritesController.setItem(
+                                            {
+                                                id: productId,
+                                                name: productName,
+                                                image: productImage,
+                                                price: productPrice,
+                                                catagoryName: catagoryName,
+                                                resturantName: resturantName,
+                                                resturantImage: resturantImage
+                                            }
+                                        )
+                                    } else {
+                                        this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
+                                        FavoritesController.deleteItem(productName)
+                                    }
+                                }}
+                                style={{ height: this.scalling(22), width: this.scalling(24), alignSelf: 'flex-end' }}>
+                                <Image source={this.state.isFavo} style={{ height: null, width: null, flex: 1 }} />
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={{ padding: this.scalling(5), fontSize: this.scalling(12) }}>Burger with tomato and onions with some french fries</Text>
+                    <Text style={{ padding: this.scalling(5), fontSize: this.scalling(12) }}>{productDescription}</Text>
                 </View>
                 <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>Quantity</Text>
                 <View style={{ height: this.scalling(50), borderWidth: 0.5, borderColor: '#B8B8B8', margin: this.scalling(15), flexDirection: 'row', flex: 1.5, justifyContent: 'center', alignItems: 'center' }}>
@@ -83,8 +124,28 @@ class ProductViewerScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             width: this.scalling(200),
-                        }} onPress={() => { }}>
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Add To Cart</Text>
+                        }}
+                        onPress={() => {
+                            if (this.state.isInCart === 'Add To Cart') {
+                                this.setState({ isInCart: 'Remove From Cart' })
+                                CartController.setItem(
+                                    {
+                                        id: productId,
+                                        name: productName,
+                                        image: productImage,
+                                        price: productPrice,
+                                        catagoryName: catagoryName,
+                                        resturantName: resturantName,
+                                        resturantImage: resturantImage,
+                                        productQuantity: productQuantity
+                                    }
+                                )
+                            } else {
+                                this.setState({ isInCart: 'Add To Cart' })
+                                CartController.deleteItem(productName)
+                            }
+                        }}>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{this.state.isInCart}</Text>
                     </Button>
                 </View>
             </ScrollView >

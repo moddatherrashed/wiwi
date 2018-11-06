@@ -12,44 +12,58 @@ class ProductListScreen extends Component {
                     id: 1,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef 12',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
 
                 },
                 {
                     id: 2,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef 43',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
                 },
                 {
                     id: 3,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef 55',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
                 },
                 {
                     id: 4,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef 221',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
                 },
                 {
                     id: 5,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef 432',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
                 },
                 {
                     id: 6,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef rr',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
                 },
                 {
                     id: 7,
                     productImage: 'https://images5.alphacoders.com/415/415257.jpg',
                     productName: 'meal beef 88',
-                    productPrice: 2.80
+                    productPrice: 2.80,
+                    productDescription: 'here is the details of the meal',
+                    productQuantity: 1
                 },
             ]
         }
@@ -76,12 +90,22 @@ class ProductListScreen extends Component {
                                     productName: item.productName,
                                     productImage: item.productImage,
                                     productPrice: item.productPrice,
+                                    productQuantity: item.productQuantity,
+                                    productDescription: item.productDescription,
+                                    catagoryName: catagoryName,
+                                    resturantName: resturantName,
+                                    resturantImage : resturantImage
                                 })
+
+                                console.log("here is from products list : ")
+                                console.log(resturantName)
                             }}
                             style={{
                             }}>
                             <ProductComponent
                                 productId={item.id}
+                                productDescription={item.productDescription}
+                                productQuantity={item.productQuantity}
                                 productName={item.productName}
                                 productPrice={item.productPrice}
                                 productImage={item.productImage}

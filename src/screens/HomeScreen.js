@@ -62,8 +62,9 @@ class HomeScreen extends Component {
                     ItemTitle: 'Electronic'
                 },
             ]
-
+            
         }
+        //AsyncStorage.clear()
     }
     static navigationOptions = {
 
