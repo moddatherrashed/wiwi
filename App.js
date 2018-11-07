@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { TouchableOpacity, Image, StyleSheet, I18nManager } from 'react-native'
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
 import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
@@ -16,6 +16,7 @@ import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 import RegisterScreen from './src/screens/RegisterScreen'
 import SearchScreen from './src/screens/SearchScreen'
 import FavoritesViewerScreen from './src/screens/FavoritesScreen/FavoritesViewerScreen'
+import transiliation from './src/controllers/transilation'
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -39,7 +40,7 @@ const tabNavigator = createBottomTabNavigator({
   Welcome: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'Dashboard',
+      tabBarLabel: I18nManager.isRTL ? transiliation.ar.dashboard : transiliation.en.dashboard,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -51,7 +52,7 @@ const tabNavigator = createBottomTabNavigator({
   Cart: {
     screen: CartScreen,
     navigationOptions: {
-      tabBarLabel: 'Cart',
+      tabBarLabel: I18nManager.isRTL ? transiliation.ar.cart : transiliation.en.cart,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -63,7 +64,7 @@ const tabNavigator = createBottomTabNavigator({
   Favorite: {
     screen: FavoriteScreen,
     navigationOptions: {
-      tabBarLabel: 'Favorite',
+      tabBarLabel: I18nManager.isRTL ? transiliation.ar.favorites : transiliation.en.favorites,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -75,7 +76,7 @@ const tabNavigator = createBottomTabNavigator({
   Settings: {
     screen: SettingsScreen,
     navigationOptions: {
-      tabBarLabel: 'Settings',
+      tabBarLabel: I18nManager.isRTL ? transiliation.ar.settings : transiliation.en.settings,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -96,16 +97,20 @@ const tabNavigator = createBottomTabNavigator({
   })
 
 tabNavigator.navigationOptions = ({ navigation }) => {
-  let { routeName } = navigation.state.routes[navigation.state.index];
-  let headerTitle = routeName;
+  let headerTitle = I18nManager.isRTL ? transiliation.ar.welcome : transiliation.en.welcome;
   return {
-    headerTitle,
+    headerTitle
   };
 };
-
 const ResturantTopTabNavigator = createMaterialTopTabNavigator({
-  All: { screen: AllItemsScreen },
-  Offer: { screen: OfferItemScreen }
+  Alsl: {
+    screen: AllItemsScreen,
+    navigationOptions: { tabBarLabel: I18nManager.isRTL ? transiliation.ar.all : transiliation.en.all }
+  },
+  Offer: {
+    screen: OfferItemScreen,
+    navigationOptions: { tabBarLabel: I18nManager.isRTL ? transiliation.ar.offers : transiliation.en.offers }
+  }
 }, {
     tabBarOptions: {
       activeTintColor: 'black',
@@ -130,7 +135,7 @@ const AppStackNavigator = createStackNavigator({
     screen: tabNavigator,
     navigationOptions: ({ navigation }) => {
       return {
-        title: 'Welcome',
+        title: I18nManager.isRTL ? transiliation.ar.welcome : transiliation.en.welcome,
         headerLeft: null,
         headerRight:
           <TouchableOpacity onPress={() => { navigation.navigate('SearchScreen') }} style={styles.searchBtnContainer}>

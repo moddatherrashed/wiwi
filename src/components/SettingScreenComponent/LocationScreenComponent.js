@@ -8,11 +8,13 @@ import {
     Animated,
     Image,
     Dimensions,
+    I18nManager,
     TouchableOpacity,
 } from "react-native";
 
 import MapView from "react-native-maps";
 import { Icon } from 'native-base'
+import transilation from './../../controllers/transilation'
 
 const Images = [
     { uri: "https://i.imgur.com/sNam9iJ.jpg" },

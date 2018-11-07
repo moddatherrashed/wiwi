@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { ImageBackground, View, Dimensions, Image, Text } from 'react-native'
+import { ImageBackground, View, Dimensions, Image, Text, I18nManager } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { Button, Item, Input, Label } from 'native-base'
-
+import transiliation from './../controllers/transilation'
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -26,28 +26,28 @@ class RegisterScreen extends Component {
                 </View>
                 <View style={{ margin: 10, paddingTop: 30 }}>
                     <Item floatingLabel>
-                        <Label style={{ color: 'white' }}>Mobile Number</Label>
+                        <Label style={{ color: 'white' }}>{I18nManager.isRTL ? transiliation.ar.mobile_number : transiliation.en.mobile_number}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white' }}>Email</Label>
+                        <Label style={{ color: 'white' }}>{I18nManager.isRTL ? transiliation.ar.email : transiliation.en.email}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white' }}>Password</Label>
+                        <Label style={{ color: 'white' }}>{I18nManager.isRTL ? transiliation.ar.password : transiliation.en.password}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white' }}>Confirm Password</Label>
+                        <Label style={{ color: 'white' }}>{I18nManager.isRTL ? transiliation.ar.confirm_password : transiliation.en.confirm_password}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
@@ -67,7 +67,7 @@ class RegisterScreen extends Component {
                             alignItems: 'center',
                             width: 200,
                         }} >
-                        <Text style={{ fontWeight: '700', color: '#638bba' }}>Register</Text>
+                        <Text style={{ fontWeight: '700', color: '#638bba' }}>{I18nManager.isRTL ? transiliation.ar.register : transiliation.en.register}</Text>
                     </Button>
 
                     <Button rounded
@@ -82,7 +82,7 @@ class RegisterScreen extends Component {
                             marginTop: 20,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Cancel</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? transiliation.ar.cancel : transiliation.en.cancel}</Text>
                     </Button>
                 </View>
             </ImageBackground>
