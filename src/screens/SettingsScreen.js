@@ -4,6 +4,8 @@ import Image from 'react-native-remote-svg'
 import Modal from 'react-native-modal'
 import { Button } from 'native-base'
 import { Updates } from 'expo'
+import translation from './../../src/controllers/translation'
+
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -15,42 +17,42 @@ class SettingsScreen extends Component {
                 {
                     id: '1',
                     image: require('../Icons/Location.png'),
-                    title: 'Location'
+                    title: I18nManager.isRTL ? translation.ar.location : translation.en.location
                 },
                 {
                     id: '2',
                     image: require('../Icons/OrderHistory.png'),
-                    title: 'Order History'
+                    title: I18nManager.isRTL ? translation.ar.order_history : translation.en.order_history
                 },
                 {
                     id: '3',
                     image: require('../Icons/ChangeMobileNumber.png'),
-                    title: 'Change Mobile Number'
+                    title: I18nManager.isRTL ? translation.ar.change_mobile_number : translation.en.change_mobile_number
                 },
                 {
                     id: '4',
                     image: require('../Icons/changePassword.png'),
-                    title: 'Change Password'
+                    title: I18nManager.isRTL ? translation.ar.change_password : translation.en.change_password
                 },
                 {
                     id: '5',
                     image: require('../Icons/ChangeLanguage.png'),
-                    title: 'Change Language'
+                    title: I18nManager.isRTL ? translation.ar.change_language : translation.en.change_language
                 },
                 {
                     id: '6',
                     image: require('../Icons/SendReport.png'),
-                    title: 'Send Report'
+                    title: I18nManager.isRTL ? translation.ar.send_report : translation.en.send_report
                 },
                 {
                     id: '7',
                     image: require('../Icons/ContactUs.png'),
-                    title: 'Contact Us'
+                    title: I18nManager.isRTL ? translation.ar.contact_us : translation.en.contact_us
                 },
                 {
                     id: '8',
                     image: require('../Icons/Logout.png'),
-                    title: 'Logout'
+                    title: I18nManager.isRTL ? translation.ar.logout : translation.en.logout
                 }
             ],
             isVisible: false,

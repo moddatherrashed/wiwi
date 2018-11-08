@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, I18nManager } from 'react-native'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -13,28 +13,28 @@ class OrderHistoryComponent extends Component {
                     image: 'http://freevectorlogo.net/wp-content/uploads/2012/12/carrefour-logo-vector-400x400.png',
                     name: 'Carrefour',
                     date: '20/04/2018',
-                    price: '100 JOD'
+                    price: '100'
                 },
                 {
                     id: '2',
                     image: 'http://d701vexhkz032.cloudfront.net/bundles/front/media/images/favicons/favicon-512.png',
                     name: 'McDonalds',
                     date: '14/03/2018',
-                    price: '20 JOD'
+                    price: '20'
                 },
                 {
                     id: '3',
                     image: 'http://d701vexhkz032.cloudfront.net/bundles/front/media/images/favicons/favicon-512.png',
                     name: 'McDonalds',
                     date: '14/03/2018',
-                    price: '20 JOD'
+                    price: '20'
                 },
                 {
                     id: '4',
                     image: 'http://freevectorlogo.net/wp-content/uploads/2012/12/carrefour-logo-vector-400x400.png',
                     name: 'Carrefour',
                     date: '20/04/2018',
-                    price: '100 JOD'
+                    price: '100'
                 }
             ]
         }
@@ -73,7 +73,7 @@ class OrderHistoryComponent extends Component {
 
                                     <Text style={{ color: 'black', marginLeft: 12, marginTop: 10, marginBottom: 2, fontWeight: '700', fontSize: 20 }}>{item.name}</Text>
                                     <Text style={{ color: 'black', marginLeft: 12, color: 'grey', fontWeight: 'bold' }}>{item.date}</Text>
-                                    <Text style={{ color: 'black', margin: 12, fontWeight: '700', fontSize: 18, color: '#638bba' }}>{item.price}</Text>
+                                    <Text style={{ color: 'black', margin: 12, fontWeight: '700', fontSize: 18, color: '#638bba' }}>{item.price} {I18nManager.isRTL ? 'دينار' : 'JOD'}</Text>
                                 </View>
 
                             </View>

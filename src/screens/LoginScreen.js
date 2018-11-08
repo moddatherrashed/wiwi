@@ -3,7 +3,7 @@ import { Text, View, Dimensions, ImageBackground, I18nManager } from 'react-nati
 import * as Animatable from 'react-native-animatable'
 import { Button, Item, Input, Label } from 'native-base'
 import Image from 'react-native-remote-svg'
-import transilation from './../controllers/transilation'
+import translation from './../controllers/translation'
 
 
 const SCREEN_HEIGHT = Dimensions.get('window').height
@@ -28,21 +28,21 @@ class LoginScreen extends React.Component {
                 </View>
                 <View style={{ margin: 10, paddingTop: 30 }}>
                     <Item floatingLabel>
-                        <Label style={{ color: 'white' }}>{I18nManager.isRTL ? transilation.ar.mobile_number : transilation.en.mobile_number}</Label>
+                        <Label style={{ color: 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.mobile_number : translation.en.mobile_number}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white' }}>{I18nManager.isRTL ? transilation.ar.password : transilation.en.password}</Label>
+                        <Label style={{ color: 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.password : translation.en.password}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                 </View>
-                <Text style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? transilation.ar.forget_password : transilation.en.forget_password}</Text>
+                <Text style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.forget_password : translation.en.forget_password}</Text>
                 <View style={{
                     alignSelf: 'center',
                     flex: 1,
@@ -57,7 +57,7 @@ class LoginScreen extends React.Component {
                             alignItems: 'center',
                             width: 200,
                         }} >
-                        <Text style={{ fontWeight: '700', color: '#638bba' }}>{I18nManager.isRTL ? transilation.ar.login : transilation.en.login}</Text>
+                        <Text style={{ fontWeight: '700', color: '#638bba' }}>{I18nManager.isRTL ? translation.ar.login : translation.en.login}</Text>
                     </Button>
 
                     <Button rounded
@@ -72,7 +72,7 @@ class LoginScreen extends React.Component {
                             marginTop: 20,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? transilation.ar.register : transilation.en.register}</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? translation.ar.register : translation.en.register}</Text>
                     </Button>
                 </View>
             </ImageBackground>

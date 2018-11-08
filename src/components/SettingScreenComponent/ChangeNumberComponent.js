@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, TextInput, Image } from 'react-native'
+import { View, Text, Dimensions, TextInput, Image, I18nManager } from 'react-native'
 import { Button } from 'native-base'
+import translation from './../../controllers/translation'
+
 const viewportWidth = Dimensions.get('window').width
 
 class ChangeNumberComponent extends Component {
@@ -24,7 +26,7 @@ class ChangeNumberComponent extends Component {
                         <TextInput
                             keyboardType="numeric"
                             style={{ flex: 1, fontSize: 20 }}
-                            placeholder="Enter your mobile number"
+                            placeholder={I18nManager.isRTL ? translation.ar.enter_your_mobile_number : translation.en.enter_your_mobile_number}
                             underlineColorAndroid='transparent' />
                     </View>
                 </View>
@@ -40,7 +42,7 @@ class ChangeNumberComponent extends Component {
                             width: 200,
                             marginTop: 20
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Change</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? translation.ar.change : translation.en.change}</Text>
                     </Button>
                 </View>
                 <View style={{

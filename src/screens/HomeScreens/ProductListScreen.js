@@ -97,8 +97,7 @@ class ProductListScreen extends Component {
                                     resturantImage : resturantImage
                                 })
 
-                                console.log("here is from products list : ")
-                                console.log(resturantName)
+
                             }}
                             style={{
                             }}>

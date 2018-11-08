@@ -14,7 +14,7 @@ import {
 
 import MapView from "react-native-maps";
 import { Icon } from 'native-base'
-import transilation from './../../controllers/transilation'
+import translation from './../../controllers/translation'
 
 const Images = [
     { uri: "https://i.imgur.com/sNam9iJ.jpg" },

@@ -37,7 +37,10 @@ const transiliation = {
         "english": "English",
         "ok": "Ok",
         "search_for": "Search for ...",
-        "dashboard":"Dashboard"
+        "dashboard": "Dashboard",
+        "add_to_cart": "Add To Cart",
+        "remove_from_cart": "Remove From Cart",
+        "our_social_media": "Our Social Media"
     },
     "ar": {
         "mobile_number": "رقم المحمول",
@@ -77,7 +80,10 @@ const transiliation = {
         "english": "الانجليزية",
         "ok": "تم",
         "search_for": "البحث عن ...",
-        "dashboard":"الرئيسية"
+        "dashboard": "الرئيسية",
+        "add_to_cart": "إضافة إلى السلة",
+        "remove_from_cart": "حذف من السلة",
+        "our_social_media": "نحن على مواقع التواصل"
     }
 }
 

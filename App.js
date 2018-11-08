@@ -16,7 +16,7 @@ import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 import RegisterScreen from './src/screens/RegisterScreen'
 import SearchScreen from './src/screens/SearchScreen'
 import FavoritesViewerScreen from './src/screens/FavoritesScreen/FavoritesViewerScreen'
-import transiliation from './src/controllers/transilation'
+import translation from './src/controllers/translation'
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -40,7 +40,7 @@ const tabNavigator = createBottomTabNavigator({
   Welcome: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: I18nManager.isRTL ? transiliation.ar.dashboard : transiliation.en.dashboard,
+      tabBarLabel: I18nManager.isRTL ? translation.ar.dashboard : translation.en.dashboard,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -52,7 +52,7 @@ const tabNavigator = createBottomTabNavigator({
   Cart: {
     screen: CartScreen,
     navigationOptions: {
-      tabBarLabel: I18nManager.isRTL ? transiliation.ar.cart : transiliation.en.cart,
+      tabBarLabel: I18nManager.isRTL ? translation.ar.cart : translation.en.cart,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -64,7 +64,7 @@ const tabNavigator = createBottomTabNavigator({
   Favorite: {
     screen: FavoriteScreen,
     navigationOptions: {
-      tabBarLabel: I18nManager.isRTL ? transiliation.ar.favorites : transiliation.en.favorites,
+      tabBarLabel: I18nManager.isRTL ? translation.ar.favorites : translation.en.favorites,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -76,7 +76,7 @@ const tabNavigator = createBottomTabNavigator({
   Settings: {
     screen: SettingsScreen,
     navigationOptions: {
-      tabBarLabel: I18nManager.isRTL ? transiliation.ar.settings : transiliation.en.settings,
+      tabBarLabel: I18nManager.isRTL ? translation.ar.settings : translation.en.settings,
       tabBarIcon: () => (
         <Image
           resizeMode='contain'
@@ -97,7 +97,7 @@ const tabNavigator = createBottomTabNavigator({
   })
 
 tabNavigator.navigationOptions = ({ navigation }) => {
-  let headerTitle = I18nManager.isRTL ? transiliation.ar.welcome : transiliation.en.welcome;
+  let headerTitle = I18nManager.isRTL ? translation.ar.welcome : translation.en.welcome;
   return {
     headerTitle
   };
@@ -105,11 +105,11 @@ tabNavigator.navigationOptions = ({ navigation }) => {
 const ResturantTopTabNavigator = createMaterialTopTabNavigator({
   Alsl: {
     screen: AllItemsScreen,
-    navigationOptions: { tabBarLabel: I18nManager.isRTL ? transiliation.ar.all : transiliation.en.all }
+    navigationOptions: { tabBarLabel: I18nManager.isRTL ? translation.ar.all : translation.en.all }
   },
   Offer: {
     screen: OfferItemScreen,
-    navigationOptions: { tabBarLabel: I18nManager.isRTL ? transiliation.ar.offers : transiliation.en.offers }
+    navigationOptions: { tabBarLabel: I18nManager.isRTL ? translation.ar.offers : translation.en.offers }
   }
 }, {
     tabBarOptions: {
@@ -135,7 +135,7 @@ const AppStackNavigator = createStackNavigator({
     screen: tabNavigator,
     navigationOptions: ({ navigation }) => {
       return {
-        title: I18nManager.isRTL ? transiliation.ar.welcome : transiliation.en.welcome,
+        title: I18nManager.isRTL ? translation.ar.welcome : translation.en.welcome,
         headerLeft: null,
         headerRight:
           <TouchableOpacity onPress={() => { navigation.navigate('SearchScreen') }} style={styles.searchBtnContainer}>

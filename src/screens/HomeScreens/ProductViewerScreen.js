@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Dimensions, ScrollView, StyleSheet, I18nManager } from 'react-native'
 import { Button } from 'native-base'
 import FavoritesController from '../../controllers/FavoritesController'
 import CartController from '../../controllers/CartController'
+import translation from '../../controllers/translation'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -28,8 +29,8 @@ class ProductViewerScreen extends Component {
 
         CartController.isFavorite(productName, resturantName).then((value) => {
             value
-                ? this.setState({ isInCart: 'Remove From Cart' })
-                : this.setState({ isInCart: 'Add To Cart' })
+                ? this.setState({ isInCart: I18nManager.isRTL ? translation.ar.remove_from_cart : translation.en.remove_from_cart })
+                : this.setState({ isInCart: I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart })
         })
     }
 
@@ -56,7 +57,7 @@ class ProductViewerScreen extends Component {
                     <View style={{
                         flexDirection: 'row'
                     }}>
-                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>{productPrice} JOD</Text>
+                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>{productPrice} {I18nManager.isRTL ? translation.ar.jod : translation.en.jod}</Text>
                         <View style={{ padding: this.scalling(5), flex: 0.5 }}>
                             <TouchableOpacity
                                 onPress={() => {
@@ -85,7 +86,7 @@ class ProductViewerScreen extends Component {
                     </View>
                     <Text style={{ padding: this.scalling(5), fontSize: this.scalling(12) }}>{productDescription}</Text>
                 </View>
-                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>Quantity</Text>
+                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>{I18nManager.isRTL ? translation.ar.quantity : translation.en.quantity}</Text>
                 <View style={{ height: this.scalling(50), borderWidth: 0.5, borderColor: '#B8B8B8', margin: this.scalling(15), flexDirection: 'row', flex: 1.5, justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableOpacity
                         onPress={() => {
@@ -109,7 +110,7 @@ class ProductViewerScreen extends Component {
                         <Image source={require('../../Icons/Minus.png')} style={{ height: null, width: null, flex: 1 }} />
                     </TouchableOpacity>
                 </View>
-                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>Notes</Text>
+                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
                 <View style={{ borderWidth: 0.5, borderColor: '#B8B8B8', height: this.scalling(90), margin: this.scalling(15) }}>
 
                 </View>
@@ -126,8 +127,8 @@ class ProductViewerScreen extends Component {
                             width: this.scalling(200),
                         }}
                         onPress={() => {
-                            if (this.state.isInCart === 'Add To Cart') {
-                                this.setState({ isInCart: 'Remove From Cart' })
+                            if (this.state.isInCart === I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart) {
+                                this.setState({ isInCart: I18nManager.isRTL ? translation.ar.remove_from_cart : translation.en.remove_from_cart })
                                 CartController.setItem(
                                     {
                                         id: productId,
@@ -141,7 +142,7 @@ class ProductViewerScreen extends Component {
                                     }
                                 )
                             } else {
-                                this.setState({ isInCart: 'Add To Cart' })
+                                this.setState({ isInCart: I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart })
                                 CartController.deleteItem(productName)
                             }
                         }}>

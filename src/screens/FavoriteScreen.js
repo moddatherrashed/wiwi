@@ -28,7 +28,6 @@ class FavoriteScreen extends Component {
                 let filterdValues = []
                 let itemsSingle = []
                 let idCounter = 0
-                console.log(values)
                 for (let i of values) {
 
                     filterdValues.push({
@@ -46,13 +45,11 @@ class FavoriteScreen extends Component {
                     })
                     idCounter++
                 }
-                console.log(filterdValues)
                 this.setState({
                     resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
                     favoritesList: values,
                     itemsSingle: itemsSingle
                 })
-                console.log(this.state.resturantsList)
             })
         } catch (error) {
             alert("Error retrieving favorite items === " + error);
@@ -71,7 +68,6 @@ class FavoriteScreen extends Component {
                                     let filterdValues = []
                                     let itemsSingle = []
                                     let idCounter = 0
-                                    console.log(values)
                                     for (let i of values) {
 
                                         filterdValues.push({
@@ -89,13 +85,11 @@ class FavoriteScreen extends Component {
                                         })
                                         idCounter++
                                     }
-                                    console.log(filterdValues)
                                     this.setState({
                                         resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
                                         favoritesList: values,
                                         itemsSingle: itemsSingle
                                     })
-                                    console.log(this.state.resturantsList)
                                 })
                             } catch (error) {
                                 alert("Error retrieving favorite items === " + error);
@@ -113,7 +107,6 @@ class FavoriteScreen extends Component {
                                 let idCounter = 0
                                 for (let i of this.state.itemsSingle) {
                                     if (item.resturantName === i.resturnatName) {
-                                        console.log('it is true !!!!!!!!!')
                                         collecteditems.push({
                                             id: idCounter,
                                             itemName: i.itemName,
@@ -127,16 +120,11 @@ class FavoriteScreen extends Component {
                                     }
                                     idCounter++
                                 }
-                                console.log('here for the clock listener ==============================')
-                                console.log(this.state.itemsSingle)
-                                console.log('here for the clock listener ==============================')
-
-
                                 this.props.navigation.navigate('FavoritesViewerScreen', {
                                     resturantItems: collecteditems,
                                     
                                 })
-                                // alert('on press event ' + JSON.stringify(item.items) + 'this is i.items' + JSON.stringify(this.state.favoritesList.items))
+                             
                             }}
                             style={styles.itemMainContainerStyle}>
                             <View style={styles.itemContainerStyle}>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, TouchableOpacity, FlatList, Dimensions, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, FlatList, I18nManager, Dimensions, ImageBackground, StyleSheet } from 'react-native'
 import Image from 'react-native-remote-svg'
 import ViewPagerComponent from '../components/ViewPagerComponent'
 import { Pagination } from 'react-native-snap-carousel'
+import translation from './../controllers/translation'
 
 import { AsyncStorage } from 'react-native'
 
@@ -62,7 +63,7 @@ class HomeScreen extends Component {
                     ItemTitle: 'Electronic'
                 },
             ]
-            
+
         }
         //AsyncStorage.clear()
     }
@@ -83,10 +84,10 @@ class HomeScreen extends Component {
     }
 
     render() {
-       // AsyncStorage.clear()
+        // AsyncStorage.clear()
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
-                <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>Offers</Text>
+                <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>{I18nManager.isRTL ? translation.ar.offers : translation.en.offers}</Text>
                 <View>
                     <ViewPagerComponent
                         renderItem={this._renderItem}
@@ -108,7 +109,7 @@ class HomeScreen extends Component {
                         carouselRef={this._carousel}
                         tappableDots={!!this._carousel} />
                 </View>
-                <Text style={styles.catagoryContainerStyle}>Catagory</Text>
+                <Text style={styles.catagoryContainerStyle}>{I18nManager.isRTL ? translation.ar.category : translation.en.category}</Text>
                 <FlatList
                     horizontal={false}
                     numColumns={2}

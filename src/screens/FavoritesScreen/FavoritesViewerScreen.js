@@ -17,12 +17,9 @@ class FavoritesViewerScreen extends Component {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
-
-        console.log('favorites object contains')
+        console.log(this.props.navigation.getParam('resturantItems'))
     }
     render() {
-        console.log(this.state.products)
-
         return (
             <View>
                 <FlatList

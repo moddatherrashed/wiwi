@@ -51,8 +51,6 @@ class ResturantComponent extends Component {
                                     resturantName: resturantName,
                                     resturantImage: resturantImage
                                 })
-
-                                console.log("here is from extentions : " + item)
                             }}
                             style={{
                                 flexDirection: 'row',
