@@ -17,9 +17,9 @@ class ItemViewerScreen extends Component {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
-        console.log(this.state.products)
-
     }
+
+
     render() {
         return (
             <View>

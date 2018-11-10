@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, 
 import { NavigationEvents } from 'react-navigation'
 const viewportWidth = Dimensions.get('window').width
 
-class FavoriteScreen extends Component {
+class CartScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,8 +19,7 @@ class FavoriteScreen extends Component {
         });
     }
 
-
-    async  componentDidMount() {
+    async getCartItems() {
         try {
             await AsyncStorage.getItem('CartItems').then((value) => {
                 let values = JSON.parse(value)
@@ -28,6 +27,8 @@ class FavoriteScreen extends Component {
                 let filterdValues = []
                 let itemsSingle = []
                 let idCounter = 0
+                console.log('here is values')
+                console.log(values)
                 for (let i of values) {
 
                     filterdValues.push({
@@ -41,6 +42,7 @@ class FavoriteScreen extends Component {
                         itemName: i.name,
                         itemImg: i.image,
                         itemPrice: i.price,
+                        itemCategory: i.catagoryName,
                         resturnatName: i.resturantName
                     })
                     idCounter++
@@ -55,45 +57,17 @@ class FavoriteScreen extends Component {
             alert("Error retrieving favorite items === " + error);
         }
     }
+
+    componentDidMount() {
+        this.getCartItems()
+    }
     render() {
         return (
             <ScrollView style={styles.screenStyle}>
                 <NavigationEvents
                     onWillFocus={
-                        async () => {
-                            try {
-                                await AsyncStorage.getItem('CartItems').then((value) => {
-                                    let values = JSON.parse(value)
-
-                                    let filterdValues = []
-                                    let itemsSingle = []
-                                    let idCounter = 0
-                                    for (let i of values) {
-
-                                        filterdValues.push({
-                                            id: idCounter,
-                                            resturantName: i.resturantName,
-                                            resturantImage: i.resturantImage
-                                        })
-
-                                        itemsSingle.push({
-                                            id: idCounter,
-                                            itemName: i.name,
-                                            itemImg: i.image,
-                                            itemPrice: i.price,
-                                            resturnatName: i.resturantName
-                                        })
-                                        idCounter++
-                                    }
-                                    this.setState({
-                                        resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
-                                        cartList: values,
-                                        itemsSingle: itemsSingle
-                                    })
-                                })
-                            } catch (error) {
-                                alert("Error retrieving favorite items === " + error);
-                            }
+                        () => {
+                            this.getCartItems()
                         }}
                 />
                 <FlatList
@@ -121,10 +95,14 @@ class FavoriteScreen extends Component {
                                     idCounter++
                                 }
 
-                                this.props.navigation.navigate('FavoritesViewerScreen', {
+                                this.props.navigation.navigate('ItemViewerScreen', {
                                     resturantItems: collecteditems,
 
                                 })
+                                console.log('here item')
+                                console.log(item)
+                                console.log('here is i')
+                                console.log(this.state.itemsSingle)
                                 // alert('on press event ' + JSON.stringify(item.items) + 'this is i.items' + JSON.stringify(this.state.cartList.items))
                             }}
                             style={styles.itemMainContainerStyle}>
@@ -193,4 +171,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default FavoriteScreen
+export default CartScreen

@@ -2,7 +2,7 @@ import React from 'react'
 import { TouchableOpacity, Image, StyleSheet, I18nManager } from 'react-native'
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
-import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator, createSwitchNavigator } from 'react-navigation'
 import CartScreen from './src/screens/CartScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import FavoriteScreen from './src/screens/FavoriteScreen'
@@ -16,6 +16,9 @@ import ProductViewerScreen from './src/screens/HomeScreens/ProductViewerScreen'
 import RegisterScreen from './src/screens/RegisterScreen'
 import SearchScreen from './src/screens/SearchScreen'
 import FavoritesViewerScreen from './src/screens/FavoritesScreen/FavoritesViewerScreen'
+import ItemViewerScreen from './src/screens/CartScreens/ItemViewerScreen'
+import MaintenanceScreen from './src/screens/MaintenanceScreen'
+import NoConnectionScreen from './src/screens/NoConnectionScreen'
 import translation from './src/controllers/translation'
 
 const styles = StyleSheet.create({
@@ -127,10 +130,12 @@ ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
   };
 };
 
-
-const AppStackNavigator = createStackNavigator({
+const AuthScreens = createStackNavigator({
   LoginScreen: { screen: LoginScreen },
   RegisterScreen: { screen: RegisterScreen },
+})
+
+const AppStackNavigator = createStackNavigator({
   HomeScreen: {
     screen: tabNavigator,
     navigationOptions: ({ navigation }) => {
@@ -151,8 +156,15 @@ const AppStackNavigator = createStackNavigator({
   ProductListScreen: { screen: ProductListScreen },
   ProductViewerScreen: { screen: ProductViewerScreen },
   SearchScreen: { screen: SearchScreen },
-  FavoritesViewerScreen: { screen: FavoritesViewerScreen }
+  FavoritesViewerScreen: { screen: FavoritesViewerScreen },
+  ItemViewerScreen: { screen: ItemViewerScreen }
+})
+
+const AppScreens = createSwitchNavigator({
+  //test: { screen: NoConnectionScreen },
+  Auth: AuthScreens,
+  App: AppStackNavigator
 })
 
 
-export default AppStackNavigator
+export default AppScreens

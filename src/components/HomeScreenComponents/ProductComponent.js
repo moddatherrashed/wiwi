@@ -32,7 +32,7 @@ class ProductComponent extends Component {
         })
     }
     render() {
-        const { productName, productImage, productPrice, productId } = this.props
+        const { productName, productImage, productPrice, productId, productDescription } = this.props
         const { catagoryName, resturantName, resturantImage } = this.props.navigation.state.params
         return (
             <View style={{
@@ -77,6 +77,7 @@ class ProductComponent extends Component {
                                     {
                                         id: productId,
                                         name: productName,
+                                        descreption: productDescription,
                                         image: productImage,
                                         price: productPrice,
                                         catagoryName: catagoryName,
@@ -104,6 +105,7 @@ class ProductComponent extends Component {
                                         name: productName,
                                         image: productImage,
                                         price: productPrice,
+                                        descreption: productDescription,
                                         catagoryName: catagoryName,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
