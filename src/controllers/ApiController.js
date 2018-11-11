@@ -23,6 +23,28 @@ let ApiController = {
             .catch((error) => {
                 console.error(error);
             });
+    },
+    sign_up: (mobile_number, user_email, password) => {
+        return fetch(apiUrl + '/sign_up', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_email: user_email,
+                mobile_number: mobile_number,
+                password: password
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 };
 

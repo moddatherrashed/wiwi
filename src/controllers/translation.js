@@ -40,7 +40,9 @@ const transiliation = {
         "dashboard": "Dashboard",
         "add_to_cart": "Add To Cart",
         "remove_from_cart": "Remove From Cart",
-        "our_social_media": "Our Social Media"
+        "our_social_media": "Our Social Media",
+        "login_failed": "Login Failed",
+        "all_fields_are_required": "All Fields Are Required"
     },
     "ar": {
         "mobile_number": "رقم المحمول",
@@ -83,7 +85,9 @@ const transiliation = {
         "dashboard": "الرئيسية",
         "add_to_cart": "إضافة إلى السلة",
         "remove_from_cart": "حذف من السلة",
-        "our_social_media": "نحن على مواقع التواصل"
+        "our_social_media": "نحن على مواقع التواصل",
+        "login_failed": "فشل تسجيل الدخول",
+        "all_fields_are_required": "جميع الحقول مطلوبة"
     }
 }
 

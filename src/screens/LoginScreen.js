@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Dimensions, ImageBackground, I18nManager, ActivityIndicator } from 'react-native'
+import { Text, View, Dimensions, ImageBackground, I18nManager, AsyncStorage, ActivityIndicator } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { Button, Item, Input, Label } from 'native-base'
 import Image from 'react-native-remote-svg'
@@ -18,7 +18,7 @@ class LoginScreen extends React.Component {
             password: '',
             loginFaild: false,
             isLoading: false,
-            isRequired : false
+            isRequired: false
         }
     }
 
@@ -30,15 +30,15 @@ class LoginScreen extends React.Component {
     renderRequestErrorMessage(login) {
         if (login) {
             return (
-                <Text style={{ alignSelf: 'center', color: 'red', fontWeight: '700', margin: 10, fontSize: 15 }}>Login Faild</Text>
+                <Text style={{ alignSelf: 'center', color: 'red', fontWeight: '700', margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.login_failed : translation.en.login_failed}</Text>
             )
         }
     }
-    renderFieldErrorMessage(mobile_number, password) {
+    renderFieldErrorMessage(isRequired) {
         //check if one of the fields is empty 
-        if (mobile_number === '' || password === '') {
+        if (isRequired) {
             return (
-                <Text style={{ alignSelf: 'center', color: 'red', fontWeight: '700', margin: 10, fontSize: 15 }}>All Fields are required</Text>
+                <Text style={{ alignSelf: 'center', color: 'red', fontWeight: '700', margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.all_fields_are_required : translation.en.all_fields_are_required}</Text>
             )
         }
     }
@@ -58,22 +58,33 @@ class LoginScreen extends React.Component {
                 }}>
                     <Button rounded
                         onPress={() => {
-                            this.setState({
-                                isLoading: true
-                            })
-                            ApiController.sign_in(this.state.mobile_number, this.state.password).then((result) => {
-                                if (result.status === 0) {
-                                    this.setState({
-                                        loginFaild: true,
-                                        isLoading: false
-                                    })
-                                } else {
-                                    this.setState({
-                                        isLoading: false
-                                    })
-                                    this.props.navigation.navigate('App')
-                                }
-                            })
+                            if (this.state.mobile_number === '' || this.state.password === '') {
+                                this.setState({
+                                    isRequired: true
+                                })
+                            } else {
+                                this.setState({
+                                    isLoading: true,
+                                    isRequired: false
+                                })
+                                ApiController.sign_in(this.state.mobile_number, this.state.password).then((result) => {
+                                    if (result.status === 0) {
+                                        this.setState({
+                                            loginFaild: true,
+                                            isLoading: false,
+                                            isRequired: false
+                                        })
+                                    } else {
+                                        this.setState({
+                                            isLoading: false,
+                                            isRequired: false
+                                        })
+                                        console.log(result.userID)
+                                        AsyncStorage.setItem('user_id', result.userID)
+                                        this.props.navigation.navigate('App')
+                                    }
+                                })
+                            }
                         }}
                         style={{
                             backgroundColor: 'white',
@@ -86,7 +97,7 @@ class LoginScreen extends React.Component {
                     </Button>
 
                     <Button rounded
-                        onPress={() => { this.props.navigation.navigate('App') }}
+                        onPress={() => { this.props.navigation.navigate('RegisterScreen') }}
                         style={{
                             backgroundColor: '#638bba',
                             borderRadius: 25,
@@ -121,7 +132,7 @@ class LoginScreen extends React.Component {
                         <Label style={{ color: this.state.loginFaild ? 'red' : 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.mobile_number : translation.en.mobile_number}</Label>
                         <Input
                             keyboardType="numeric"
-                            onChangeText={value => this.setState({ mobile_number: value, loginFaild: false })}
+                            onChangeText={value => this.setState({ mobile_number: value, loginFaild: false, isRequired: false })}
                             style={{ fontSize: 20, padding: 10, color: this.state.loginFaild ? 'red' : 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
@@ -129,7 +140,7 @@ class LoginScreen extends React.Component {
                         <Label style={{ color: this.state.loginFaild ? 'red' : 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.password : translation.en.password}</Label>
                         <Input
                             secureTextEntry
-                            onChangeText={value => this.setState({ password: value, loginFaild: false })}
+                            onChangeText={value => this.setState({ password: value, loginFaild: false, isRequired: false })}
                             style={{ fontSize: 20, padding: 10, color: this.state.loginFaild ? 'red' : 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
@@ -138,7 +149,7 @@ class LoginScreen extends React.Component {
                     this.renderRequestErrorMessage(this.state.loginFaild)
                 }
                 {
-                    this.renderFieldErrorMessage(this.state.mobile_number, this.state.password)
+                    this.renderFieldErrorMessage(this.state.isRequired)
 
                 }
                 <Text style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.forget_password : translation.en.forget_password}</Text>
