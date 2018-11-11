@@ -20,6 +20,7 @@ import ItemViewerScreen from './src/screens/CartScreens/ItemViewerScreen'
 import MaintenanceScreen from './src/screens/MaintenanceScreen'
 import NoConnectionScreen from './src/screens/NoConnectionScreen'
 import translation from './src/controllers/translation'
+import SplashScreen from './src/screens/SplashScreen'
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -161,7 +162,7 @@ const AppStackNavigator = createStackNavigator({
 })
 
 const AppScreens = createSwitchNavigator({
-  //test: { screen: NoConnectionScreen },
+  test: { screen: SplashScreen },
   Auth: AuthScreens,
   App: AppStackNavigator
 })
