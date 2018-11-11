@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Dimensions, Text, TouchableOpacity, FlatList, I18nManager } from 'react-native'
+import { View, StyleSheet, Dimensions, Text, TouchableOpacity, AsyncStorage, FlatList, I18nManager } from 'react-native'
 import Image from 'react-native-remote-svg'
 import Modal from 'react-native-modal'
 import { Button } from 'native-base'
@@ -82,10 +82,17 @@ class SettingsScreen extends Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
-                                item.id !== '5' ? this.props.navigation.navigate('SettingsViewerScreen', {
-                                    id: item.id,
-                                    title: item.title
-                                }) : this.setState({ isVisible: true })
+                                if (item.id === '5') {
+                                    this.setState({ isVisible: true })
+                                } else if (item.id === '8') {
+                                    AsyncStorage.removeItem('user_id')
+                                    this.props.navigation.navigate('Auth')
+                                } else {
+                                    this.props.navigation.navigate('SettingsViewerScreen', {
+                                        id: item.id,
+                                        title: item.title
+                                    })
+                                }
                             }}
                             style={styles.singleItemStyle}>
                             <View style={styles.singleItemInnerConatiner}>

@@ -22,6 +22,13 @@ class LoginScreen extends React.Component {
         }
     }
 
+    componentDidMount() {
+        AsyncStorage.getItem('user_id').then((item) => {
+            if (item) {
+                this.props.navigation.navigate('App')
+            }
+        })
+    }
 
     static navigationOptions = {
         header: null
@@ -83,6 +90,8 @@ class LoginScreen extends React.Component {
                                         AsyncStorage.setItem('user_id', result.userID)
                                         this.props.navigation.navigate('App')
                                     }
+                                }).catch((err) => {
+                                    alert(err)
                                 })
                             }
                         }}

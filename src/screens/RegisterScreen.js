@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ImageBackground, View, Dimensions, Image, Text, ActivityIndicator, I18nManager } from 'react-native'
+import { ImageBackground, View, Dimensions, Image, Text, ActivityIndicator, AsyncStorage, I18nManager } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { Button, Item, Input, Label } from 'native-base'
 import translation from './../controllers/translation'
@@ -37,6 +37,8 @@ class RegisterScreen extends Component {
                             this.setState({
                                 isLoading: false
                             })
+                            console.log(result.user_id)
+                            AsyncStorage.setItem('user_id', result.user_id)
                             this.props.navigation.navigate('App')
                         } else {
                             this.setState({
@@ -44,6 +46,8 @@ class RegisterScreen extends Component {
                                 isLoading: false
                             })
                         }
+                    }).catch((err) => {
+                        alert(err)
                     })
                 } else {
                     this.setState({
