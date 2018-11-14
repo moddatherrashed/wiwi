@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
+import ApiController from './../../controllers/ApiController'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -8,43 +9,46 @@ class ResturantsListComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            HistoryList: [
-                {
-                    id: '1',
-                    image: 'http://www.clicksides.com/wp-content/uploads/2018/04/FireFly-Burger.png',
-                    name: 'Firefly',
-                },
-                {
-                    id: '2',
-                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/280px-McDonald%27s_Golden_Arches.svg.png',
-                    name: 'McDonalds',
-                },
-                {
-                    id: '3',
-                    image: 'https://is4-ssl.mzstatic.com/image/thumb/Purple118/v4/56/90/3a/56903aa7-079f-7c9f-5d75-ace99992139e/mzl.lxkstsco.jpg/246x0w.jpg',
-                    name: 'Burger Makers'
-                }
-            ]
+            resutrants: [],
+            isLoading: false
         }
     }
 
-    render() {
-        return (
-            <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
+
+    componentDidMount() {
+        this.setState({
+            isLoading: true
+        })
+        ApiController.get_resturants().then((result) => {
+            if (result.status === 1) {
+                this.setState({
+                    resutrants: result.Resturants,
+                    isLoading: false
+                })
+            } else {
+                alert('something went wrong !')
+            }
+        }).catch((err) => {
+            alert(err)
+        })
+    }
+    renderList(isLoading) {
+        if (!isLoading) {
+            return (
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     contentContainerStyle={{
                         padding: 10,
                         flex: 2
                     }}
-                    data={this.state.HistoryList}
+                    data={this.state.resutrants}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('topTabNAvigator', {
-                                    resturantName: item.name,
-                                    resturantImage : item.image
+                                    resturantName: item.full_name,
+                                    resturantImage: item.logo
                                 })
                             }
                             }
@@ -61,17 +65,33 @@ class ResturantsListComponent extends Component {
                                 <View style={{ padding: 6, flex: 2 }}>
                                     <Image
                                         style={{ height: viewportWidth * 0.21, width: viewportWidth * 0.21 }}
-                                        source={{ uri: item.image }}
+                                        source={{ uri: 'http://160.153.245.10/img/uploads/logos/'+item.logo }}
                                         resizeMode='contain'
                                     />
                                 </View>
                                 <View style={{ padding: 6, flex: 2 }}>
-                                    <Text style={{ color: 'black', marginLeft: 12, marginTop: 10, marginBottom: 2, fontWeight: '700', fontSize: 20 }}>{item.name}</Text>
+                                    <Text style={{ color: 'black', marginLeft: 12, marginTop: 10, marginBottom: 2, fontWeight: '700', fontSize: 20 }}>{item.full_name}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
                     }
                 />
+            )
+        } else {
+            return (
+                <View style={{ marginTop: 100 }}>
+                    <ActivityIndicator size="large" color="#638bba" />
+                </View>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
+                {
+                    this.renderList(this.state.isLoading)
+                }
             </ScrollView>
         )
     }

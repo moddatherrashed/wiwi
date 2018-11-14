@@ -4,6 +4,7 @@ import Image from 'react-native-remote-svg'
 import ViewPagerComponent from '../components/ViewPagerComponent'
 import { Pagination } from 'react-native-snap-carousel'
 import translation from './../controllers/translation'
+import ApiController from './../controllers/ApiController'
 
 import { AsyncStorage } from 'react-native'
 
@@ -65,7 +66,7 @@ class HomeScreen extends Component {
             ]
 
         }
-        //AsyncStorage.clear()
+        
     }
     static navigationOptions = {
 
