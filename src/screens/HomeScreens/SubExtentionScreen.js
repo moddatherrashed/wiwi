@@ -4,23 +4,27 @@ import ApiController from './../../controllers/ApiController'
 
 const viewportWidth = Dimensions.get('window').width
 
-class ResturantComponent extends Component {
+class SubExtentionScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            catagories: [],
+            extentions: [],
             isLoading: false,
             status: 0
         }
+    }
+
+    static navigationOptions = {
+        headerTitle : this.props.navigation.state.params.catagoryName
     }
 
     componentDidMount() {
         this.setState({
             isLoading: true
         })
-        ApiController.get_catagory(this.props.navigation.state.params.resturantId).then((response) => {
+        ApiController.get_extentions(this.props.navigation.state.params.catagoryId).then((response) => {
             this.setState({
-                catagories: response.categries,
+                extentions: response.extensions,
                 isLoading: false,
                 status: response.status
             })
@@ -55,9 +59,8 @@ class ResturantComponent extends Component {
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => {
-                                    this.props.navigation.navigate('SubExtentionScreen', {
-                                        catagoryName: I18nManager.isRTL ? item.name_ar : item.name_en,
-                                        catagoryId: item.id,
+                                    this.props.navigation.navigate('ProductListScreen', {
+                                        extentionName: I18nManager.isRTL ? item.name_ar : item.name_en,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
                                     })
@@ -72,7 +75,7 @@ class ResturantComponent extends Component {
                                     shadowOpacity: 0.2
                                 }}>
                                 <ImageBackground
-                                    source={{ uri: 'http://160.153.245.10/img/uploads/categories/' + item.image }}
+                                    source={item.image !== null ? { uri: 'http://160.153.245.10/img/uploads/extensions/' + item.image } : require('./../../BG/login.png')}
                                     style={{
                                         height: viewportWidth * 0.21,
                                         width: null,
@@ -108,11 +111,11 @@ class ResturantComponent extends Component {
         return (
             <ScrollView style={{ flex: 3, backgroundColor: 'white' }}>
                 {
-                    this.renderCategoriesList(this.state.isLoading, this.state.catagories, this.state.status)
+                    this.renderCategoriesList(this.state.isLoading, this.state.extentions, this.state.status)
                 }
             </ScrollView>
         )
     }
 }
 
-export default ResturantComponent
+export default SubExtentionScreen

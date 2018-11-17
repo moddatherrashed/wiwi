@@ -47,6 +47,7 @@ class ResturantsListComponent extends Component {
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('topTabNAvigator', {
+                                    resturantId: item.id,
                                     resturantName: item.full_name,
                                     resturantImage: item.logo
                                 })
@@ -65,7 +66,7 @@ class ResturantsListComponent extends Component {
                                 <View style={{ padding: 6, flex: 2 }}>
                                     <Image
                                         style={{ height: viewportWidth * 0.21, width: viewportWidth * 0.21 }}
-                                        source={{ uri: 'http://160.153.245.10/img/uploads/logos/'+item.logo }}
+                                        source={{ uri: 'http://160.153.245.10/img/uploads/logos/' + item.logo }}
                                         resizeMode='contain'
                                     />
                                 </View>

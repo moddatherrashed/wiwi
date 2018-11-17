@@ -21,7 +21,7 @@ import MaintenanceScreen from './src/screens/MaintenanceScreen'
 import NoConnectionScreen from './src/screens/NoConnectionScreen'
 import translation from './src/controllers/translation'
 import SplashScreen from './src/screens/SplashScreen'
-
+import SubExtentionScreen from './src/screens/HomeScreens/SubExtentionScreen'
 const styles = StyleSheet.create({
   tabIcon: {
     height: 24,
@@ -158,11 +158,12 @@ const AppStackNavigator = createStackNavigator({
   ProductViewerScreen: { screen: ProductViewerScreen },
   SearchScreen: { screen: SearchScreen },
   FavoritesViewerScreen: { screen: FavoritesViewerScreen },
-  ItemViewerScreen: { screen: ItemViewerScreen }
+  ItemViewerScreen: { screen: ItemViewerScreen },
+  SubExtentionScreen: { screen: SubExtentionScreen }
 })
 
 const AppScreens = createSwitchNavigator({
- // test: { screen: SplashScreen },
+  // test: { screen: SplashScreen },
   Auth: AuthScreens,
   App: AppStackNavigator
 })

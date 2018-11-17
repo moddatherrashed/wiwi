@@ -63,13 +63,16 @@ let ApiController = {
                 console.error(error);
             });
     },
-    get_extentions : (resturant_id)=>{
+    get_catagory: (resturant_id) => {
         return fetch(apiUrl + '/get_catagory', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+                resturant_id: resturant_id
+            }),
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -79,7 +82,26 @@ let ApiController = {
             .catch((error) => {
                 console.error(error);
             });
-
+    },
+    get_extentions: (category_id) => {
+        return fetch(apiUrl + '/get_extentions', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                category_id: category_id
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 };
 
