@@ -62,7 +62,7 @@ class ProductComponent extends Component {
                     }}
                 />
                 <ImageBackground
-                    source={{ uri: productImage }}
+                    source={{ uri: 'http://160.153.245.10/img/uploads/products/' + productImage }}
                     style={{
                         flex: 2.6,
                         flexDirection: 'row',
@@ -78,7 +78,7 @@ class ProductComponent extends Component {
                                         id: productId,
                                         name: productName,
                                         descreption: productDescription,
-                                        image: productImage,
+                                        image: 'http://160.153.245.10/img/uploads/products/' + productImage,
                                         price: productPrice,
                                         catagoryName: catagoryName,
                                         resturantName: resturantName,

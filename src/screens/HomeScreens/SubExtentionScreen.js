@@ -14,9 +14,9 @@ class SubExtentionScreen extends Component {
         }
     }
 
-    static navigationOptions = {
-        headerTitle : this.props.navigation.state.params.catagoryName
-    }
+    static navigationOptions = ({ navigation }) => ({
+        headerTitle: navigation.state.params.catagoryName
+    })
 
     componentDidMount() {
         this.setState({
@@ -30,7 +30,8 @@ class SubExtentionScreen extends Component {
             })
         }).catch((err) => {
             this.setState({
-                isLoading: false
+                isLoading: false,
+                status: 0
             })
             console.log(err)
         })
@@ -60,6 +61,7 @@ class SubExtentionScreen extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     this.props.navigation.navigate('ProductListScreen', {
+                                        extensionId: item.id,
                                         extentionName: I18nManager.isRTL ? item.name_ar : item.name_en,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage

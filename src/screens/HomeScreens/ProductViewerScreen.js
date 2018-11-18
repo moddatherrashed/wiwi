@@ -49,7 +49,7 @@ class ProductViewerScreen extends Component {
                 <View style={styles.screenViewContainerStyle}>
                     <Image
                         resizeMode='cover'
-                        source={{ uri: productImage }}
+                        source={{ uri: 'http://160.153.245.10/img/uploads/products/' + productImage }}
                         style={styles.imageStyle}
                     />
                 </View>

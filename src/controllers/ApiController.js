@@ -102,7 +102,27 @@ let ApiController = {
             .catch((error) => {
                 console.error(error);
             });
-    }
+    },
+    get_products: (extention_id) => {
+        return fetch(apiUrl + '/get_products', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                extention_id: extention_id
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    },
 };
 
 module.exports = ApiController
