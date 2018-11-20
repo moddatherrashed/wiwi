@@ -20,36 +20,47 @@ class FavoriteScreen extends Component {
     }
 
 
-    async  componentDidMount() {
+    componentDidMount() {
+        this.getFavoritesItems()
+    }
+
+    async getFavoritesItems() {
         try {
             await AsyncStorage.getItem('FavoritesItems').then((value) => {
                 let values = JSON.parse(value)
-
                 let filterdValues = []
                 let itemsSingle = []
-                let idCounter = 0
                 for (let i of values) {
-
                     filterdValues.push({
-                        id: idCounter,
+                        id: i.id,
                         resturantName: i.resturantName,
                         resturantImage: i.resturantImage
                     })
 
                     itemsSingle.push({
-                        id: idCounter,
+                        id: i.id,
+                        itemQuintity: i.quintity,
                         itemName: i.name,
+                        itemDescreption: i.descreption,
                         itemImg: i.image,
                         itemPrice: i.price,
+                        itemCategory: i.catagoryName,
                         resturnatName: i.resturantName
                     })
-                    idCounter++
                 }
                 this.setState({
                     resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
                     favoritesList: values,
                     itemsSingle: itemsSingle
                 })
+                console.log('VAAAAAAAAALLLLLLUUUUUUUUUUEEEESSSSSS')
+                console.log(values)
+
+                console.log('items')
+                console.log(this.state.resturantsList)
+
+                console.log('the i values')
+                console.log(this.state.itemsSingle)
             })
         } catch (error) {
             alert("Error retrieving favorite items === " + error);
@@ -60,71 +71,39 @@ class FavoriteScreen extends Component {
             <ScrollView style={styles.screenStyle}>
                 <NavigationEvents
                     onWillFocus={
-                        async () => {
-                            try {
-                                await AsyncStorage.getItem('FavoritesItems').then((value) => {
-                                    let values = JSON.parse(value)
-
-                                    let filterdValues = []
-                                    let itemsSingle = []
-                                    let idCounter = 0
-                                    for (let i of values) {
-
-                                        filterdValues.push({
-                                            id: idCounter,
-                                            resturantName: i.resturantName,
-                                            resturantImage: i.resturantImage
-                                        })
-
-                                        itemsSingle.push({
-                                            id: idCounter,
-                                            itemName: i.name,
-                                            itemImg: i.image,
-                                            itemPrice: i.price,
-                                            resturnatName: i.resturantName
-                                        })
-                                        idCounter++
-                                    }
-                                    this.setState({
-                                        resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
-                                        favoritesList: values,
-                                        itemsSingle: itemsSingle
-                                    })
-                                })
-                            } catch (error) {
-                                alert("Error retrieving favorite items === " + error);
-                            }
+                        () => {
+                            this.getFavoritesItems()
                         }}
                 />
                 <FlatList
                     contentContainerStyle={styles.flatListConatinerStyle}
                     data={this.state.resturantsList}
-                    keyExtractor={item => (item.id).toString()}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 let collecteditems = []
-                                let idCounter = 0
                                 for (let i of this.state.itemsSingle) {
                                     if (item.resturantName === i.resturnatName) {
                                         collecteditems.push({
-                                            id: idCounter,
+                                            id: i.id,
                                             itemName: i.itemName,
                                             itemImg: i.itemImg,
                                             itemPrice: i.itemPrice,
-                                            resturantName : item.resturantName,
-                                            catagoryName :item.catagoryName
-                                            
+                                            productQuintity: i.itemQuintity,
+                                            itemDescreption: i.itemDescreption,
+                                            resturantName: item.resturantName,
+                                            catagoryName: item.catagoryName
+
                                         })
 
                                     }
-                                    idCounter++
                                 }
                                 this.props.navigation.navigate('FavoritesViewerScreen', {
                                     resturantItems: collecteditems,
-                                    
+
                                 })
-                             
+
                             }}
                             style={styles.itemMainContainerStyle}>
                             <View style={styles.itemContainerStyle}>

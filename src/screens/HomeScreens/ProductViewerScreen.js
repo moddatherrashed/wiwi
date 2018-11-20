@@ -12,7 +12,7 @@ class ProductViewerScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            productQuintity: 1,
+            productQuintity: this.props.navigation.state.params.productQuantity,
             isFavo: null,
             isInCart: '',
 
@@ -20,14 +20,14 @@ class ProductViewerScreen extends Component {
     }
 
     componentDidMount() {
-        const { productName, resturantName } = this.props.navigation.state.params
-        FavoritesController.isFavorite(productName, resturantName).then((value) => {
+        const { productId } = this.props.navigation.state.params
+        FavoritesController.isFavorite(productId).then((value) => {
             value
                 ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
                 : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
         })
 
-        CartController.isFavorite(productName, resturantName).then((value) => {
+        CartController.isFavorite(productId).then((value) => {
             value
                 ? this.setState({ isInCart: I18nManager.isRTL ? translation.ar.remove_from_cart : translation.en.remove_from_cart })
                 : this.setState({ isInCart: I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart })
@@ -42,8 +42,7 @@ class ProductViewerScreen extends Component {
         title: `${navigation.state.params.productName}`
     })
     render() {
-        const { catagoryName, resturantName, resturantImage, productName, productImage, productPrice, productId, productDescription, productQuantity } = this.props.navigation.state.params
-
+        const { catagoryName, resturantName, resturantImage, productName, resturantId, productImage, productPrice, productId, productDescription, productQuantity } = this.props.navigation.state.params
         return (
             <ScrollView style={styles.scrollScreenContainerStyle}>
                 <View style={styles.screenViewContainerStyle}>
@@ -66,6 +65,7 @@ class ProductViewerScreen extends Component {
                                         FavoritesController.setItem(
                                             {
                                                 id: productId,
+                                                resturantId: resturantId,
                                                 name: productName,
                                                 image: productImage,
                                                 price: productPrice,
@@ -76,7 +76,7 @@ class ProductViewerScreen extends Component {
                                         )
                                     } else {
                                         this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
-                                        FavoritesController.deleteItem(productName)
+                                        FavoritesController.deleteItem(productId)
                                     }
                                 }}
                                 style={{ height: this.scalling(22), width: this.scalling(24), alignSelf: 'flex-end' }}>
@@ -90,6 +90,7 @@ class ProductViewerScreen extends Component {
                 <View style={{ height: this.scalling(50), borderWidth: 0.5, borderColor: '#B8B8B8', margin: this.scalling(15), flexDirection: 'row', flex: 1.5, justifyContent: 'center', alignItems: 'center' }}>
                     <TouchableOpacity
                         onPress={() => {
+                            alert(JSON.stringify(this.props.navigation.state.params))
                             this.setState({
                                 productQuintity: this.state.productQuintity + 1
                             })
@@ -133,6 +134,7 @@ class ProductViewerScreen extends Component {
                                     {
                                         id: productId,
                                         name: productName,
+                                        resturantId: resturantId,
                                         image: productImage,
                                         price: productPrice,
                                         catagoryName: catagoryName,
@@ -143,7 +145,7 @@ class ProductViewerScreen extends Component {
                                 )
                             } else {
                                 this.setState({ isInCart: I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart })
-                                CartController.deleteItem(productName)
+                                CartController.deleteItem(productId)
                             }
                         }}>
                         <Text style={{ fontWeight: '700', color: 'white' }}>{this.state.isInCart}</Text>

@@ -11,21 +11,21 @@ class ProductComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            productQuintity: 1,
+            productQuintity: this.props.productQuantity,
             isFavo: null,
             isInCart: null
         }
     }
 
     componentDidMount() {
-        const { productName, resturantName } = this.props
-        FavoritesController.isFavorite(productName, resturantName).then((value) => {
+        const { productId } = this.props
+        FavoritesController.isFavorite(productId).then((value) => {
             value
                 ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
                 : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
         })
 
-        CartController.isFavorite(productName, resturantName).then((value) => {
+        CartController.isFavorite(productId).then((value) => {
             value
                 ? this.setState({ isInCart: require('../../Icons/Cancel.png') })
                 : this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
@@ -47,14 +47,14 @@ class ProductComponent extends Component {
             }}>
                 <NavigationEvents
                     onWillFocus={() => {
-                        const { productName, resturantName } = this.props
-                        FavoritesController.isFavorite(productName, resturantName).then((value) => {
+                        const { productId } = this.props
+                        FavoritesController.isFavorite(productId).then((value) => {
                             value
                                 ? this.setState({ isFavo: require('../../ProductIcons/addToFavo.png') })
                                 : this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
                         })
 
-                        CartController.isFavorite(productName, resturantName).then((value) => {
+                        CartController.isFavorite(productId).then((value) => {
                             value
                                 ? this.setState({ isInCart: require('../../Icons/Cancel.png') })
                                 : this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
@@ -78,16 +78,30 @@ class ProductComponent extends Component {
                                         id: productId,
                                         name: productName,
                                         descreption: productDescription,
-                                        image: 'http://160.153.245.10/img/uploads/products/' + productImage,
+                                        image: productImage,
                                         price: productPrice,
                                         catagoryName: catagoryName,
+                                        quintity: this.state.productQuintity,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
                                     }
                                 )
+                                alert(JSON.stringify(
+                                    {
+                                        id: productId,
+                                        name: productName,
+                                        descreption: productDescription,
+                                        image: productImage,
+                                        price: productPrice,
+                                        catagoryName: catagoryName,
+                                        quintity: this.state.productQuintity,
+                                        resturantName: resturantName,
+                                        resturantImage: resturantImage
+                                    }
+                                ))
                             } else {
                                 this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
-                                FavoritesController.deleteItem(productName)
+                                FavoritesController.deleteItem(productId)
                             }
                         }}
                     >
@@ -106,6 +120,7 @@ class ProductComponent extends Component {
                                         image: productImage,
                                         price: productPrice,
                                         descreption: productDescription,
+                                        quintity: this.state.productQuintity,
                                         catagoryName: catagoryName,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
@@ -113,7 +128,7 @@ class ProductComponent extends Component {
                                 )
                             } else {
                                 this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
-                                CartController.deleteItem(productName)
+                                CartController.deleteItem(productId)
                             }
                         }}>
                         <Image source={this.state.isInCart} style={{ height: 24, width: 24 }} />

@@ -41,7 +41,7 @@ class ProductListScreen extends Component {
     })
 
     renderProductsList(isLoading, products) {
-        const { extentionName, resturantName, resturantImage } = this.props.navigation.state.params
+        const { extentionName, resturantName, resturantImage, resturantId } = this.props.navigation.state.params
 
         if (isLoading) {
             return (
@@ -62,10 +62,12 @@ class ProductListScreen extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     this.props.navigation.navigate('ProductViewerScreen', {
+                                        productId: item.id,
+                                        resturantId: resturantId,
                                         productName: I18nManager.isRTL ? item.name_ar : item.name_en,
                                         productImage: item.image,
                                         productPrice: item.price,
-                                        //productQuantity: item.productQuantity,
+                                        productQuantity: 1,
                                         productDescription: item.description,
                                         extentionName: extentionName,
                                         resturantName: resturantName,
@@ -79,7 +81,7 @@ class ProductListScreen extends Component {
                                 <ProductComponent
                                     productId={item.id}
                                     productDescription={item.description}
-                                    // productQuantity={item.productQuantity}
+                                    productQuantity={1}
                                     productName={I18nManager.isRTL ? item.name_ar : item.name_en}
                                     productPrice={item.price}
                                     productImage={item.image}

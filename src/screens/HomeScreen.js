@@ -85,7 +85,7 @@ class HomeScreen extends Component {
     }
 
     render() {
-        // AsyncStorage.clear()
+        //AsyncStorage.clear()
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>{I18nManager.isRTL ? translation.ar.offers : translation.en.offers}</Text>

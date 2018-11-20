@@ -49,7 +49,7 @@ class ResturantsListComponent extends Component {
                                 this.props.navigation.navigate('topTabNAvigator', {
                                     resturantId: item.id,
                                     resturantName: item.full_name,
-                                    resturantImage: item.logo
+                                    resturantImage: 'http://160.153.245.10/img/uploads/logos/' + item.logo
                                 })
                             }
                             }

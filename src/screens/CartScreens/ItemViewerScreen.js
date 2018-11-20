@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, FlatList, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import { View, FlatList, StyleSheet, Dimensions, TouchableOpacity, I18nManager } from 'react-native'
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
+//import translation from './../../controllers/translation'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -17,35 +18,48 @@ class ItemViewerScreen extends Component {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
+        alert(JSON.stringify(this.state.products))
     }
 
 
     render() {
+        const { extentionName, resturantName, resturantImage } = this.props.navigation.state.params
         return (
             <View>
                 <FlatList
                     horizontal={false}
                     numColumns={2}
-                    keyExtractor={item => (item.id).toString()}
+                    keyExtractor={item => item.id}
                     contentContainerStyle={styles.listConatinerStyle}
                     data={this.state.products}
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('ProductViewerScreen', {
-                                    productName: item.itemName,
-                                    productImage: item.itemImg,
-                                    productPrice: item.productPrice,
+                                    productId: item.id,
+                                    productName: I18nManager.isRTL ? item.name_ar : item.name_en,
+                                    productImage: item.image,
+                                    productPrice: item.price,
+                                    //productQuantity: item.productQuantity,
+                                    productDescription: item.description,
+                                    extentionName: extentionName,
+                                    resturantName: resturantName,
+                                    resturantImage: resturantImage
                                 })
+
+
                             }}
                             style={{
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                productName={item.itemName}
-                                productPrice={item.itemPrice}
-                                productImage={item.itemImg}
-                                resturantName={item.resturantName}
+                                productDescription={item.description}
+                                // productQuantity={item.productQuantity}
+                                productName={I18nManager.isRTL ? item.name_ar : item.name_en}
+                                productPrice={item.price}
+                                productImage={item.image}
+                                extentionName={extentionName}
+                                resturantName={resturantName}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }

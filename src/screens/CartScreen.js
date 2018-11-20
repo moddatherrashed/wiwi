@@ -26,26 +26,23 @@ class CartScreen extends Component {
 
                 let filterdValues = []
                 let itemsSingle = []
-                let idCounter = 0
-                console.log('here is values')
-                console.log(values)
                 for (let i of values) {
 
                     filterdValues.push({
-                        id: idCounter,
+                        id: i.resturantId,
                         resturantName: i.resturantName,
                         resturantImage: i.resturantImage
                     })
 
                     itemsSingle.push({
-                        id: idCounter,
+                        id: i.id,
+                        itemQuintity: i.quintity,
                         itemName: i.name,
                         itemImg: i.image,
                         itemPrice: i.price,
                         itemCategory: i.catagoryName,
                         resturnatName: i.resturantName
                     })
-                    idCounter++
                 }
                 this.setState({
                     resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
@@ -54,7 +51,7 @@ class CartScreen extends Component {
                 })
             })
         } catch (error) {
-            alert("Error retrieving favorite items === " + error);
+            alert("Error retrieving favorite items === " + error)
         }
     }
 
@@ -73,16 +70,15 @@ class CartScreen extends Component {
                 <FlatList
                     contentContainerStyle={styles.flatListConatinerStyle}
                     data={this.state.resturantsList}
-                    keyExtractor={item => (item.id).toString()}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 let collecteditems = []
-                                let idCounter = 0
                                 for (let i of this.state.itemsSingle) {
                                     if (item.resturantName === i.resturnatName) {
                                         collecteditems.push({
-                                            id: idCounter,
+                                            id: i.id,
                                             itemName: i.itemName,
                                             itemImg: i.itemImg,
                                             itemPrice: i.itemPrice,
@@ -92,18 +88,12 @@ class CartScreen extends Component {
                                         })
 
                                     }
-                                    idCounter++
                                 }
 
                                 this.props.navigation.navigate('ItemViewerScreen', {
                                     resturantItems: collecteditems,
 
                                 })
-                                console.log('here item')
-                                console.log(item)
-                                console.log('here is i')
-                                console.log(this.state.itemsSingle)
-                                // alert('on press event ' + JSON.stringify(item.items) + 'this is i.items' + JSON.stringify(this.state.cartList.items))
                             }}
                             style={styles.itemMainContainerStyle}>
                             <View style={styles.itemContainerStyle}>

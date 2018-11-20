@@ -38,7 +38,7 @@ class SubExtentionScreen extends Component {
     }
 
     renderCategoriesList(isLoading, categories, status) {
-        const { resturantImage, resturantName } = this.props.navigation.state.params
+        const { resturantImage, resturantName, resturantId } = this.props.navigation.state.params
 
         if (isLoading) {
             return (
@@ -61,6 +61,7 @@ class SubExtentionScreen extends Component {
                             <TouchableOpacity
                                 onPress={() => {
                                     this.props.navigation.navigate('ProductListScreen', {
+                                        resturantId: resturantId,
                                         extensionId: item.id,
                                         extentionName: I18nManager.isRTL ? item.name_ar : item.name_en,
                                         resturantName: resturantName,

@@ -24,15 +24,15 @@ let FavoritesController = {
             alert("Error retrieving favorite items === " + error);
         }
     },
-    deleteItem: async (itemName) => {
+    deleteItem: async (itemId) => {
         let favoritesList = JSON.parse(await AsyncStorage.getItem(pointerName))
         if (favoritesList !== null) {
-            let index = favoritesList.findIndex(x => x.name == itemName);
+            let index = favoritesList.findIndex(x => x.id == itemId);
             favoritesList.splice(index, 1)
             AsyncStorage.setItem(pointerName, JSON.stringify(favoritesList))
         }
     },
-    isFavorite: async (itemName, resturantName) => {
+    isFavorite: async (itemId) => {
 
         try {
             let favoritesList = JSON.parse(await AsyncStorage.getItem(pointerName))
@@ -42,8 +42,7 @@ let FavoritesController = {
                 return false
             } else {
                 for (let i = 0; i < favoritesList.length; i++) {
-                    if (favoritesList[i].name === itemName
-                        && favoritesList[i].resturantName === resturantName) {
+                    if (favoritesList[i].id === itemId) {
                         return true
                     }
 
