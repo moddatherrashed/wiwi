@@ -163,7 +163,7 @@ const AppStackNavigator = createStackNavigator({
 })
 
 const AppScreens = createSwitchNavigator({
-  // test: { screen: SplashScreen },
+  //test: { screen: SplashScreen },
   Auth: AuthScreens,
   App: AppStackNavigator
 })

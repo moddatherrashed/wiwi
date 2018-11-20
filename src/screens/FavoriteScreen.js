@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native'
+import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage, I18nManager } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 const viewportWidth = Dimensions.get('window').width
 
@@ -9,7 +9,8 @@ class FavoriteScreen extends Component {
         this.state = {
             favoritesList: [],
             resturantsList: [],
-            itemsSingle: []
+            itemsSingle: [],
+            isNull: null
         }
     }
 
@@ -51,30 +52,25 @@ class FavoriteScreen extends Component {
                 this.setState({
                     resturantsList: this.removeDuplicates(filterdValues, 'resturantName'),
                     favoritesList: values,
-                    itemsSingle: itemsSingle
+                    itemsSingle: itemsSingle,
+                    isNull: false
                 })
-                console.log('VAAAAAAAAALLLLLLUUUUUUUUUUEEEESSSSSS')
-                console.log(values)
-
-                console.log('items')
-                console.log(this.state.resturantsList)
-
-                console.log('the i values')
-                console.log(this.state.itemsSingle)
+                if (this.state.resturantsList === undefined || (this.state.resturantsList).length == 0) {
+                    this.setState({ isNull: true })
+                }
             })
         } catch (error) {
-            alert("Error retrieving favorite items === " + error);
+            this.setState({ isNull: true })
         }
     }
-    render() {
-        return (
-            <ScrollView style={styles.screenStyle}>
-                <NavigationEvents
-                    onWillFocus={
-                        () => {
-                            this.getFavoritesItems()
-                        }}
-                />
+
+    renderFavoritesItems(isNull) {
+        if (isNull) {
+            return (
+                <Text style={{ alignSelf: 'center', fontSize: 25, paddingTop: 10 }}>{I18nManager.isRTL ? 'لا يوجد عناصر' : 'There is not items available'}</Text>
+            )
+        } else {
+            return (
                 <FlatList
                     contentContainerStyle={styles.flatListConatinerStyle}
                     data={this.state.resturantsList}
@@ -121,6 +117,21 @@ class FavoriteScreen extends Component {
                         </TouchableOpacity>
                     }
                 />
+            )
+        }
+    }
+    render() {
+        return (
+            <ScrollView style={styles.screenStyle}>
+                <NavigationEvents
+                    onWillFocus={
+                        () => {
+                            this.getFavoritesItems()
+                        }}
+                />
+                {
+                    this.renderFavoritesItems(this.state.isNull)
+                }
             </ScrollView>
         )
     }
