@@ -86,19 +86,6 @@ class ProductComponent extends Component {
                                         resturantImage: resturantImage
                                     }
                                 )
-                                alert(JSON.stringify(
-                                    {
-                                        id: productId,
-                                        name: productName,
-                                        descreption: productDescription,
-                                        image: productImage,
-                                        price: productPrice,
-                                        catagoryName: catagoryName,
-                                        quintity: this.state.productQuintity,
-                                        resturantName: resturantName,
-                                        resturantImage: resturantImage
-                                    }
-                                ))
                             } else {
                                 this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
                                 FavoritesController.deleteItem(productId)
@@ -117,11 +104,11 @@ class ProductComponent extends Component {
                                     {
                                         id: productId,
                                         name: productName,
+                                        descreption: productDescription,
                                         image: productImage,
                                         price: productPrice,
-                                        descreption: productDescription,
-                                        quintity: this.state.productQuintity,
                                         catagoryName: catagoryName,
+                                        quintity: this.state.productQuintity,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
                                     }

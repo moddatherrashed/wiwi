@@ -133,14 +133,13 @@ class ProductViewerScreen extends Component {
                                 CartController.setItem(
                                     {
                                         id: productId,
-                                        name: productName,
                                         resturantId: resturantId,
+                                        name: productName,
                                         image: productImage,
                                         price: productPrice,
                                         catagoryName: catagoryName,
                                         resturantName: resturantName,
-                                        resturantImage: resturantImage,
-                                        productQuantity: productQuantity
+                                        resturantImage: resturantImage
                                     }
                                 )
                             } else {
