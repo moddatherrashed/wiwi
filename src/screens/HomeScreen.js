@@ -66,7 +66,7 @@ class HomeScreen extends Component {
             ]
 
         }
-        
+
     }
     static navigationOptions = {
 
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         marginTop: 0
     },
     catagoryContainerStyle: {
-        paddingLeft: 10,
+        padding: 10,
         color: 'black',
         fontWeight: '700',
         fontSize: viewportWidth * 0.04

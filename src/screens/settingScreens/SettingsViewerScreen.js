@@ -6,8 +6,8 @@ import ChangePassword from '../../components/SettingScreenComponent/ChangePasswo
 import SendReportComponent from '../../components/SettingScreenComponent/SendReportComponent'
 import LocationScreenComponent from '../../components/SettingScreenComponent/LocationScreenComponent'
 import ContactUsComponent from '../../components/SettingScreenComponent/ContactUsComponent'
-
-
+import LocationAnimation from '../../components/LocationAnimation'
+import LocationHistory from '../../components/LocationHistory'
 class SettingsViewerScreen extends Component {
     constructor(props) {
         super(props)
@@ -26,7 +26,9 @@ class SettingsViewerScreen extends Component {
         switch (id) {
             case '1':
                 return (
-                    <LocationScreenComponent />
+                    <View style={{ flex: 1 }}>
+                        <LocationScreenComponent />
+                    </View>
                 )
                 break;
             case '2':

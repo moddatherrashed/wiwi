@@ -176,14 +176,14 @@ const styles = StyleSheet.create({
     singleItemStyle: {
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
-        elevation: 15,
-        shadowOffset: { height: 0, width: 0 },
-        shadowColor: 'black',
-        shadowOpacity: 0.3,
+       // elevation: 15,
+       // shadowOffset: { height: 0, width: 0 },
+       // shadowColor: 'black',
+        //shadowOpacity: 0.3,
         width: '100%',
         borderBottomWidth: 0.5,
         borderBottomColor: 'gray',
-        padding: 5
+        padding: 8
     },
     singleItemInnerConatiner: {
         flexDirection: 'row',
