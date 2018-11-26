@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { FlatList, Text, View, TouchableOpacity, ScrollView, TextInput } from 'react-native'
+import { Text, View, TextInput } from 'react-native'
 import LocationAutoComplete from '../components/LocationAutoComplete'
 import { Button } from 'native-base'
-import Modal from 'react-native-modal'
-
 
 
 class SearchForLocation extends Component {

@@ -1,27 +1,25 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
     View,
     TextInput,
     ScrollView,
     ActivityIndicator,
-    Image,
-    TouchableOpacity
+    I18nManager
 } from 'react-native';
-
 import { GoogleAutoComplete } from 'react-native-google-autocomplete';
-
 import LocationItem from '../components/LocationItem';
+
 
 export default class LocationAutoComplete extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <GoogleAutoComplete apiKey={'AIzaSyC8XepP6Ex4CgVcqUKJ1JhoWqe2NaAS-D4'}
+                <GoogleAutoComplete
+                    apiKey={'AIzaSyC8XepP6Ex4CgVcqUKJ1JhoWqe2NaAS-D4'}
                     components="country:jo"
                     debounce={500}
-                    language='ar'
+                    language={I18nManager.isRTL ? 'ar' : 'en'}
                     minLength={3}>
                     {({
                         handleTextChange,
@@ -48,7 +46,7 @@ export default class LocationAutoComplete extends React.Component {
                                             {...el}
                                             key={el.id}
                                             clear={clearSearchs}
-                                            handler ={this.props.getLocation}
+                                            handler={this.props.getLocation}
                                             fetchDetails={fetchDetails}
                                         />
                                     ))}
@@ -64,13 +62,10 @@ export default class LocationAutoComplete extends React.Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#638bba',
         margin: 5,
-        height : 300,
+        height: 300,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 5
     },
     textInput: {
         height: 40,

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Platform, Text, View, ActivityIndicator } from 'react-native'
 import { Constants, Location, Permissions } from 'expo';
-import LocationAutoComplete from '../components/LocationAutoComplete'
 import { Button } from 'native-base'
-import Modal from 'react-native-modal'
 
 
 
