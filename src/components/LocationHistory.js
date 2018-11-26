@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, Text, View, TouchableOpacity } from 'react-native'
+import { FlatList, Text, View, TouchableOpacity,ScrollView } from 'react-native'
 
 class LocationHsitory extends Component {
     constructor(props) {
@@ -14,13 +14,49 @@ class LocationHsitory extends Component {
             }, {
                 id: 3,
                 address: 'eptingerstrasse 28, basel switzerland'
+            },{
+                id: 13,
+                address: 'clarastrasse 18, basel switzerland'
+            }, {
+                id: 22,
+                address: 'mullhauserstrasse 33, basel switzerland'
+            }, {
+                id: 31,
+                address: 'eptingerstrasse 28, basel switzerland'
+            },{
+                id: 134,
+                address: 'clarastrasse 18, basel switzerland'
+            }, {
+                id: 223,
+                address: 'mullhauserstrasse 33, basel switzerland'
+            }, {
+                id: 312,
+                address: 'eptingerstrasse 28, basel switzerland'
+            },{
+                id: 143,
+                address: 'clarastrasse 18, basel switzerland'
+            }, {
+                id: 2122,
+                address: 'mullhauserstrasse 33, basel switzerland'
+            }, {
+                id: 354,
+                address: 'eptingerstrasse 28, basel switzerland'
+            },{
+                id: 1332,
+                address: 'clarastrasse 18, basel switzerland'
+            }, {
+                id: 24432,
+                address: 'mullhauserstrasse 33, basel switzerland'
+            }, {
+                id: 3111,
+                address: 'eptingerstrasse 28, basel switzerland'
             }]
         }
     }
 
     render() {
         return (
-            <View style={{ padding: 10 }}>
+            <ScrollView style={{ padding: 10 }}>
                 <Text style={{ fontWeight: '700', fontSize: 25, color: '#638bba', alignSelf: 'center', padding: 10 }}>Location History</Text>
                 <FlatList
                     horizontal={false}
@@ -43,7 +79,7 @@ class LocationHsitory extends Component {
                         </TouchableOpacity>
                     }
                 />
-            </View >
+            </ScrollView >
         )
     }
 

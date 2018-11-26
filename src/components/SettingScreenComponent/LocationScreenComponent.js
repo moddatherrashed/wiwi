@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, Button } from 'react-native'
+import { View, Text, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native'
 import LocationHistory from '../LocationHistory'
 import LocationAutoComplete from '../LocationAutoComplete'
-import Modal from 'react-native-modal'
+import { Button } from 'native-base'
 
 
 const viewportWidth = Dimensions.get('window').width
@@ -12,37 +12,65 @@ class LocationScreenComponent extends Component {
         super(props)
         this.state = {
             isVisible: false,
+            locations: [
+                { id: 1, name: 'Eptingerstrasse 28, 4052 Basel', age: 24 }
+            ]
         }
     }
 
     render() {
         return (
-            <View>
-                <Text>here is the location collector</Text>
-                <Button title='pick a location' onPress={() => {
-                    this.setState({
-                        isVisible: true,
-                    })
-                }} />
-                <Text style={{ color: '#000000', fontWeight: '700', fontSize: 25, alignSelf : 'center', padding: 10 }}>OR</Text>
-                <Button title='get your current location' onPress={() => {
-                    this.setState({
-                        isVisible: true,
-                    })
-                }} />
-                <Modal
-                    isVisible={this.state.isVisible}
-                    backdropColor='#638bba'
-                    style={{
-                        flex: 1
-                    }}
-                    onBackdropPress={() => this.setState({ isVisible: false })}
-                >
-                    <View style={{ height: 300, padding: 10, borderRadius: 5, borderWidth: 0.5, borderColor: 'white' }}>
-                        <LocationAutoComplete />
-
+            <View style={{ backgroundColor: 'white', flex: 1 }}>
+                <TouchableOpacity style={{
+                    flexDirection: 'row',
+                    backgroundColor: '#FFFFFF',
+                    width: '100%',
+                    marginBottom: 5,
+                }} onPress={() => {
+                    this.props.navigation.navigate('AddNewLocation')
+                }}>
+                    <View style={{ flexDirection: 'row', flex: 6, borderBottomColor: '#C8C8C8', marginHorizontal: 10, borderBottomWidth: 1 }}>
+                        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10 }}>Add New</Text>
+                        </View>
                     </View>
-                </Modal>
+                </TouchableOpacity>
+                <FlatList
+                    keyExtractor={item => item.id.toString()}
+                    contentContainerStyle={{
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                    data={this.state.locations}
+                    renderItem={({ item, index }) =>
+                        <View style={{
+                            flexDirection: 'row',
+                            backgroundColor: '#FFFFFF',
+                            width: '100%',
+                            marginBottom: 5,
+                        }}>
+                            <View style={{ flexDirection: 'row', flex: 3, borderBottomColor: '#C8C8C8', marginHorizontal: 10, borderBottomWidth: 1 }}>
+
+                                <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10, flex: 2.5 }}>{item.name}</Text>
+                                <TouchableOpacity
+                                    style={{
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        flex: 0.5,
+                                    }}>
+                                    <Image
+                                        source={require('../../Icons/Cancel.png')}
+                                        style={{
+                                            width: 25,
+                                            height: 25
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
+                />
+                
             </View>
         )
     }

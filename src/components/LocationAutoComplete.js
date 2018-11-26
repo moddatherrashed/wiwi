@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
     StyleSheet,
@@ -22,6 +21,7 @@ export default class LocationAutoComplete extends React.Component {
                 <GoogleAutoComplete apiKey={'AIzaSyC8XepP6Ex4CgVcqUKJ1JhoWqe2NaAS-D4'}
                     components="country:jo"
                     debounce={500}
+                    language='ar'
                     minLength={3}>
                     {({
                         handleTextChange,
@@ -40,11 +40,6 @@ export default class LocationAutoComplete extends React.Component {
                                         underlineColorAndroid='transparent'
                                         value={inputValue}
                                     />
-                                    <TouchableOpacity
-                                        onPress={clearSearchs}
-                                        style={{ justifyContent: 'center', alignItems: 'center', padding: 5, flex: 1 }}>
-                                        <Image source={require('../Icons/Cancel.png')} style={{ height: 25, width: 25 }} />
-                                    </TouchableOpacity>
                                 </View>
                                 {isSearching && <ActivityIndicator size="large" color="#638bba" />}
                                 <ScrollView style={{ flex: 1 }}>
@@ -52,6 +47,8 @@ export default class LocationAutoComplete extends React.Component {
                                         <LocationItem
                                             {...el}
                                             key={el.id}
+                                            clear={clearSearchs}
+                                            handler ={this.props.getLocation}
                                             fetchDetails={fetchDetails}
                                         />
                                     ))}
@@ -66,15 +63,18 @@ export default class LocationAutoComplete extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#638bba',
+        margin: 5,
+        height : 300,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5
     },
     textInput: {
         height: 40,
-        width: 300,
+        width: 400,
         padding: 5,
         borderWidth: 0.5,
         borderColor: 'gray',

@@ -27,7 +27,7 @@ class SettingsViewerScreen extends Component {
             case '1':
                 return (
                     <View style={{ flex: 1 }}>
-                        <LocationScreenComponent />
+                        <LocationScreenComponent navigation={this.props.navigation}/>
                     </View>
                 )
                 break;

@@ -22,6 +22,9 @@ import NoConnectionScreen from './src/screens/NoConnectionScreen'
 import translation from './src/controllers/translation'
 import SplashScreen from './src/screens/SplashScreen'
 import SubExtentionScreen from './src/screens/HomeScreens/SubExtentionScreen'
+import AddNewLocation from './src/components/AddNewLocation'
+import SearchForLocation from './src/components/SearchForLocation'
+
 const styles = StyleSheet.create({
   tabIcon: {
     height: 24,
@@ -159,7 +162,9 @@ const AppStackNavigator = createStackNavigator({
   SearchScreen: { screen: SearchScreen },
   FavoritesViewerScreen: { screen: FavoritesViewerScreen },
   ItemViewerScreen: { screen: ItemViewerScreen },
-  SubExtentionScreen: { screen: SubExtentionScreen }
+  SubExtentionScreen: { screen: SubExtentionScreen },
+  AddNewLocation: { screen: AddNewLocation },
+  SearchForLocation: { screen: SearchForLocation }
 })
 
 const AppScreens = createSwitchNavigator({
