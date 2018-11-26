@@ -60,7 +60,7 @@ class SearchForLocation extends Component {
             text: ''
         })
         result.then((res) => {
-            let { lat, long } = res.geometry.location
+            let { lat, lng } = res.geometry.location
             //this is the lat long for the searched data
             console.log('result', res.geometry.location)
             this.setState({
@@ -83,8 +83,7 @@ class SearchForLocation extends Component {
                             }}>Your choosen address  : </Text>
                             <Text style={{
                                 color: 'black',
-                                fontSize: 18,
-                                padding: 10
+                                margin: 20
                             }}>
                                 {this.state.location}
                             </Text>

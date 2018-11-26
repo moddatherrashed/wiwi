@@ -11,8 +11,8 @@ class LocationItem extends PureComponent {
         <Image
           source={require('./../Icons/pin.png')}
           style={{
-            height: 30,
-            width: 25,
+            height: 35,
+            width: 30,
             padding: 5
           }}
         />

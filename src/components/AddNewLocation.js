@@ -38,7 +38,7 @@ class AddNewLocation extends Component {
         }
 
         let location = await Location.getCurrentPositionAsync({});
-        alert(JSON.stringify(location))
+        //alert(JSON.stringify(location))
         this.setState({
             location: location,
             isLoading: false
