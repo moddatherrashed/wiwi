@@ -10,8 +10,8 @@ class LocationItem extends PureComponent {
   render() {
     return (
       <TouchableOpacity style={styles.root} onPress={() => {
-        this.props.handler(this.props.description,this.props.fetchDetails(this.props.place_id))
-        this.props.clear
+        this.props.handler(this.props.description, this.props.fetchDetails(this.props.place_id))
+
       }}>
         <Text>{this.props.description}</Text>
       </TouchableOpacity>

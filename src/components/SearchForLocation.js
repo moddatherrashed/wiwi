@@ -21,8 +21,7 @@ class SearchForLocation extends Component {
 
     componentDidMount() {
         if (this.props.navigation.state.params.type === 'get') {
-            let lat = this.props.navigation.state.params.lat
-            let long = this.props.navigation.state.params.long
+            let { lat, long } = this.props.navigation.state.params
             console.log('lat', lat)
             console.log('long', long)
             fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + lat + '+' + long + '&key=AIzaSyC8XepP6Ex4CgVcqUKJ1JhoWqe2NaAS-D4')
@@ -36,7 +35,13 @@ class SearchForLocation extends Component {
 
                         // Examine the text in the response
                         response.json().then((data) => {
-                            console.log(data.results[0].formatted_address);
+                            //console.log(data.results[0].formatted_address)
+                            this.setState({
+                                isSearchVisible: false,
+                                location: data.results[0].formatted_address,
+                                lat: lat,
+                                long: long
+                            })
                         });
                     }
                 )
@@ -57,8 +62,13 @@ class SearchForLocation extends Component {
             text: ''
         })
         result.then((res) => {
+            let { lat, long } = res.geometry.location
+            //this is the lat long for the searched data
             console.log('result', res.geometry.location)
-
+            this.setState({
+                lat: lat,
+                long: lng
+            })
         })
     }
     render() {
@@ -71,7 +81,7 @@ class SearchForLocation extends Component {
                         :
                         <View>
                             <Text style={{
-                                fontSize: 18, marginLeft: 20, marginTop: 10
+                                fontSize: 18, margin: 20
                             }}>Your choosen address  : </Text>
                             <Text style={{
                                 color: 'black',
@@ -80,7 +90,7 @@ class SearchForLocation extends Component {
                             }}>
                                 {this.state.location}
                             </Text>
-                            <Text style={{ fontSize: 18, marginLeft: 20, marginTop: 10 }}>More details</Text>
+                            <Text style={{ fontSize: 18, margin: 20 }}>More details</Text>
 
                             <TextInput
                                 multiline={true}
@@ -91,7 +101,9 @@ class SearchForLocation extends Component {
                                 onChangeText={(text) => this.setState({ text })}
                                 value={this.state.text} />
                             <Button rounded
-                                onPress={() => { this.props.navigation.navigate('SearchForLocation') }}
+                                onPress={() => {
+                                    alert('location : ' + this.state.location + " lat " + this.state.lat + " long " + this.state.long)
+                                }}
                                 style={{
                                     backgroundColor: '#638bba',
                                     borderRadius: 25,
