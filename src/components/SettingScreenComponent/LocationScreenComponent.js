@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native'
-import LocationHistory from '../LocationHistory'
-import LocationAutoComplete from '../LocationAutoComplete'
-import { Button } from 'native-base'
 
 
 const viewportWidth = Dimensions.get('window').width

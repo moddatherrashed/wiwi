@@ -11,8 +11,9 @@ class LocationItem extends PureComponent {
         <Image
           source={require('./../Icons/pin.png')}
           style={{
-            height: 20,
-            width: 12
+            height: 30,
+            width: 25,
+            padding: 5
           }}
         />
         <Text>{
@@ -28,7 +29,8 @@ const styles = StyleSheet.create({
     height: 40,
     width: 400,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'row'
   }
 })
