@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput, AsyncStorage } from 'react-native'
 import LocationAutoComplete from '../components/LocationAutoComplete'
 import { Button } from 'native-base'
+import ApiController from '../controllers/ApiController'
 
 
 class SearchForLocation extends Component {
@@ -11,6 +12,7 @@ class SearchForLocation extends Component {
             location: 'nothing',
             long: null,
             lat: null,
+            user_id: null,
             isSearchVisible: true
         }
         this.getLocationHandler = this.getLocationHandler.bind(this)
@@ -18,6 +20,11 @@ class SearchForLocation extends Component {
     }
 
     componentDidMount() {
+        AsyncStorage.getItem('user_id').then((item) => {
+            this.setState({
+                user_id: item
+            })
+        })
         if (this.props.navigation.state.params.type === 'get') {
             let { lat, long } = this.props.navigation.state.params
             console.log('lat', lat)
@@ -99,7 +106,17 @@ class SearchForLocation extends Component {
                                 value={this.state.text} />
                             <Button rounded
                                 onPress={() => {
-                                    alert('location : ' + this.state.location + " lat " + this.state.lat + " long " + this.state.long)
+                                    // alert('location : ' + this.state.location + " lat " + this.state.lat + " long " + this.state.long)
+                                    ApiController.send_location(
+                                        {
+                                            "user_id": this.state.user_id,
+                                            "long": this.state.long,
+                                            "lat": this.state.lat,
+                                            "address": this.state.location
+                                        }
+                                    ).then((res) => {
+                                        alert(JSON.stringify(res))
+                                    })
                                 }}
                                 style={{
                                     backgroundColor: '#638bba',

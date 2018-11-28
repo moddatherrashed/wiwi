@@ -123,6 +123,24 @@ let ApiController = {
                 console.error(error);
             });
     },
+    send_location: (location_json) => {
+        return fetch(apiUrl + '/users/send_location', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(location_json),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 };
 
 module.exports = ApiController
