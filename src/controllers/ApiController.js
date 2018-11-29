@@ -140,6 +140,27 @@ let ApiController = {
             .catch((error) => {
                 console.error(error);
             });
+    },
+    get_user_addresses: (user_id) => {
+        console.log('userid from api controller',user_id)
+        return fetch(apiUrl + '/users/get_user_addresses', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "user_id": user_id
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 };
 

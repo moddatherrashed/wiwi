@@ -1,23 +1,41 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, FlatList, TouchableOpacity, Image } from 'react-native'
-
-
-const viewportWidth = Dimensions.get('window').width
+import { View, Text, FlatList, TouchableOpacity, Image, AsyncStorage } from 'react-native'
+import { NavigationEvents } from 'react-navigation'
+import ApiController from '../../controllers/ApiController'
 
 class LocationScreenComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
             isVisible: false,
-            locations: [
-                { id: 1, name: 'Eptingerstrasse 28, 4052 Basel', age: 24 }
-            ]
+            locations: null,
         }
+    }
+    getAddresses() {
+        AsyncStorage.getItem('user_id').then((item) => {
+            ApiController.get_user_addresses(item)
+                .then((res) => {
+                    if (res.status === 1) {
+                        this.setState({
+                            locations: res.addresses
+                        })
+                    }
+                })
+        })
+    }
+    componentDidMount() {
+        this.getAddresses()
     }
 
     render() {
         return (
             <View style={{ backgroundColor: 'white', flex: 1 }}>
+                <NavigationEvents
+                    onWillFocus={
+                        () => {
+                            this.getAddresses()
+                        }}
+                />
                 <TouchableOpacity style={{
                     flexDirection: 'row',
                     backgroundColor: '#FFFFFF',
@@ -48,7 +66,7 @@ class LocationScreenComponent extends Component {
                         }}>
                             <View style={{ flexDirection: 'row', flex: 3, borderBottomColor: '#C8C8C8', marginHorizontal: 10, borderBottomWidth: 1 }}>
 
-                                <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10, flex: 2.5 }}>{item.name}</Text>
+                                <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10, flex: 2.5 }}>{item.address}</Text>
                                 <TouchableOpacity
                                     style={{
                                         justifyContent: 'center',
@@ -67,7 +85,7 @@ class LocationScreenComponent extends Component {
                         </View>
                     }
                 />
-                
+
             </View>
         )
     }

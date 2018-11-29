@@ -133,11 +133,12 @@ class ProductViewerScreen extends Component {
                                 CartController.setItem(
                                     {
                                         id: productId,
-                                        resturantId: resturantId,
                                         name: productName,
+                                        descreption: productDescription,
                                         image: productImage,
                                         price: productPrice,
                                         catagoryName: catagoryName,
+                                        quintity: this.state.productQuintity,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
                                     }
@@ -146,7 +147,8 @@ class ProductViewerScreen extends Component {
                                 this.setState({ isInCart: I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart })
                                 CartController.deleteItem(productId)
                             }
-                        }}>
+                        }
+                        }>
                         <Text style={{ fontWeight: '700', color: 'white' }}>{this.state.isInCart}</Text>
                     </Button>
                 </View>
