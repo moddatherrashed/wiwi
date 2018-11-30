@@ -99,7 +99,7 @@ class SearchForLocation extends Component {
                             <TextInput
                                 multiline={true}
                                 style={{
-                                    borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15,
+                                    borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15, padding: 5
                                 }}
                                 numberOfLines={10}
                                 onChangeText={(text) => this.setState({ text })}

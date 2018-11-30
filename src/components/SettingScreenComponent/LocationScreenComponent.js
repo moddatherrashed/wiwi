@@ -68,6 +68,20 @@ class LocationScreenComponent extends Component {
 
                                 <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10, flex: 2.5 }}>{item.address}</Text>
                                 <TouchableOpacity
+                                    onPress={() => {
+                                        ApiController.delete_address(item.id).then((res) => {
+                                            if (res.status === 1) {
+                                                let locations = this.state.locations
+                                                locations.splice(index, 1)
+                                                this.setState({
+                                                    locations
+                                                })
+                                                alert(res.message)
+                                            } else {
+                                                alert(res.message)
+                                            }
+                                        })
+                                    }}
                                     style={{
                                         justifyContent: 'center',
                                         alignItems: 'center',
