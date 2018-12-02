@@ -42,7 +42,10 @@ const transiliation = {
         "remove_from_cart": "Remove From Cart",
         "our_social_media": "Our Social Media",
         "login_failed": "Login Failed",
-        "all_fields_are_required": "All Fields Are Required"
+        "all_fields_are_required": "All Fields Are Required",
+        "request_password": "Request Password",
+        "enter_your_email_to_request_a_new_password" : "Request a new password",
+        "email_not_valid" : "The email is not valid !"
     },
     "ar": {
         "mobile_number": "رقم المحمول",
@@ -87,7 +90,10 @@ const transiliation = {
         "remove_from_cart": "حذف من السلة",
         "our_social_media": "نحن على مواقع التواصل",
         "login_failed": "فشل تسجيل الدخول",
-        "all_fields_are_required": "جميع الحقول مطلوبة"
+        "all_fields_are_required": "جميع الحقول مطلوبة",
+        "request_password": "طلب كلمة سر ",
+        "enter_your_email_to_request_a_new_password" : "طلب كلمة سر جديدة",
+        "email_not_valid" : "اﻹيميل غير صحيح !"
     }
 }
 

@@ -16,7 +16,6 @@ class AddNewLocation extends Component {
 
     static navigationOptions = {
         headerTitle: 'Add New Location'
-
     }
 
     componentDidMount() {

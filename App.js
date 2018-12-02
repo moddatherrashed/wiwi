@@ -24,7 +24,7 @@ import SplashScreen from './src/screens/SplashScreen'
 import SubExtentionScreen from './src/screens/HomeScreens/SubExtentionScreen'
 import AddNewLocation from './src/components/AddNewLocation'
 import SearchForLocation from './src/components/SearchForLocation'
-
+import ForgetPasswordScreen from "./src/screens/ForgetPasswordScreen";
 const styles = StyleSheet.create({
   tabIcon: {
     height: 24,
@@ -137,6 +137,7 @@ ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
 const AuthScreens = createStackNavigator({
   LoginScreen: { screen: LoginScreen },
   RegisterScreen: { screen: RegisterScreen },
+  ForgetPasswordScreen: { screen: ForgetPasswordScreen }
 })
 
 const AppStackNavigator = createStackNavigator({

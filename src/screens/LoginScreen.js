@@ -161,7 +161,11 @@ class LoginScreen extends React.Component {
                     this.renderFieldErrorMessage(this.state.isRequired)
 
                 }
-                <Text style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.forget_password : translation.en.forget_password}</Text>
+                <Text
+                    onPress={() => {
+                        this.props.navigation.navigate('ForgetPasswordScreen')
+                    }}
+                    style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.forget_password : translation.en.forget_password}</Text>
                 {
                     this.renderActivitIndicator(this.state.isLoading)
                 }

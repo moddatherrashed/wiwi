@@ -182,6 +182,27 @@ let ApiController = {
             .catch((error) => {
                 console.error(error);
             });
+    },
+    forget_password: (user_email) => {
+        //console.log('userid from api controller',user_id)
+        return fetch(apiUrl + '/users/forget_password', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "user_email": user_email
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 };
 
