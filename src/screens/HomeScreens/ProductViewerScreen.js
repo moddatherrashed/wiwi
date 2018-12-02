@@ -15,7 +15,7 @@ class ProductViewerScreen extends Component {
         this.state = {
             productQuintity: this.props.navigation.state.params.productQuantity,
             isFavo: null,
-            isInCart: '',
+            isInCart: null,
             text: ''
 
         }
@@ -71,11 +71,12 @@ class ProductViewerScreen extends Component {
                                             FavoritesController.setItem(
                                                 {
                                                     id: productId,
-                                                    resturantId: resturantId,
                                                     name: productName,
+                                                    descreption: productDescription,
                                                     image: productImage,
                                                     price: productPrice,
                                                     catagoryName: catagoryName,
+                                                    quintity: this.state.productQuintity,
                                                     resturantName: resturantName,
                                                     resturantImage: resturantImage
                                                 }
@@ -140,7 +141,7 @@ class ProductViewerScreen extends Component {
                                 width: this.scalling(200),
                             }}
                             onPress={() => {
-                                if (this.state.isInCart === I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart) {
+                                if (this.state.isInCart === (I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart)) {
                                     this.setState({ isInCart: I18nManager.isRTL ? translation.ar.remove_from_cart : translation.en.remove_from_cart })
                                     CartController.setItem(
                                         {
@@ -155,9 +156,11 @@ class ProductViewerScreen extends Component {
                                             resturantImage: resturantImage
                                         }
                                     )
+                                    alert("is in" + this.state.isInCart)
                                 } else {
                                     this.setState({ isInCart: I18nManager.isRTL ? translation.ar.add_to_cart : translation.en.add_to_cart })
                                     CartController.deleteItem(productId)
+                                    alert("is not" + this.state.isInCart)
                                 }
                             }
                             }>
