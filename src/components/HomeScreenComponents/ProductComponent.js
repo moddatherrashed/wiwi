@@ -115,6 +115,7 @@ class ProductComponent extends Component {
                                 )
                             } else {
                                 this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
+                                this.props.removeItem(this.props.index)
                                 CartController.deleteItem(productId)
                             }
                         }}>

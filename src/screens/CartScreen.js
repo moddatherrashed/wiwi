@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage,I18nManager } from 'react-native'
+import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage, I18nManager } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
+import { Button } from 'native-base'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -72,52 +73,54 @@ class CartScreen extends Component {
             )
         } else {
             return (
-                <FlatList
-                    contentContainerStyle={styles.flatListConatinerStyle}
-                    data={this.state.resturantsList}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) =>
-                        <TouchableOpacity
-                            onPress={() => {
-                                let collecteditems = []
-                                for (let i of this.state.itemsSingle) {
-                                    if (item.resturantName === i.resturnatName) {
-                                        collecteditems.push({
-                                            id: i.id,
-                                            itemName: i.itemName,
-                                            itemImg: i.itemImg,
-                                            itemPrice: i.itemPrice,
-                                            productQuintity: i.itemQuintity,
-                                            itemDescreption: i.itemDescreption,
-                                            resturantName: item.resturantName,
-                                            catagoryName: item.catagoryName
+                <View style={{ flex: 1 }}>
+                    <FlatList
+                        contentContainerStyle={styles.flatListConatinerStyle}
+                        data={this.state.resturantsList}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) =>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    let collecteditems = []
+                                    for (let i of this.state.itemsSingle) {
+                                        if (item.resturantName === i.resturnatName) {
+                                            collecteditems.push({
+                                                id: i.id,
+                                                itemName: i.itemName,
+                                                itemImg: i.itemImg,
+                                                itemPrice: i.itemPrice,
+                                                productQuintity: i.itemQuintity,
+                                                itemDescreption: i.itemDescreption,
+                                                resturantName: item.resturantName,
+                                                catagoryName: item.catagoryName
 
-                                        })
+                                            })
 
+                                        }
                                     }
-                                }
-                                this.props.navigation.navigate('FavoritesViewerScreen', {
-                                    resturantItems: collecteditems,
+                                    this.props.navigation.navigate('ItemViewerScreen', {
+                                        resturantItems: collecteditems,
 
-                                })
+                                    })
 
-                            }}
-                            style={styles.itemMainContainerStyle}>
-                            <View style={styles.itemContainerStyle}>
-                                <View style={styles.itemImageContainerStyle}>
-                                    <Image
-                                        style={styles.itemImageStyle}
-                                        source={{ uri: item.resturantImage }}
-                                        resizeMode='contain'
-                                    />
+                                }}
+                                style={styles.itemMainContainerStyle}>
+                                <View style={styles.itemContainerStyle}>
+                                    <View style={styles.itemImageContainerStyle}>
+                                        <Image
+                                            style={styles.itemImageStyle}
+                                            source={{ uri: item.resturantImage }}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                    <View style={styles.itemTextContainerStyle}>
+                                        <Text style={styles.itemTextStyle}>{item.resturantName}</Text>
+                                    </View>
                                 </View>
-                                <View style={styles.itemTextContainerStyle}>
-                                    <Text style={styles.itemTextStyle}>{item.resturantName}</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    }
-                />
+                            </TouchableOpacity>
+                        }
+                    />
+                </View>
             )
         }
     }
@@ -133,6 +136,7 @@ class CartScreen extends Component {
                 {
                     this.renderCartItems(this.state.isNull)
                 }
+
             </ScrollView>
         )
     }

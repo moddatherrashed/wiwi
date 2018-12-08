@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { View, FlatList, StyleSheet, Dimensions, TouchableOpacity, I18nManager } from 'react-native'
+import { View, FlatList, Text, StyleSheet, Dimensions, TouchableOpacity, I18nManager, ScrollView } from 'react-native'
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
-//import translation from './../../controllers/translation'
-
+import { Button } from 'native-base'
 const viewportWidth = Dimensions.get('window').width
 
 class ItemViewerScreen extends Component {
@@ -12,36 +11,43 @@ class ItemViewerScreen extends Component {
         this.state = {
             products: []
         }
+        this.removeItem = this.removeItem.bind(this)
     }
 
     componentDidMount() {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
-        alert(JSON.stringify(this.state.products))
     }
 
-
+    removeItem(itemIndex) {
+        let restOfProducts = this.state.products
+        restOfProducts.splice(itemIndex, 1)
+        this.setState({
+            products: restOfProducts
+        })
+    }
+    
     render() {
         const { extentionName, resturantName, resturantImage } = this.props.navigation.state.params
         return (
-            <View>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
                     horizontal={false}
                     numColumns={2}
                     keyExtractor={item => item.id}
                     contentContainerStyle={styles.listConatinerStyle}
                     data={this.state.products}
-                    renderItem={({ item }) =>
+                    renderItem={({ item, index }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('ProductViewerScreen', {
                                     productId: item.id,
-                                    productName: I18nManager.isRTL ? item.name_ar : item.name_en,
-                                    productImage: item.image,
-                                    productPrice: item.price,
-                                    //productQuantity: item.productQuantity,
-                                    productDescription: item.description,
+                                    productName: item.itemName,
+                                    productImage: item.itemImg,
+                                    productPrice: item.itemPrice,
+                                    productQuantity: item.productQuintity,
+                                    productDescription: item.itemDescreption,
                                     extentionName: extentionName,
                                     resturantName: resturantName,
                                     resturantImage: resturantImage
@@ -53,18 +59,82 @@ class ItemViewerScreen extends Component {
                             }}>
                             <ProductComponent
                                 productId={item.id}
+                                index={index}
                                 productDescription={item.description}
-                                // productQuantity={item.productQuantity}
-                                productName={I18nManager.isRTL ? item.name_ar : item.name_en}
-                                productPrice={item.price}
-                                productImage={item.image}
+                                productQuantity={item.productQuintity}
+                                productName={item.itemName}
+                                productPrice={item.itemPrice}
+                                removeItem={this.removeItem}
+                                productImage={item.itemImg}
                                 extentionName={extentionName}
                                 resturantName={resturantName}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }
                 />
-            </View>
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    borderTopColor: '#D3D3D3',
+                    borderTopWidth: 1,
+                    marginTop: 30,
+                    paddingBottom: 30,
+                    marginLeft: 20,
+                    marginRight: 20
+                }}>
+                    <View style={{
+                        flexDirection: 'row',
+                        flex: 2,
+                        marginTop: 20,
+                        marginBottom: 5,
+                    }}>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Subtotal</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>10.00 JOD</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', flex: 2, marginBottom: 10 }}>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Delivery</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>10.00 JOD</Text>
+                    </View>
+                    <View style={{
+                        flexDirection: 'row',
+                        flex: 2,
+                        marginTop: 30,
+                        borderTopColor: '#D3D3D3',
+                        borderTopWidth: 1,
+                    }}>
+                        <Text style={{
+                            color: 'gray',
+                            fontSize: 18,
+                            marginTop: 30,
+                            flex: 1,
+                            textAlign: 'left'
+                        }}>Order Total</Text>
+                        <Text style={{
+                            color: 'black',
+                            fontSize: 18,
+                            fontWeight: '700',
+                            marginTop: 30,
+                            flex: 1,
+                            textAlign: 'right'
+                        }}>20.00 JOD</Text>
+                    </View>
+                    <Button rounded
+                        onPress={() => { this.props.navigation.navigate('RegisterScreen') }}
+                        style={{
+                            backgroundColor: '#638bba',
+                            borderRadius: 25,
+                            borderColor: 'white',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            alignSelf: 'center',
+                            width: 200,
+                            marginTop: 20,
+                            borderWidth: 1
+                        }} >
+                        <Text style={{ fontWeight: '700', color: 'white' }}>Proceed</Text>
+                    </Button>
+                </View>
+            </ScrollView>
         );
     }
 }

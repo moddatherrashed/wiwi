@@ -10,7 +10,8 @@ class AddNewLocation extends Component {
         super(props)
         this.state = {
             location: null,
-            isLoading: true
+            isLoading: true,
+            errorMessage: ''
         }
     }
 
@@ -22,7 +23,9 @@ class AddNewLocation extends Component {
         if (Platform.OS === 'android' && !Constants.isDevice) {
             this.setState({
                 errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+                isLoading: false
             });
+            console.log('errorMessage', this.state.errorMessage)
         } else {
             this._getLocationAsync();
         }
@@ -31,13 +34,15 @@ class AddNewLocation extends Component {
     _getLocationAsync = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
+            console.log('status', status)
             this.setState({
                 errorMessage: 'Permission to access location was denied',
-            });
+                isLoading: false
+            })
+            alert(this.state.errorMessage)
         }
-
         let location = await Location.getCurrentPositionAsync({});
-        //alert(JSON.stringify(location))
+        console.log('location', location)
         this.setState({
             location: location,
             isLoading: false
@@ -93,6 +98,10 @@ class AddNewLocation extends Component {
                     </Button>
                 </View>
                     : <ActivityIndicator size="large" color="#638bba" />
+                }
+                {
+                    this.state.errorMessage === '' &&
+                    <Text>{this.state.errorMessage}</Text>
                 }
             </View >
         )
