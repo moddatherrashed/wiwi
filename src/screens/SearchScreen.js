@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextInput, View, TouchableOpacity, FlatList, Text, I18nManager } from 'react-native'
+import { TextInput, View, TouchableOpacity, FlatList, Text, I18nManager, StatusBar } from 'react-native'
 import { SafeAreaView } from 'react-navigation'
 import { Icon } from 'native-base'
 
@@ -19,7 +19,10 @@ class SearchScreen extends Component {
     }
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }} forceInset={{ top: 'always' }}>
+                <StatusBar
+                    barStyle="dark-content"
+                />ß
                 <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
                     <View style={{ height: 60, flexDirection: 'row', justifyContent: 'center', backgroundColor: 'white', borderBottomColor: '#D8D8D8', borderBottomWidth: 1 }}>
                         <TouchableOpacity

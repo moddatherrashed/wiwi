@@ -16,7 +16,8 @@ class AddNewLocation extends Component {
     }
 
     static navigationOptions = {
-        headerTitle: 'Add New Location'
+        headerTitle: 'Add New Location',
+        headerTintColor: '#638bba',
     }
 
     componentDidMount() {

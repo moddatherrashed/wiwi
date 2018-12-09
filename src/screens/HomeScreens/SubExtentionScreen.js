@@ -15,7 +15,8 @@ class SubExtentionScreen extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        headerTitle: navigation.state.params.catagoryName
+        headerTitle: navigation.state.params.catagoryName,
+        headerTintColor: '#638bba',
     })
 
     componentDidMount() {

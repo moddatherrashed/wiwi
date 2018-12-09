@@ -131,6 +131,7 @@ const ResturantTopTabNavigator = createMaterialTopTabNavigator({
 ResturantTopTabNavigator.navigationOptions = ({ navigation }) => {
   return {
     title: `${navigation.state.params.resturantName}`,
+    headerTintColor: '#638bba',
   };
 };
 

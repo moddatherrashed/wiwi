@@ -41,7 +41,8 @@ class ProductViewerScreen extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: `${navigation.state.params.productName}`
+        title: `${navigation.state.params.productName}`,
+        headerTintColor: '#638bba',
     })
     render() {
         const { catagoryName, resturantName, resturantImage, productName, resturantId, productImage, productPrice, productId, productDescription, productQuantity } = this.props.navigation.state.params

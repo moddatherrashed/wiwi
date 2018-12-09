@@ -12,10 +12,8 @@ class SettingsViewerScreen extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-
         title: `${navigation.state.params.title}`,
-
-
+        headerTintColor: '#638bba'
     })
 
     render() {
@@ -25,7 +23,7 @@ class SettingsViewerScreen extends Component {
             case '1':
                 return (
                     <View style={{ flex: 1 }}>
-                        <LocationScreenComponent navigation={this.props.navigation}/>
+                        <LocationScreenComponent navigation={this.props.navigation} />
                     </View>
                 )
                 break;

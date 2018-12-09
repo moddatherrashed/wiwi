@@ -6,7 +6,6 @@ import ApiController from './../../controllers/ApiController'
 class ProductListScreen extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             products: [],
             isLoading: false,
@@ -27,7 +26,7 @@ class ProductListScreen extends Component {
                 status: response.status
             })
 
-            //alert(JSON.stringify(this.state.products))
+            alert(JSON.stringify(response.status))
         }).catch((err) => {
             this.setState({
                 isLoading: false,
@@ -38,7 +37,8 @@ class ProductListScreen extends Component {
     }
     static navigationOptions = ({ navigation }) => ({
         title: `${navigation.state.params.extentionName}`,
-    })
+        headerTintColor: '#638bba',
+        })
 
     renderProductsList(isLoading, products) {
         const { extentionName, resturantName, resturantImage, resturantId } = this.props.navigation.state.params
@@ -68,7 +68,7 @@ class ProductListScreen extends Component {
                                         productImage: item.image,
                                         productPrice: item.price,
                                         productQuantity: 1,
-                                        productDescription: item.description,
+                                        productDescription: I18nManager.isRTL ? item.description_ar : item.description_en,
                                         extentionName: extentionName,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage

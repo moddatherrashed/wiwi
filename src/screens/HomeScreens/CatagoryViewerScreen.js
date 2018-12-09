@@ -9,10 +9,8 @@ class CatagoryViewerScreen extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-
         title: `${navigation.state.params.ItemTitle}`,
-
-
+        headerTintColor: '#638bba',
     })
 
     ////////// in the resturant component should be tab navigator from the App.js
