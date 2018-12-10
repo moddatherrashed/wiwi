@@ -13,6 +13,10 @@ class ItemViewerScreen extends Component {
         }
     }
 
+    static navigationOptions = () => ({
+        title: 'Cart',
+        headerTintColor: '#638bba',
+    })
     componentDidMount() {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')

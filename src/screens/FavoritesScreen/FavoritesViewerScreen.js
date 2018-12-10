@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, FlatList, StyleSheet, Dimensions, TouchableOpacity, I18nManager } from 'react-native'
+import { View, FlatList, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
 
 const viewportWidth = Dimensions.get('window').width
@@ -13,6 +13,10 @@ class FavoritesViewerScreen extends Component {
         }
     }
 
+    static navigationOptions = () => ({
+        title: 'Favorites',
+        headerTintColor: '#638bba',
+    })
     componentDidMount() {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
@@ -23,7 +27,7 @@ class FavoritesViewerScreen extends Component {
     render() {
         const { extentionName, resturantName, resturantImage } = this.props.navigation.state.params
         return (
-            <View>
+            <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
                     horizontal={false}
                     numColumns={2}
@@ -63,7 +67,7 @@ class FavoritesViewerScreen extends Component {
                         </TouchableOpacity>
                     }
                 />
-            </View>
+            </ScrollView>
         );
     }
 }
