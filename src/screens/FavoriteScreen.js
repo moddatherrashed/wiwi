@@ -90,12 +90,15 @@ class FavoriteScreen extends Component {
                                             productQuintity: i.itemQuintity,
                                             itemDescreption: i.itemDescreption,
                                             resturantName: item.resturantName,
+                                            resturantImage: item.resturantImage,
                                             catagoryName: item.catagoryName
-
                                         })
-
                                     }
                                 }
+                                console.log(
+                                    'collected items',
+                                    collecteditems
+                                )
                                 this.props.navigation.navigate('FavoritesViewerScreen', {
                                     resturantItems: collecteditems,
 

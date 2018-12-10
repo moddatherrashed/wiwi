@@ -40,7 +40,7 @@ class ItemViewerScreen extends Component {
                                     productImage: item.itemImg,
                                     productPrice: item.itemPrice,
                                     productQuantity: item.productQuintity,
-                                    productDescription: I18nManager.isRTL ? item.description_ar : item.description_en,
+                                    productDescription: item.itemDescreption,
                                     //extentionName: extentionName,
                                     resturantName: item.resturantName,
                                     resturantImage: item.resturantImage
@@ -64,7 +64,7 @@ class ItemViewerScreen extends Component {
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                productDescription={I18nManager.isRTL ? item.description_ar : item.description_en}
+                                productDescription={item.productDescription}
                                 productQuantity={item.productQuintity}
                                 productName={item.itemName}
                                 productPrice={item.itemPrice}
