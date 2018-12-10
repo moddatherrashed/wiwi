@@ -51,13 +51,14 @@ class FavoritesViewerScreen extends Component {
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                productDescription={item.description}
+                                productDescription={I18nManager.isRTL ? item.description_ar : item.description_en}
                                 productQuantity={item.productQuintity}
                                 productName={item.itemName}
                                 productPrice={item.itemPrice}
                                 productImage={item.itemImg}
-                                extentionName={extentionName}
-                                resturantName={resturantName}
+                                //extentionName={extentionName}
+                                resturantName={item.resturantName}
+                                resturantImage={item.resturantImage}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }

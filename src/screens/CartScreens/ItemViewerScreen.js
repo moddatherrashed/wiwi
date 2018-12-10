@@ -11,7 +11,6 @@ class ItemViewerScreen extends Component {
         this.state = {
             products: []
         }
-        this.removeItem = this.removeItem.bind(this)
     }
 
     componentDidMount() {
@@ -19,20 +18,11 @@ class ItemViewerScreen extends Component {
             products: this.props.navigation.getParam('resturantItems')
         })
 
-        console.log('cart items :',this.props.navigation.getParam('resturantItems'))
+        console.log('cart items :', this.props.navigation.getParam('resturantItems'))
     }
 
-    removeItem(itemIndex) {
-        let restOfProducts = this.state.products
-        restOfProducts.splice(itemIndex, 1)
-        this.setState({
-            products: restOfProducts
-        })
-    }
-    
     render() {
-        const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
-        console.log('here is the params for the resturants --> ',this.props.navigation.state.params)
+       // const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
@@ -41,7 +31,7 @@ class ItemViewerScreen extends Component {
                     keyExtractor={item => item.id}
                     contentContainerStyle={styles.listConatinerStyle}
                     data={this.state.products}
-                    renderItem={({ item, index }) =>
+                    renderItem={({ item }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('ProductViewerScreen', {
@@ -50,27 +40,38 @@ class ItemViewerScreen extends Component {
                                     productImage: item.itemImg,
                                     productPrice: item.itemPrice,
                                     productQuantity: item.productQuintity,
-                                    productDescription: item.itemDescreption,
-                                    extentionName: extentionName,
-                                    resturantName: resturantName,
-                                    resturantImage: resturantImage
+                                    productDescription: I18nManager.isRTL ? item.description_ar : item.description_en,
+                                    //extentionName: extentionName,
+                                    resturantName: item.resturantName,
+                                    resturantImage: item.resturantImage
                                 })
 
-
+                                console.log('on press product component ====>',
+                                    {
+                                        productId: item.id,
+                                        productName: item.itemName,
+                                        productImage: item.itemImg,
+                                        productPrice: item.itemPrice,
+                                        productQuantity: item.productQuintity,
+                                        productDescription: I18nManager.isRTL ? item.description_ar : item.description_en,
+                                        //extentionName: extentionName,
+                                        resturantName: item.resturantName,
+                                        resturantImage: item.resturantImage
+                                    }
+                                )
                             }}
                             style={{
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                index={index}
-                                productDescription={item.description}
+                                productDescription={I18nManager.isRTL ? item.description_ar : item.description_en}
                                 productQuantity={item.productQuintity}
                                 productName={item.itemName}
                                 productPrice={item.itemPrice}
-                                removeItem={this.removeItem}
                                 productImage={item.itemImg}
-                                extentionName={extentionName}
-                                resturantName={resturantName}
+                                //extentionName={extentionName}
+                                resturantName={item.resturantName}
+                                resturantImage={item.resturantImage}
                                 navigation={this.props.navigation} />
                         </TouchableOpacity>
                     }

@@ -32,10 +32,9 @@ class ProductComponent extends Component {
         })
     }
     render() {
-        const { productName, productImage, productPrice, productId, productDescription } = this.props
-        const { catagoryName, resturantName, resturantImage } = this.props.navigation.state.params
-        console.log('PROPS ====> ', this.props)
-        console.log('PARAMS ====> ', this.props.navigation.state.params)
+        const { productName, productImage, productPrice, productId, productDescription, resturantName, resturantImage } = this.props
+        const { catagoryName } = this.props.navigation.state.params
+        console.log('here is resturnat name from product component ===>', resturantImage)
         return (
             <View style={{
                 backgroundColor: 'white',
@@ -82,12 +81,13 @@ class ProductComponent extends Component {
                                         descreption: productDescription,
                                         image: productImage,
                                         price: productPrice,
-                                        catagoryName: catagoryName,
+                                        //catagoryName: catagoryName,
                                         quintity: this.state.productQuintity,
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
                                     }
                                 )
+
                             } else {
                                 this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
                                 FavoritesController.deleteItem(productId)
@@ -117,7 +117,6 @@ class ProductComponent extends Component {
                                 )
                             } else {
                                 this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
-                                this.props.removeItem(this.props.index)
                                 CartController.deleteItem(productId)
                             }
                         }}>

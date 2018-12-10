@@ -38,7 +38,7 @@ class ProductListScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: `${navigation.state.params.extentionName}`,
         headerTintColor: '#638bba',
-        })
+    })
 
     renderProductsList(isLoading, products) {
         const { extentionName, resturantName, resturantImage, resturantId } = this.props.navigation.state.params
@@ -78,14 +78,16 @@ class ProductListScreen extends Component {
                                 }}>
                                 <ProductComponent
                                     productId={item.id}
-                                    productDescription={item.description}
+                                    productDescription={I18nManager.isRTL ? item.description_ar : item.description_en}
                                     productQuantity={1}
                                     productName={I18nManager.isRTL ? item.name_ar : item.name_en}
                                     productPrice={item.price}
                                     productImage={item.image}
                                     extentionName={extentionName}
                                     resturantName={resturantName}
+                                    resturantImage={resturantImage}
                                     navigation={this.props.navigation} />
+
                             </TouchableOpacity>
                         }
                     />
