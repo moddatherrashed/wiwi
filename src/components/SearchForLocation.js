@@ -16,7 +16,6 @@ class SearchForLocation extends Component {
             isSearchVisible: true
         }
         this.getLocationHandler = this.getLocationHandler.bind(this)
-
     }
 
     componentDidMount() {
@@ -57,7 +56,8 @@ class SearchForLocation extends Component {
     }
 
     static navigationOptions = {
-        headerTitle: 'search for a location'
+        headerTitle: 'search for a location',
+        headerTintColor: '#638bba',
 
     }
     getLocationHandler(value, result) {
@@ -106,7 +106,6 @@ class SearchForLocation extends Component {
                                 value={this.state.text} />
                             <Button rounded
                                 onPress={() => {
-                                    // alert('location : ' + this.state.location + " lat " + this.state.lat + " long " + this.state.long)
                                     ApiController.send_location(
                                         {
                                             "user_id": this.state.user_id,

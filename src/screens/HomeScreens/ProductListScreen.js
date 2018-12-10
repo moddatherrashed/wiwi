@@ -75,8 +75,6 @@ class ProductListScreen extends Component {
                                     })
 
 
-                                }}
-                                style={{
                                 }}>
                                 <ProductComponent
                                     productId={item.id}

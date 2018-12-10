@@ -34,6 +34,8 @@ class ProductComponent extends Component {
     render() {
         const { productName, productImage, productPrice, productId, productDescription } = this.props
         const { catagoryName, resturantName, resturantImage } = this.props.navigation.state.params
+        console.log('PROPS ====> ', this.props)
+        console.log('PARAMS ====> ', this.props.navigation.state.params)
         return (
             <View style={{
                 backgroundColor: 'white',

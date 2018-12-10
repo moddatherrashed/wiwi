@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, Dimensions, FlatList, TouchableOpacity, StyleSheet, AsyncStorage, I18nManager } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
-import { Button } from 'native-base'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -25,6 +24,7 @@ class CartScreen extends Component {
 
     componentDidMount() {
         this.getFavoritesItems()
+
     }
 
     async getFavoritesItems() {
@@ -57,6 +57,10 @@ class CartScreen extends Component {
                     itemsSingle: itemsSingle,
                     isNull: false
                 })
+
+                console.log('resturnats list ==>', this.state.resturantsList)
+                console.log(' VALUES ==>', values)
+
                 if (this.state.resturantsList === undefined || (this.state.resturantsList).length == 0) {
                     this.setState({ isNull: true })
                 }
@@ -92,17 +96,14 @@ class CartScreen extends Component {
                                                 productQuintity: i.itemQuintity,
                                                 itemDescreption: i.itemDescreption,
                                                 resturantName: item.resturantName,
+                                                resturantImage: item.resturantImage,
                                                 catagoryName: item.catagoryName
-
                                             })
-
                                         }
                                     }
                                     this.props.navigation.navigate('ItemViewerScreen', {
                                         resturantItems: collecteditems,
-
                                     })
-
                                 }}
                                 style={styles.itemMainContainerStyle}>
                                 <View style={styles.itemContainerStyle}>

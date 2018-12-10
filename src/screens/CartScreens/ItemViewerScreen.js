@@ -18,6 +18,8 @@ class ItemViewerScreen extends Component {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
+
+        console.log('cart items :',this.props.navigation.getParam('resturantItems'))
     }
 
     removeItem(itemIndex) {
@@ -29,7 +31,8 @@ class ItemViewerScreen extends Component {
     }
     
     render() {
-        const { extentionName, resturantName, resturantImage } = this.props.navigation.state.params
+        const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
+        console.log('here is the params for the resturants --> ',this.props.navigation.state.params)
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList

@@ -55,6 +55,7 @@ class FavoriteScreen extends Component {
                     itemsSingle: itemsSingle,
                     isNull: false
                 })
+                console.log('resturant list : ', this.state.resturantsList )
                 if (this.state.resturantsList === undefined || (this.state.resturantsList).length == 0) {
                     this.setState({ isNull: true })
                 }

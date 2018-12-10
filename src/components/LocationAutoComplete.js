@@ -62,14 +62,14 @@ export default class LocationAutoComplete extends React.Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        margin: 5,
+        padding: 5,
         height: 300,
         alignItems: 'center',
         justifyContent: 'center',
     },
     textInput: {
         height: 40,
-        width: 400,
+        width: 350,
         padding: 5,
         borderWidth: 0.5,
         borderColor: 'gray',
