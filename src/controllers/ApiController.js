@@ -203,6 +203,21 @@ let ApiController = {
             .catch((error) => {
                 console.error(error);
             });
+    },
+    send_report: (user_name, user_report) => {
+        return fetch(apiUrl + '/users/send_report', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "user_name": user_name,
+                "user_report":user_report
+            }),
+        }).catch((error) => {
+                console.error(error);
+            });
     }
 };
 
