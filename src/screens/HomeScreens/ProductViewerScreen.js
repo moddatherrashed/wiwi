@@ -63,7 +63,7 @@ class ProductViewerScreen extends Component {
                         <View style={{
                             flexDirection: 'row'
                         }}>
-                            <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5 }}>{productPrice} {I18nManager.isRTL ? translation.ar.jod : translation.en.jod}</Text>
+                            <Text style={{ padding: this.scalling(5), fontSize: this.scalling(18), flex: 0.5, textAlign: 'left'  }}>{productPrice} {I18nManager.isRTL ? translation.ar.jod : translation.en.jod}</Text>
                             <View style={{ padding: this.scalling(5), flex: 0.5 }}>
                                 <TouchableOpacity
                                     onPress={() => {
@@ -92,9 +92,9 @@ class ProductViewerScreen extends Component {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(12) }}>{productDescription}</Text>
+                        <Text style={{ padding: this.scalling(5), fontSize: this.scalling(12), textAlign: 'left'  }}>{productDescription}</Text>
                     </View>
-                    <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>{I18nManager.isRTL ? translation.ar.quantity : translation.en.quantity}</Text>
+                    <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), textAlign: 'left'  }}>{I18nManager.isRTL ? translation.ar.quantity : translation.en.quantity}</Text>
                     <View style={{ height: this.scalling(50), borderWidth: 0.5, borderColor: '#B8B8B8', margin: this.scalling(15), flexDirection: 'row', flex: 1.5, justifyContent: 'center', alignItems: 'center' }}>
                         <TouchableOpacity
                             onPress={() => {
@@ -119,7 +119,7 @@ class ProductViewerScreen extends Component {
                             <Image source={require('../../Icons/Minus.png')} style={{ height: null, width: null, flex: 1 }} />
                         </TouchableOpacity>
                     </View>
-                    <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
+                    <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), textAlign: 'left'  }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
                     <TextInput
                         multiline={true}
                         autoCorrect={false}
