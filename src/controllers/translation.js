@@ -45,7 +45,8 @@ const transiliation = {
         "all_fields_are_required": "All Fields Are Required",
         "request_password": "Request Password",
         "enter_your_email_to_request_a_new_password" : "Request a new password",
-        "email_not_valid" : "The email is not valid !"
+        "email_not_valid" : "The email is not valid !",
+        "mobile_number_not_valid" : "Mobile Number Not Valid"
     },
     "ar": {
         "mobile_number": "رقم المحمول",
@@ -93,7 +94,9 @@ const transiliation = {
         "all_fields_are_required": "جميع الحقول مطلوبة",
         "request_password": "طلب كلمة سر ",
         "enter_your_email_to_request_a_new_password" : "طلب كلمة سر جديدة",
-        "email_not_valid" : "اﻹيميل غير صحيح !"
+        "email_not_valid" : "اﻹيميل غير صحيح !",
+        "mobile_number_not_valid" : "رقم المحمول غير صحيح"
+
     }
 }
 

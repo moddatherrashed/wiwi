@@ -213,9 +213,30 @@ let ApiController = {
             },
             body: JSON.stringify({
                 "user_name": user_name,
-                "user_report":user_report
+                "user_report": user_report
             }),
         }).catch((error) => {
+            console.error(error);
+        });
+    },
+    change_mobile_number: (user_id, mobile_number) => {
+        return fetch(apiUrl + '/users/change_mobile_number', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "user_id": user_id,
+                "mobile_number": mobile_number
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
                 console.error(error);
             });
     }
