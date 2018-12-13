@@ -29,7 +29,7 @@ class SendReportComponent extends Component {
     render() {
         return (
             <View style={{ backgroundColor: 'white', flex: 1 }}>
-                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10) }}>your name</Text>
+                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10), textAlign: 'left' }}>{I18nManager.isRTL ? 'إسمك': 'Your name'}</Text>
                 <TextInput
                     multiline={true}
                     style={{
@@ -38,7 +38,7 @@ class SendReportComponent extends Component {
                     numberOfLines={10}
                     onChangeText={(user_name) => this.setState({ user_name })}
                     value={this.state.user_name} />
-                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10) }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
+                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10), textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
                 <TextInput
                     multiline={true}
                     style={{

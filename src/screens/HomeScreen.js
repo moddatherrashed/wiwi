@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, TouchableOpacity, FlatList, I18nManager, Dimensions, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, Platform, TouchableOpacity, FlatList, I18nManager, Dimensions, ImageBackground, StyleSheet } from 'react-native'
 import Image from 'react-native-remote-svg'
 import ViewPagerComponent from '../components/ViewPagerComponent'
 import { Pagination } from 'react-native-snap-carousel'
@@ -88,7 +88,7 @@ class HomeScreen extends Component {
         //AsyncStorage.clear()
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
-                <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04 }}>{I18nManager.isRTL ? translation.ar.offers : translation.en.offers}</Text>
+                <Text style={{ padding: 10, color: 'black', fontWeight: '700', fontSize: viewportWidth * 0.04, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.offers : translation.en.offers}</Text>
                 <View>
                     <ViewPagerComponent
                         renderItem={this._renderItem}
@@ -161,7 +161,8 @@ const styles = StyleSheet.create({
         padding: 10,
         color: 'black',
         fontWeight: '700',
-        fontSize: viewportWidth * 0.04
+        fontSize: viewportWidth * 0.04,
+        textAlign: 'left'
     },
     flatListConatinerStyle: {
         justifyContent: 'center',
@@ -179,8 +180,10 @@ const styles = StyleSheet.create({
         width: viewportWidth * 0.2
     },
     itemTextFlatListStyle: {
-        textAlign: 'center', padding: 2,
-        fontSize: viewportWidth * 0.03
+        textAlign: 'center',
+        padding: 2,
+        fontSize: viewportWidth * 0.03,
+        textAlign: 'left'
     }
 })
 

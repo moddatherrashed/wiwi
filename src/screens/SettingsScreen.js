@@ -117,7 +117,7 @@ class SettingsScreen extends Component {
                 >
                     <View style={{ height: viewportWidth * 0.7, width: viewportWidth * 0.9, backgroundColor: 'white', borderRadius: 5, alignSelf: 'center', elevation: 5 }}>
                         <View style={{ flex: 1, paddingHorizontal: 10, borderBottomWidth: 1, borderBottomColor: '#C8C8C8', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 16, fontWeight: '700' }}>{I18nManager.isRTL ? 'إختر اللغة' : 'Select Language'}</Text>
+                            <Text style={{ fontSize: 16, fontWeight: '700', textAlign: 'left'  }}>{I18nManager.isRTL ? 'إختر اللغة' : 'Select Language'}</Text>
                         </View>
                         <View style={{ flex: 2, justifyContent: 'center' }}>
                             <TouchableOpacity
@@ -128,7 +128,7 @@ class SettingsScreen extends Component {
                                 }}
                                 style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
                                 <Image source={this.state.checked === 'en' ? require('../Icons/Uncheck.png') : require('../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
-                                <Text style={{ fontSize: 17, flex: 0.8 }}>{I18nManager.isRTL ? 'العربية' : 'Arabic'}</Text>
+                                <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left'  }}>{I18nManager.isRTL ? 'العربية' : 'Arabic'}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
@@ -137,7 +137,7 @@ class SettingsScreen extends Component {
                                     })
                                 }} style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
                                 <Image source={this.state.checked === 'ar' ? require('../Icons/Uncheck.png') : require('../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
-                                <Text style={{ fontSize: 17, flex: 0.8 }}>{I18nManager.isRTL ? 'الإنجليزية' : 'English'}</Text>
+                                <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>{I18nManager.isRTL ? 'الإنجليزية' : 'English'}</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', borderTopColor: '#C8C8C8', borderTopWidth: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -148,14 +148,14 @@ class SettingsScreen extends Component {
                                     })
                                 }}
                                 style={{ margin: 15, alignSelf: 'center' }}>
-                                <Text style={{ fontSize: 17, color: '#638bba' }}>{I18nManager.isRTL ? 'إلغاء' : 'Cancel'}</Text>
+                                <Text style={{ fontSize: 17, color: '#638bba', textAlign: 'left'  }}>{I18nManager.isRTL ? 'إلغاء' : 'Cancel'}</Text>
                             </Button>
                             <Button transparent
                                 onPress={() => {
                                     this._languageSelector(this.state.checked)
                                 }}
                                 style={{ margin: 15, alignSelf: 'center' }}>
-                                <Text style={{ fontSize: 17, color: '#638bba' }}>{I18nManager.isRTL ? 'تم' : 'Ok'}</Text>
+                                <Text style={{ fontSize: 17, color: '#638bba', textAlign: 'left'  }}>{I18nManager.isRTL ? 'تم' : 'Ok'}</Text>
                             </Button>
 
                         </View>
@@ -176,9 +176,9 @@ const styles = StyleSheet.create({
     singleItemStyle: {
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
-       // elevation: 15,
-       // shadowOffset: { height: 0, width: 0 },
-       // shadowColor: 'black',
+        // elevation: 15,
+        // shadowOffset: { height: 0, width: 0 },
+        // shadowColor: 'black',
         //shadowOpacity: 0.3,
         width: '100%',
         borderBottomWidth: 0.5,

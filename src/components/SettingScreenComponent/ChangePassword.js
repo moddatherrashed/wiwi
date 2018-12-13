@@ -12,21 +12,21 @@ class ChangePassword extends Component {
             <View style={{ backgroundColor: 'white', flex: 1 }}>
                 <View style={{ margin: 10, paddingTop: 30 }}>
                     <Item floatingLabel>
-                        <Label style={{ marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.old_password : translation.en.old_password}</Label>
+                        <Label style={{ marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.old_password : translation.en.old_password}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10 }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.new_password : translation.en.new_password}</Label>
+                        <Label style={{ marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.new_password : translation.en.new_password}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10 }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.confirm_password : translation.en.confirm_password}</Label>
+                        <Label style={{ marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.confirm_password : translation.en.confirm_password}</Label>
                         <Input
                             keyboardType="numeric"
                             style={{ fontSize: 20, padding: 10 }}

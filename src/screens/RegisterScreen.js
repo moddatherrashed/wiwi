@@ -131,7 +131,7 @@ class RegisterScreen extends Component {
                 </View>
                 <View style={{ margin: 10, paddingTop: 30 }}>
                     <Item floatingLabel>
-                        <Label style={{ color: 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.mobile_number : translation.en.mobile_number}</Label>
+                        <Label style={{ color: 'white', marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.mobile_number : translation.en.mobile_number}</Label>
                         <Input
                             keyboardType="numeric"
                             onChangeText={value => { this.setState({ mobile_number: value }) }}
@@ -139,21 +139,21 @@ class RegisterScreen extends Component {
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.email : translation.en.email}</Label>
+                        <Label style={{ color: 'white', marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.email : translation.en.email}</Label>
                         <Input
                             onChangeText={value => { this.setState({ user_email: value }) }}
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.password : translation.en.password}</Label>
+                        <Label style={{ color: 'white', marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.password : translation.en.password}</Label>
                         <Input
                             onChangeText={value => { this.setState({ password: value }) }}
                             style={{ fontSize: 20, padding: 10, color: 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
                     <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.confirm_password : translation.en.confirm_password}</Label>
+                        <Label style={{ color: 'white', marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.confirm_password : translation.en.confirm_password}</Label>
                         <Input
                             onChangeText={value => { this.setState({ confirm_password: value }) }}
                             style={{ fontSize: 20, padding: 10, color: 'white' }}

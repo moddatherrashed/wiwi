@@ -137,16 +137,18 @@ class LoginScreen extends React.Component {
                     </Animatable.View>
                 </View>
                 <View style={{ margin: 10, paddingTop: 30 }}>
-                    <Item floatingLabel>
-                        <Label style={{ color: this.state.loginFaild ? 'red' : 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.mobile_number : translation.en.mobile_number}</Label>
+                    <Item floatingLabel >
+                        <Label style={{ color: this.state.loginFaild ? 'red' : 'white', marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.mobile_number : translation.en.mobile_number}</Label>
                         <Input
                             keyboardType="numeric"
                             onChangeText={value => this.setState({ mobile_number: value, loginFaild: false, isRequired: false })}
                             style={{ fontSize: 20, padding: 10, color: this.state.loginFaild ? 'red' : 'white' }}
                             underlineColorAndroid='transparent' />
                     </Item>
-                    <Item floatingLabel style={{ marginTop: 10 }}>
-                        <Label style={{ color: this.state.loginFaild ? 'red' : 'white', marginTop: 5 }}>{I18nManager.isRTL ? translation.ar.password : translation.en.password}</Label>
+                    <Item floatingLabel style={{
+                        marginTop: 10
+                    }}>
+                        <Label style={{ color: this.state.loginFaild ? 'red' : 'white', marginTop: 5, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.password : translation.en.password}</Label>
                         <Input
                             secureTextEntry
                             onChangeText={value => this.setState({ password: value, loginFaild: false, isRequired: false })}
@@ -165,7 +167,7 @@ class LoginScreen extends React.Component {
                     onPress={() => {
                         this.props.navigation.navigate('ForgetPasswordScreen')
                     }}
-                    style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15 }}>{I18nManager.isRTL ? translation.ar.forget_password : translation.en.forget_password}</Text>
+                    style={{ alignSelf: 'flex-end', color: 'white', borderBottomColor: 'white', borderBottomWidth: 0.5, margin: 10, fontSize: 15, textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.forget_password : translation.en.forget_password}</Text>
                 {
                     this.renderActivitIndicator(this.state.isLoading)
                 }
