@@ -47,11 +47,11 @@ class ProductViewerScreen extends Component {
     render() {
         const { catagoryName, resturantName, resturantImage, productName, resturantId, productImage, productPrice, productId, productDescription, productQuantity } = this.props.navigation.state.params
         return (
-            <KeyboardAvoidingView
-                keyboardVerticalOffset={Header.HEIGHT + 20}
-                style={{ flex: 1 }}
-                behavior="padding" >
-                <ScrollView style={styles.scrollScreenContainerStyle}>
+
+            <ScrollView style={styles.scrollScreenContainerStyle}>
+                <KeyboardAvoidingView
+                    keyboardVerticalOffset={Header.HEIGHT + 20} // adjust the value here if you need more padding
+                    behavior='position'>
                     <View style={styles.screenViewContainerStyle}>
                         <Image
                             resizeMode='cover'
@@ -122,6 +122,7 @@ class ProductViewerScreen extends Component {
                     <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20) }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
                     <TextInput
                         multiline={true}
+                        autoCorrect={false}
                         style={{
                             borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15, padding: 5
                         }}
@@ -168,8 +169,8 @@ class ProductViewerScreen extends Component {
                             <Text style={{ fontWeight: '700', color: 'white' }}>{this.state.isInCart}</Text>
                         </Button>
                     </View>
-                </ScrollView >
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </ScrollView >
         );
     }
 }
