@@ -26,7 +26,7 @@ class ProductListScreen extends Component {
                 status: response.status
             })
 
-            alert(JSON.stringify(response.status))
+           // alert(JSON.stringify(response.status))
         }).catch((err) => {
             this.setState({
                 isLoading: false,
