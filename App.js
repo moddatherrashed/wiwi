@@ -25,6 +25,8 @@ import SubExtentionScreen from './src/screens/HomeScreens/SubExtentionScreen'
 import AddNewLocation from './src/components/AddNewLocation'
 import SearchForLocation from './src/components/SearchForLocation'
 import ForgetPasswordScreen from "./src/screens/ForgetPasswordScreen";
+import CustomWebView from './src/components/SettingScreenComponent/CustomWebView'
+
 const styles = StyleSheet.create({
   tabIcon: {
     height: 24,
@@ -156,6 +158,7 @@ const AppStackNavigator = createStackNavigator({
     }
   },
   SettingsViewerScreen: { screen: SettingsViewerScreen },
+  CustomWebView: { screen: CustomWebView },
   CatagoryViewerScreen: { screen: CatagoryViewerScreen },
   ResturantsListComponent: { screen: ResturantsListComponent },
   topTabNAvigator: { screen: ResturantTopTabNavigator },

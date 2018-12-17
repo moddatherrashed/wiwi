@@ -54,7 +54,7 @@ class SettingsViewerScreen extends Component {
                 break;
             case '7':
                 return (
-                    <ContactUsComponent />
+                    <ContactUsComponent navigation={this.props.navigation} />
                 )
                 break;
             case '8':
