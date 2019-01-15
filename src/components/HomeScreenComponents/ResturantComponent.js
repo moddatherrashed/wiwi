@@ -31,7 +31,6 @@ class ResturantComponent extends Component {
                 })
                 console.log(err)
             })
-            alert(this.props.type)
         } else {
             ApiController.get_offers_catagory(this.props.navigation.state.params.resturantId).then((response) => {
                 this.setState({
@@ -45,7 +44,6 @@ class ResturantComponent extends Component {
                 })
                 console.log(err)
             })
-            alert(this.props.type)
         }
 
     }
