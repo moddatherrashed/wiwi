@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
 import ResturantComponent from './../../components/HomeScreenComponents/ResturantComponent'
 
 class OfferItemScreen extends Component {
@@ -9,7 +8,7 @@ class OfferItemScreen extends Component {
 
     render() {
         return (
-            <ResturantComponent navigation={this.props.navigation} />
+            <ResturantComponent type='offers' navigation={this.props.navigation} />
         )
     }
 }

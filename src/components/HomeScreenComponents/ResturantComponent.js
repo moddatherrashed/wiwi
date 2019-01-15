@@ -18,18 +18,36 @@ class ResturantComponent extends Component {
         this.setState({
             isLoading: true
         })
-        ApiController.get_catagory(this.props.navigation.state.params.resturantId).then((response) => {
-            this.setState({
-                catagories: response.categries,
-                isLoading: false,
-                status: response.status
+        if (this.props.type === 'all') {
+            ApiController.get_catagory(this.props.navigation.state.params.resturantId).then((response) => {
+                this.setState({
+                    catagories: response.categries,
+                    isLoading: false,
+                    status: response.status
+                })
+            }).catch((err) => {
+                this.setState({
+                    isLoading: false
+                })
+                console.log(err)
             })
-        }).catch((err) => {
-            this.setState({
-                isLoading: false
+            alert(this.props.type)
+        } else {
+            ApiController.get_offers_catagory(this.props.navigation.state.params.resturantId).then((response) => {
+                this.setState({
+                    catagories: response.offers_catagory,
+                    isLoading: false,
+                    status: response.status
+                })
+            }).catch((err) => {
+                this.setState({
+                    isLoading: false
+                })
+                console.log(err)
             })
-            console.log(err)
-        })
+            alert(this.props.type)
+        }
+
     }
 
     renderCategoriesList(isLoading, categories, status) {

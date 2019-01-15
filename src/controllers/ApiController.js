@@ -123,6 +123,27 @@ let ApiController = {
                 console.error(error);
             });
     },
+    get_offers_catagory: (resturant_id) => {
+        return fetch(apiUrl + '/get_offers_catagory', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                resturant_id: resturant_id
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+    ,
     send_location: (location_json) => {
         return fetch(apiUrl + '/users/send_location', {
             method: 'POST',

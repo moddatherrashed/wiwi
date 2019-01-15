@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
 import ResturantComponent from './../../components/HomeScreenComponents/ResturantComponent'
 
 
@@ -11,7 +10,7 @@ class AllItemScreen extends Component {
 
     render() {
         return (
-            <ResturantComponent navigation={this.props.navigation}/>
+            <ResturantComponent type='all' navigation={this.props.navigation}/>
         )
     }
 }
