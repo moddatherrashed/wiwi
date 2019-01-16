@@ -26,7 +26,7 @@ class ProductListScreen extends Component {
                 status: response.status
             })
 
-           // alert(JSON.stringify(response.status))
+            // alert(JSON.stringify(response.status))
         }).catch((err) => {
             this.setState({
                 isLoading: false,
@@ -73,7 +73,7 @@ class ProductListScreen extends Component {
                                         resturantName: resturantName,
                                         resturantImage: resturantImage
                                     })
-
+                                    console.log('description from product list screen', I18nManager.isRTL ? item.description_ar : item.description_en)
 
                                 }}>
                                 <ProductComponent

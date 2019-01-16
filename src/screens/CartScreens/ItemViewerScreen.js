@@ -9,10 +9,19 @@ class ItemViewerScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            products: []
+            products: [],
+            sub_total: 0
         }
     }
-
+    count_sub_total() {
+        let total = 0
+        if (this.state.products !== '') {
+            this.state.products.map((obj) => {
+                total += parseFloat(obj.itemPrice) * obj.productQuintity
+            })
+        }
+        return total
+    }
     static navigationOptions = () => ({
         title: 'Cart',
         headerTintColor: '#638bba',
@@ -26,7 +35,7 @@ class ItemViewerScreen extends Component {
     }
 
     render() {
-       // const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
+        // const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
         return (
             <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
@@ -35,7 +44,7 @@ class ItemViewerScreen extends Component {
                     keyExtractor={item => item.id}
                     contentContainerStyle={styles.listConatinerStyle}
                     data={this.state.products}
-                    renderItem={({ item }) =>
+                    renderItem={({ item, index }) =>
                         <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate('ProductViewerScreen', {
@@ -45,7 +54,6 @@ class ItemViewerScreen extends Component {
                                     productPrice: item.itemPrice,
                                     productQuantity: item.productQuintity,
                                     productDescription: item.itemDescreption,
-                                    //extentionName: extentionName,
                                     resturantName: item.resturantName,
                                     resturantImage: item.resturantImage
                                 })
@@ -68,12 +76,31 @@ class ItemViewerScreen extends Component {
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                productDescription={item.productDescription}
+                                productDescription={I18nManager.isRTL ? item.description_ar : item.description_en}
                                 productQuantity={item.productQuintity}
                                 productName={item.itemName}
                                 productPrice={item.itemPrice}
                                 productImage={item.itemImg}
-                                //extentionName={extentionName}
+                                productQuantityCartScreen={item.productQuintity}
+                                onIncPressed={() => {
+                                    let CopiedState = [...this.state.products]
+                                    let newQuantity = ++this.state.products[index].productQuintity
+                                    CopiedState[index].productQuintity = newQuantity
+                                    this.setState({
+                                        products: CopiedState
+                                    })
+                                }}
+                                onDecPressed={() => {
+                                    if (this.state.products[index].quantity !== 1) {
+                                        let CopiedState = [...this.state.products]
+                                        let newQuantity = --this.state.products[index].productQuintity
+                                        CopiedState[index].productQuintity = newQuantity
+                                        this.setState({
+                                            products: CopiedState
+                                        })
+                                    }
+                                }}
+                                cartScreenFlag={true}
                                 resturantName={item.resturantName}
                                 resturantImage={item.resturantImage}
                                 navigation={this.props.navigation} />
@@ -97,7 +124,7 @@ class ItemViewerScreen extends Component {
                         marginBottom: 5,
                     }}>
                         <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Subtotal</Text>
-                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>10.00 JOD</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>{this.count_sub_total()} JOD</Text>
                     </View>
                     <View style={{ flexDirection: 'row', flex: 2, marginBottom: 10 }}>
                         <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Delivery</Text>

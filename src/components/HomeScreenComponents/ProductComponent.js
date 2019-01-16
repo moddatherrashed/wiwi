@@ -34,7 +34,7 @@ class ProductComponent extends Component {
     render() {
         const { productName, productImage, productPrice, productId, productDescription, resturantName, resturantImage } = this.props
         const { catagoryName } = this.props.navigation.state.params
-        console.log('here is resturnat name from product component ===>', resturantImage)
+        console.log('here is resturnat name from product component ===>', productDescription)
         return (
             <View style={{
                 backgroundColor: 'white',
@@ -140,18 +140,32 @@ class ProductComponent extends Component {
                         alignItems: 'center'
                     }}>
                         <TouchableOpacity onPress={() => {
-                            this.setState({
-                                productQuintity: this.state.productQuintity + 1
-                            })
+                            if (!this.props.cartScreenFlag) {
+                                this.setState({
+                                    productQuintity: this.state.productQuintity + 1
+                                })
+                            } else {
+                                this.props.onIncPressed()
+                                this.setState({
+                                    productQuintity: this.state.productQuintity + 1
+                                })
+                            }
                         }}>
                             <Image source={require('../../Icons/Plus.png')} style={{ height: 24, width: 24, padding: 5 }} />
                         </TouchableOpacity>
                         <Text style={{ padding: 20 }}>{this.state.productQuintity}</Text>
                         <TouchableOpacity onPress={() => {
-                            if (this.state.productQuintity > 1)
+                            if (!this.props.cartScreenFlag) {
+                                if (this.state.productQuintity > 1)
+                                    this.setState({
+                                        productQuintity: this.state.productQuintity - 1
+                                    })
+                            } else {
+                                this.props.onDecPressed()
                                 this.setState({
                                     productQuintity: this.state.productQuintity - 1
                                 })
+                            }
                         }}>
                             <Image source={require('../../Icons/Minus.png')} style={{ height: 24, width: 24, padding: 5 }} />
                         </TouchableOpacity>

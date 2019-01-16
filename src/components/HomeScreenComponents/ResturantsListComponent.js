@@ -51,8 +51,7 @@ class ResturantsListComponent extends Component {
                                     resturantName: item.full_name,
                                     resturantImage: 'http://160.153.245.10/img/uploads/logos/' + item.logo
                                 })
-                            }
-                            }
+                            }}
                             style={{
                                 flexDirection: 'row',
                                 backgroundColor: '#FFFFFF',
