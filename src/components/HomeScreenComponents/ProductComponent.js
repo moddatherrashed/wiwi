@@ -87,7 +87,7 @@ class ProductComponent extends Component {
                                         resturantImage: resturantImage
                                     }
                                 )
-
+                                alert(productDescription)
                             } else {
                                 this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
                                 FavoritesController.deleteItem(productId)
@@ -115,6 +115,8 @@ class ProductComponent extends Component {
                                         resturantImage: resturantImage
                                     }
                                 )
+                                alert(productDescription)
+
                             } else {
                                 this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
                                 CartController.deleteItem(productId)

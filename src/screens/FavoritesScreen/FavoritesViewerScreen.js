@@ -48,14 +48,13 @@ class FavoritesViewerScreen extends Component {
                                     resturantName: item.resturantName,
                                     resturantImage: item.resturantImage
                                 })
-                                console.log('here is the favorites screen item description ', item)
-
+                               // alert(item.itemDescreption)
                             }}
                             style={{
                             }}>
                             <ProductComponent
                                 productId={item.id}
-                                productDescription={item.productDescription}
+                                productDescription={item.itemDescreption}
                                 productQuantity={item.productQuintity}
                                 productName={item.itemName}
                                 productPrice={item.itemPrice}
