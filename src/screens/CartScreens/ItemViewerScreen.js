@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { View, FlatList, Text, StyleSheet, Dimensions, TouchableOpacity, I18nManager, ScrollView } from 'react-native'
+import { View, FlatList, Text, StyleSheet, Dimensions, TouchableOpacity, I18nManager, ScrollView, SafeAreaView } from 'react-native'
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
 import { Button } from 'native-base'
+
 const viewportWidth = Dimensions.get('window').width
+const viewportHeight = Dimensions.get('window').height
 
 class ItemViewerScreen extends Component {
 
@@ -42,7 +44,8 @@ class ItemViewerScreen extends Component {
     render() {
         // const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
         return (
-            <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+            <View style={{ flex: 1,backgroundColor : 'white' }}>
+                <View style={{ paddingBottom : 330 }}>
                 <FlatList
                     horizontal={false}
                     numColumns={2}
@@ -112,15 +115,20 @@ class ItemViewerScreen extends Component {
                         </TouchableOpacity>
                     }
                 />
-                <View style={{
+                </View>
+                <SafeAreaView style={{
                     flex: 1,
                     justifyContent: 'center',
                     borderTopColor: '#D3D3D3',
                     borderTopWidth: 1,
                     marginTop: 30,
-                    paddingBottom: 30,
-                    marginLeft: 20,
-                    marginRight: 20
+
+                    backgroundColor: 'white',
+                    position: 'absolute',
+                    zIndex: 1000,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
                 }}>
                     <View style={{
                         flexDirection: 'row',
@@ -128,12 +136,12 @@ class ItemViewerScreen extends Component {
                         marginTop: 20,
                         marginBottom: 5,
                     }}>
-                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Subtotal</Text>
-                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>{this.count_sub_total()} JOD</Text>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Subtotal</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.count_sub_total()} JOD</Text>
                     </View>
                     <View style={{ flexDirection: 'row', flex: 2, marginBottom: 10 }}>
-                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Delivery</Text>
-                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>{this.state.delivery_cost} JOD</Text>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Delivery</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.state.delivery_cost} JOD</Text>
                     </View>
                     <View style={{
                         flexDirection: 'row',
@@ -147,6 +155,7 @@ class ItemViewerScreen extends Component {
                             fontSize: 18,
                             marginTop: 30,
                             flex: 1,
+                            padding: 10,
                             textAlign: 'left'
                         }}>Order Total</Text>
                         <Text style={{
@@ -155,6 +164,7 @@ class ItemViewerScreen extends Component {
                             fontWeight: '700',
                             marginTop: 30,
                             flex: 1,
+                            padding: 10,
                             textAlign: 'right'
                         }}>{this.count_sub_total('total')} JOD</Text>
                     </View>
@@ -169,12 +179,13 @@ class ItemViewerScreen extends Component {
                             alignSelf: 'center',
                             width: 200,
                             marginTop: 20,
+                            marginBottom: 10,
                             borderWidth: 1
                         }} >
                         <Text style={{ fontWeight: '700', color: 'white' }}>Proceed</Text>
                     </Button>
-                </View>
-            </ScrollView>
+                </SafeAreaView>
+            </View>
         );
     }
 }
@@ -186,7 +197,8 @@ const styles = StyleSheet.create({
     },
     flatListConatinerStyle: {
         padding: 10,
-        flex: 2
+        alignItems: 'center',
+        height: 100,
     },
     itemMainContainerStyle: {
         flexDirection: 'row',

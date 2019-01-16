@@ -87,7 +87,6 @@ class ProductComponent extends Component {
                                         resturantImage: resturantImage
                                     }
                                 )
-                                alert(productDescription)
                             } else {
                                 this.setState({ isFavo: require('../../ProductIcons/Favo.png') })
                                 FavoritesController.deleteItem(productId)
@@ -115,7 +114,6 @@ class ProductComponent extends Component {
                                         resturantImage: resturantImage
                                     }
                                 )
-                                alert(productDescription)
 
                             } else {
                                 this.setState({ isInCart: require('../../ProductIcons/AddToCart.png') })
@@ -163,10 +161,12 @@ class ProductComponent extends Component {
                                         productQuintity: this.state.productQuintity - 1
                                     })
                             } else {
-                                this.props.onDecPressed()
-                                this.setState({
-                                    productQuintity: this.state.productQuintity - 1
-                                })
+                                if (this.state.productQuintity > 1) {
+                                    this.props.onDecPressed()
+                                    this.setState({
+                                        productQuintity: this.state.productQuintity - 1
+                                    })
+                                }
                             }
                         }}>
                             <Image source={require('../../Icons/Minus.png')} style={{ height: 24, width: 24, padding: 5 }} />
