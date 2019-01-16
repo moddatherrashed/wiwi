@@ -86,7 +86,6 @@ class LoginScreen extends React.Component {
                                             isLoading: false,
                                             isRequired: false
                                         })
-                                        console.log(result.userID)
                                         AsyncStorage.setItem('user_id', result.userID)
                                         this.props.navigation.navigate('App')
                                     }

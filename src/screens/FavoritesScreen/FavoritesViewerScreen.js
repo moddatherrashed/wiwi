@@ -21,8 +21,6 @@ class FavoritesViewerScreen extends Component {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
-        console.log('favorites viewer screen resturnat items')
-        console.log(this.props.navigation.getParam('resturantItems'))
     }
     render() {
         // const { extentionName, resturantName, resturantImage } = this.props.navigation.state.params

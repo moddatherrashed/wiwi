@@ -37,7 +37,6 @@ class RegisterScreen extends Component {
                             this.setState({
                                 isLoading: false
                             })
-                            console.log(result.user_id)
                             AsyncStorage.setItem('user_id', JSON.stringify(result.user_id))
                             this.props.navigation.navigate('App')
                         } else {

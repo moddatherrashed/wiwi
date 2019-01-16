@@ -58,9 +58,6 @@ class CartScreen extends Component {
                     isNull: false
                 })
 
-               // console.log('resturnats list ==>', this.state.resturantsList)
-                console.log(' ITEM SINGLE ==>', itemsSingle)
-
                 if (this.state.resturantsList === undefined || (this.state.resturantsList).length == 0) {
                     this.setState({ isNull: true })
                 }

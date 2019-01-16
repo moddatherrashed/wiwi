@@ -37,84 +37,68 @@ class ItemViewerScreen extends Component {
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
-
-        console.log('cart items :', this.props.navigation.getParam('resturantItems'))
     }
 
     render() {
         // const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
         return (
-            <View style={{ flex: 1,backgroundColor : 'white' }}>
-                <View style={{ paddingBottom : 330 }}>
-                <FlatList
-                    horizontal={false}
-                    numColumns={2}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={styles.listConatinerStyle}
-                    data={this.state.products}
-                    renderItem={({ item, index }) =>
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.props.navigation.navigate('ProductViewerScreen', {
-                                    productId: item.id,
-                                    productName: item.itemName,
-                                    productImage: item.itemImg,
-                                    productPrice: item.itemPrice,
-                                    productQuantity: item.productQuintity,
-                                    productDescription: item.itemDescreption,
-                                    resturantName: item.resturantName,
-                                    resturantImage: item.resturantImage
-                                })
-
-                                console.log('on press product component ====>',
-                                    {
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <View style={{ paddingBottom: 330 }}>
+                    <FlatList
+                        horizontal={false}
+                        numColumns={2}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={styles.listConatinerStyle}
+                        data={this.state.products}
+                        renderItem={({ item, index }) =>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.props.navigation.navigate('ProductViewerScreen', {
                                         productId: item.id,
                                         productName: item.itemName,
                                         productImage: item.itemImg,
                                         productPrice: item.itemPrice,
                                         productQuantity: item.productQuintity,
-                                        productDescription: I18nManager.isRTL ? item.description_ar : item.description_en,
-                                        //extentionName: extentionName,
+                                        productDescription: item.itemDescreption,
                                         resturantName: item.resturantName,
                                         resturantImage: item.resturantImage
-                                    }
-                                )
-                            }}
-                            style={{
-                            }}>
-                            <ProductComponent
-                                productId={item.id}
-                                productDescription={item.itemDescreption}
-                                productQuantity={item.productQuintity}
-                                productName={item.itemName}
-                                productPrice={item.itemPrice}
-                                productImage={item.itemImg}
-                                productQuantityCartScreen={item.productQuintity}
-                                onIncPressed={() => {
-                                    let CopiedState = [...this.state.products]
-                                    let newQuantity = ++this.state.products[index].productQuintity
-                                    CopiedState[index].productQuintity = newQuantity
-                                    this.setState({
-                                        products: CopiedState
                                     })
                                 }}
-                                onDecPressed={() => {
-                                    if (this.state.products[index].quantity !== 1) {
+                                style={{
+                                }}>
+                                <ProductComponent
+                                    productId={item.id}
+                                    productDescription={item.itemDescreption}
+                                    productQuantity={item.productQuintity}
+                                    productName={item.itemName}
+                                    productPrice={item.itemPrice}
+                                    productImage={item.itemImg}
+                                    productQuantityCartScreen={item.productQuintity}
+                                    onIncPressed={() => {
                                         let CopiedState = [...this.state.products]
-                                        let newQuantity = --this.state.products[index].productQuintity
+                                        let newQuantity = ++this.state.products[index].productQuintity
                                         CopiedState[index].productQuintity = newQuantity
                                         this.setState({
                                             products: CopiedState
                                         })
-                                    }
-                                }}
-                                cartScreenFlag={true}
-                                resturantName={item.resturantName}
-                                resturantImage={item.resturantImage}
-                                navigation={this.props.navigation} />
-                        </TouchableOpacity>
-                    }
-                />
+                                    }}
+                                    onDecPressed={() => {
+                                        if (this.state.products[index].quantity !== 1) {
+                                            let CopiedState = [...this.state.products]
+                                            let newQuantity = --this.state.products[index].productQuintity
+                                            CopiedState[index].productQuintity = newQuantity
+                                            this.setState({
+                                                products: CopiedState
+                                            })
+                                        }
+                                    }}
+                                    cartScreenFlag={true}
+                                    resturantName={item.resturantName}
+                                    resturantImage={item.resturantImage}
+                                    navigation={this.props.navigation} />
+                            </TouchableOpacity>
+                        }
+                    />
                 </View>
                 <SafeAreaView style={{
                     flex: 1,

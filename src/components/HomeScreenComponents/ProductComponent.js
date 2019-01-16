@@ -34,7 +34,6 @@ class ProductComponent extends Component {
     render() {
         const { productName, productImage, productPrice, productId, productDescription, resturantName, resturantImage } = this.props
         const { catagoryName } = this.props.navigation.state.params
-        console.log('here is resturnat name from product component ===>', productDescription)
         return (
             <View style={{
                 backgroundColor: 'white',
