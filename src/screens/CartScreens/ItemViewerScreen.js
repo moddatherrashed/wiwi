@@ -4,7 +4,6 @@ import ProductComponent from '../../components/HomeScreenComponents/ProductCompo
 import { Button } from 'native-base'
 
 const viewportWidth = Dimensions.get('window').width
-const viewportHeight = Dimensions.get('window').height
 
 class ItemViewerScreen extends Component {
 
@@ -153,7 +152,9 @@ class ItemViewerScreen extends Component {
                         }}>{this.count_sub_total('total')} JOD</Text>
                     </View>
                     <Button rounded
-                        onPress={() => { this.props.navigation.navigate('RegisterScreen') }}
+                        onPress={() => {
+                            this.props.navigation.navigate('CheckoutScreen')
+                        }}
                         style={{
                             backgroundColor: '#638bba',
                             borderRadius: 25,

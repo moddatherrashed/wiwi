@@ -26,6 +26,7 @@ import AddNewLocation from './src/components/AddNewLocation'
 import SearchForLocation from './src/components/SearchForLocation'
 import ForgetPasswordScreen from "./src/screens/ForgetPasswordScreen";
 import CustomWebView from './src/components/SettingScreenComponent/CustomWebView'
+import CheckoutScreen from './src/screens/CartScreens/CheckoutScreen'
 
 const styles = StyleSheet.create({
   tabIcon: {
@@ -169,7 +170,8 @@ const AppStackNavigator = createStackNavigator({
   ItemViewerScreen: { screen: ItemViewerScreen },
   SubExtentionScreen: { screen: SubExtentionScreen },
   AddNewLocation: { screen: AddNewLocation },
-  SearchForLocation: { screen: SearchForLocation }
+  SearchForLocation: { screen: SearchForLocation },
+  CheckoutScreen: { screen: CheckoutScreen }
 })
 
 const AppScreens = createSwitchNavigator({
