@@ -10,17 +10,22 @@ class ItemViewerScreen extends Component {
         super(props)
         this.state = {
             products: [],
-            sub_total: 0
+            sub_total: 0,
+            delivery_cost: 10,
+            total_cost: 0
         }
     }
-    count_sub_total() {
-        let total = 0
+    count_sub_total(type) {
+        let subTotal = 0
         if (this.state.products !== '') {
             this.state.products.map((obj) => {
-                total += parseFloat(obj.itemPrice) * obj.productQuintity
+                subTotal += parseFloat(obj.itemPrice) * obj.productQuintity
             })
         }
-        return total
+        if (type === 'total') {
+            return this.state.delivery_cost + subTotal
+        }
+        return subTotal
     }
     static navigationOptions = () => ({
         title: 'Cart',
@@ -128,7 +133,7 @@ class ItemViewerScreen extends Component {
                     </View>
                     <View style={{ flexDirection: 'row', flex: 2, marginBottom: 10 }}>
                         <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left' }}>Delivery</Text>
-                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>10.00 JOD</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right' }}>{this.state.delivery_cost} JOD</Text>
                     </View>
                     <View style={{
                         flexDirection: 'row',
@@ -151,7 +156,7 @@ class ItemViewerScreen extends Component {
                             marginTop: 30,
                             flex: 1,
                             textAlign: 'right'
-                        }}>20.00 JOD</Text>
+                        }}>{this.count_sub_total('total')} JOD</Text>
                     </View>
                     <Button rounded
                         onPress={() => { this.props.navigation.navigate('RegisterScreen') }}
