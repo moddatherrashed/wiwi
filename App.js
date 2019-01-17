@@ -27,7 +27,7 @@ import SearchForLocation from './src/components/SearchForLocation'
 import ForgetPasswordScreen from "./src/screens/ForgetPasswordScreen";
 import CustomWebView from './src/components/SettingScreenComponent/CustomWebView'
 import CheckoutScreen from './src/screens/CartScreens/CheckoutScreen'
-
+import SuccessScreen from './src/screens/CartScreens/SuccessScreen'
 const styles = StyleSheet.create({
   tabIcon: {
     height: 24,
@@ -171,7 +171,8 @@ const AppStackNavigator = createStackNavigator({
   SubExtentionScreen: { screen: SubExtentionScreen },
   AddNewLocation: { screen: AddNewLocation },
   SearchForLocation: { screen: SearchForLocation },
-  CheckoutScreen: { screen: CheckoutScreen }
+  CheckoutScreen: { screen: CheckoutScreen },
+  SuccessScreen: { screen: SuccessScreen }
 })
 
 const AppScreens = createSwitchNavigator({

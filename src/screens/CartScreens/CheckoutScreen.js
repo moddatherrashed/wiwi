@@ -145,7 +145,7 @@ class CheckoutScreen extends Component {
                     </View>
                     <Button rounded
                         onPress={() => {
-                            this.props.navigation.navigate('CheckoutScreen')
+                            this.props.navigation.navigate('SuccessScreen')
                         }}
                         style={{
                             backgroundColor: '#638bba',
