@@ -10,7 +10,7 @@ class CheckoutScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            locations: null
+            locations: []
         }
     }
     getAddresses() {
@@ -36,6 +36,7 @@ class CheckoutScreen extends Component {
         headerTintColor: '#638bba',
     })
     render() {
+        //let locations_to_map = this.state.locations
         return (
             <ScrollView style={{
                 flex: 1, backgroundColor: 'white'
@@ -93,41 +94,54 @@ class CheckoutScreen extends Component {
                 <TextInput
                     multiline={true}
                     style={{
-                        borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15, padding: 5
+                        borderWidth: 0.5,
+                        borderColor: '#B8B8B8',
+                        height : 100,
+                        margin: 15, padding: 5
                     }}
                     numberOfLines={10}
                     onChangeText={(user_report) => this.setState({ user_report })}
                     value={this.state.user_report} />
                 <View style={{ flex: 1 }}>
-                    <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <View style={{ flex: 1 }}>
                         <TouchableOpacity
                             onPress={() => {
                                 this.setState({
                                     checked: 'ar'
                                 })
                             }}
-                            style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
-                            <Image source={this.state.checked === 'en' ? require('../../Icons/Uncheck.png') : require('../../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                            style={{
+                                flexDirection: 'row',
+                                flex: 1,
+                                padding: 10,
+                                alignItems: 'center'
+                            }}>
+                            <Image source={require('../../ProductIcons/AddToCart.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
                             <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>Add New</Text>
                         </TouchableOpacity>
-                        <FlatList
-                            horizontal={false}
-                            keyExtractor={item => item.id}
-                            contentContainerStyle={{ flex: 1, }}
-                            data={this.state.locations}
-                            renderItem={({ item, index }) =>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        this.setState({
-                                            checked: 'ar'
-                                        })
-                                    }}
-                                    style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
-                                    <Image source={this.state.checked === 'en' ? require('../../Icons/Uncheck.png') : require('../../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
-                                    <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>{item.address}</Text>
-                                </TouchableOpacity>
-                            }
-                        />
+                        {
+                            this.state.locations.map((item, index) => {
+                                return (
+                                    <TouchableOpacity
+                                        key={index}
+                                        onPress={() => {
+                                            this.setState({
+                                                checked: 'ar'
+                                            })
+                                        }}
+                                        style={{
+                                            flexDirection: 'row',
+                                            flex: 1,
+                                            padding: 10,
+                                            alignItems: 'center'
+                                        }}>
+                                        <Image source={this.state.checked === 'en' ? require('../../Icons/Uncheck.png') : require('../../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                                        <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>{item.address}</Text>
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+
                     </View>
                     <Button rounded
                         onPress={() => {
