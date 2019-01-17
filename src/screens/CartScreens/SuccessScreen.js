@@ -1,11 +1,8 @@
 import React from 'react';
-import { Button, SafeAreaView, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { Button, SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import { DangerZone } from 'expo';
 
 const { Lottie } = DangerZone;
-const { height, width } = Dimensions.get('window')
-const sourceWidth = 1875 // the width of the animation
-const sourceHeight = 10005 // the height of the animation
 
 export default class SuccessScreen extends React.Component {
     state = {
@@ -55,6 +52,9 @@ export default class SuccessScreen extends React.Component {
                     }}
                 >Your order has been sent successfully</Text>
                 <TouchableOpacity
+                    onPress={() => {
+                        this.props.navigation.navigate('HomeScreen')
+                    }}
                     style={{
                         //backgroundColor: '#44bd32',
                         borderColor: '#44bd32',
