@@ -108,7 +108,7 @@ class SearchForLocation extends Component {
                                 style={{
                                     borderWidth: 0.5,
                                     borderColor: '#B8B8B8',
-                                    textAlign: I18nManager.isRTL && 'left',
+                                    textAlign: I18nManager.isRTL ? 'left' : 'right',
                                     margin: 15,
                                     padding: 5
                                 }}

@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textInput: {
-        textAlign: I18nManager.isRTL && 'right',
+        textAlign: I18nManager.isRTL ? 'right' : 'left',
         height: 40,
         width: 350,
         padding: 5,

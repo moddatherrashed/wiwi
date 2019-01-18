@@ -62,10 +62,10 @@ class SettingsScreen extends Component {
 
 
     _languageSelector(language) {
-        if (language === 'en') {
+        if (language === 'en' && I18nManager.isRTL) {
             I18nManager.forceRTL(false)
             Updates.reload()
-        } else {
+        } else if (language === 'ar' && !I18nManager.isRTL) {
             I18nManager.forceRTL(true)
             Updates.reload()
         }
