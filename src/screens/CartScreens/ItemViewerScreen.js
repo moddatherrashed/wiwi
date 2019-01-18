@@ -39,7 +39,7 @@ class ItemViewerScreen extends Component {
     }
 
     render() {
-        // const { extentionName, resturantImage, resturantName } = this.props.navigation.state.params
+        //const { resturantName } = this.props.navigation.state.params
         return (
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={{ paddingBottom: 330 }}>
@@ -153,7 +153,9 @@ class ItemViewerScreen extends Component {
                     </View>
                     <Button rounded
                         onPress={() => {
-                            this.props.navigation.navigate('CheckoutScreen')
+                            this.props.navigation.navigate('CheckoutScreen', {
+                                resturantName: this.state.products[0].resturantName
+                            })
                         }}
                         style={{
                             backgroundColor: '#638bba',

@@ -183,6 +183,27 @@ let ApiController = {
                 console.error(error);
             });
     },
+    get_restaurant_lat_long: (rest_name) => {
+        //console.log('userid from api controller',user_id)
+        return fetch(apiUrl + '/get_restaurant_lat_long', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "resturantName": rest_name
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log("response :", JSON.stringify(responseJson));
+                return responseJson
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    },
     delete_address: (address_id) => {
         //console.log('userid from api controller',user_id)
         return fetch(apiUrl + '/users/delete_address', {

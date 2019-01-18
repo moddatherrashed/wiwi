@@ -51,6 +51,13 @@ export default class SuccessScreen extends React.Component {
                         fontSize: 20
                     }}
                 >Your order has been sent successfully</Text>
+                <Text
+                    style={{
+                        color: 'gray',
+                        textAlign: 'center',
+                        fontSize: 20
+                    }}
+                >Estimated duration for delivery: {this.props.navigation.state.params.time}</Text>
                 <TouchableOpacity
                     onPress={() => {
                         this.props.navigation.navigate('HomeScreen')

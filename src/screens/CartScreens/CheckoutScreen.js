@@ -12,17 +12,21 @@ class CheckoutScreen extends Component {
         super(props)
         this.state = {
             locations: [],
-            slelected_location_id: null
+            slelected_location_id: null,
+            slelected_location_lat: '',
+            slelected_location_long: '',
+            rest_coordinates: [],
+            time: ''
         }
     }
 
-    get_distance(resturant_coordiniation, user_coordiniation) {
-        
+    get_distance(rest_lat, rest_long, user_lat, user_long) {
+
         let API_KEY = 'AIzaSyD28i3GhTFA36utt_uXjUhIZfahcCVfWUQ'
-        let matrix_api_url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=47.559601,7.588576&destinations=47.376888,8.541694&key=' + API_KEY
+        let matrix_api_url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + user_lat + ',' + user_long + '&destinations=' + rest_lat + ',' + rest_long + '&key=' + API_KEY
         fetch(matrix_api_url)
             .then(
-                function (response) {
+                (response) => {
                     if (response.status !== 200) {
                         alert('Looks like there was a problem. Status Code: ' +
                             response.status);
@@ -30,8 +34,16 @@ class CheckoutScreen extends Component {
                     }
 
                     // Examine the text in the response
-                    response.json().then(function (data) {
-                        alert(JSON.stringify(data));
+                    response.json().then((data) => {
+                         if (data.rows[0].elements[0].status !== 'ZERO_RESULTS') {
+                             this.props.navigation.navigate('SuccessScreen', {
+                                 time: data.rows[0].elements[0].duration.text
+                             })
+                         } else {
+                             this.props.navigation.navigate('SuccessScreen', {
+                                 time: '40 min'
+                             })
+                         }
                     });
                 }
             )
@@ -52,11 +64,20 @@ class CheckoutScreen extends Component {
                 })
         })
     }
+    resturant_lat_long(name) {
+        ApiController.get_restaurant_lat_long(name).then((res) => {
+            this.setState({
+                rest_coordinates: res.coordinates
+            })
+            //console.log(res.coordinates[0].lat)
+        })
+    }
     scalling(size) {
         return viewportWidth * (size / viewportWidth)
     }
     componentDidMount() {
         this.getAddresses()
+        this.resturant_lat_long(this.props.navigation.state.params.resturantName)
         // this.get_distance()
     }
     static navigationOptions = () => ({
@@ -158,9 +179,10 @@ class CheckoutScreen extends Component {
                                         key={index}
                                         onPress={() => {
                                             this.setState({
-                                                slelected_location_id: item.id
+                                                slelected_location_id: item.id,
+                                                slelected_location_lat: item.lat,
+                                                slelected_location_long: item.long
                                             })
-                                            //alert(this.state.slelected_location_id)
                                         }}
                                         style={{
                                             flexDirection: 'row',
@@ -179,7 +201,13 @@ class CheckoutScreen extends Component {
                     <Button rounded
                         onPress={() => {
                             if (this.state.slelected_location_id !== null) {
-                                this.props.navigation.navigate('SuccessScreen')
+
+                                this.get_distance(
+                                    this.state.rest_coordinates[0].lat,
+                                    this.state.rest_coordinates[0].long,
+                                    this.state.slelected_location_lat,
+                                    this.state.slelected_location_long
+                                )
                             } else {
                                 alert('please select an address')
                             }
