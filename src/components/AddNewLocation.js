@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, Text, View, ActivityIndicator } from 'react-native'
+import { Platform, Text, View, ActivityIndicator, I18nManager } from 'react-native'
 import { Constants, Location, Permissions } from 'expo';
 import { Button } from 'native-base'
 
@@ -16,7 +16,7 @@ class AddNewLocation extends Component {
     }
 
     static navigationOptions = {
-        headerTitle: 'Add New Location',
+        headerTitle: I18nManager.isRTL ? 'إضافة عنوان' : 'Add new location',
         headerTintColor: '#638bba',
     }
 
@@ -40,7 +40,12 @@ class AddNewLocation extends Component {
                 errorMessage: 'Permission to access location was denied',
                 isLoading: false
             })
-            alert(this.state.errorMessage)
+            // alert(this.state.errorMessage)
+        } else {
+            this.setState({
+               
+                isLoading: false
+            })
         }
         let location = await Location.getCurrentPositionAsync({});
         console.log('location', location)
@@ -54,9 +59,10 @@ class AddNewLocation extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <Text style={{ color: 'black', fontWeight: '700', alignSelf: 'center', padding: 5 }}>
-                    please select the method to set a new location:
-                 </Text>
-                {!this.state.isLoading ? <View style={{ alignItems: "center" }}>
+                    {
+                        I18nManager.isRTL ? 'الرجاء اللإختيار من الاتي' : 'please select the method to set a new location:'}
+                </Text>
+                {!this.state.isLoading && this.state.errorMessage === '' ? <View style={{ alignItems: "center" }}>
                     <Button rounded
                         onPress={() => {
                             this.props.navigation.navigate('SearchForLocation', {
@@ -76,7 +82,7 @@ class AddNewLocation extends Component {
                             marginTop: 20,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Get current location</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? ' الموقع الحالي' : 'Get current location'}</Text>
                     </Button>
                     <Button rounded
                         onPress={() => {
@@ -95,14 +101,38 @@ class AddNewLocation extends Component {
                             marginTop: 20,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Search for a location</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? 'ابحث عن موقع' : 'Search for a location'}</Text>
                     </Button>
                 </View>
-                    : <ActivityIndicator size="large" color="#638bba" />
-                }
-                {
-                    this.state.errorMessage === '' &&
-                    <Text>{this.state.errorMessage}</Text>
+                    :
+
+                    <View>
+                        {
+                            this.state.isLoading ?
+                                <ActivityIndicator size="large" color="#638bba" />
+                                :
+                                <Button rounded
+                                    onPress={() => {
+                                        this.props.navigation.navigate('SearchForLocation', {
+                                            type: 'search'
+                                        })
+                                    }}
+                                    style={{
+                                        backgroundColor: '#638bba',
+                                        borderRadius: 25,
+                                        borderColor: 'white',
+                                        justifyContent: 'center',
+                                        alignSelf: 'center',
+                                        alignItems: 'center',
+                                        width: 300,
+                                        marginTop: 20,
+                                        borderWidth: 1
+                                    }} >
+                                    <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? 'ابحث عن موقع' : 'Search for a location'}</Text>
+                                </Button>
+                        }
+
+                    </View>
                 }
             </View >
         )

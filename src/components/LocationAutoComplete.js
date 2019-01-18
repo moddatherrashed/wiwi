@@ -33,7 +33,7 @@ export default class LocationAutoComplete extends React.Component {
                                 <View style={styles.inputWrapper}>
                                     <TextInput
                                         style={styles.textInput}
-                                        placeholder="Search a places"
+                                        placeholder={I18nManager.isRTL ? 'ابحث عن أماكن' : 'Search a places'}
                                         onChangeText={handleTextChange}
                                         underlineColorAndroid='transparent'
                                         value={inputValue}
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textInput: {
+        textAlign: I18nManager.isRTL && 'right',
         height: 40,
         width: 350,
         padding: 5,

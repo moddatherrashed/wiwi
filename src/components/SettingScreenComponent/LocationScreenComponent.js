@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, Image, AsyncStorage } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, Image, AsyncStorage, I18nManager } from 'react-native'
 import { NavigationEvents } from 'react-navigation'
 import ApiController from '../../controllers/ApiController'
 
@@ -46,7 +46,7 @@ class LocationScreenComponent extends Component {
                 }}>
                     <View style={{ flexDirection: 'row', flex: 6, borderBottomColor: '#C8C8C8', marginHorizontal: 10, borderBottomWidth: 1 }}>
                         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                            <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10 }}>Add New</Text>
+                            <Text style={{ fontSize: 20, padding: 10, color: 'black', paddingHorizontal: 10 }}>{I18nManager.isRTL ? 'إضافة عنوان' : 'Add New'}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>

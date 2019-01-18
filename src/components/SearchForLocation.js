@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, AsyncStorage } from 'react-native'
+import { Text, View, TextInput, AsyncStorage, I18nManager } from 'react-native'
 import LocationAutoComplete from '../components/LocationAutoComplete'
 import { Button } from 'native-base'
 import ApiController from '../controllers/ApiController'
@@ -56,7 +56,7 @@ class SearchForLocation extends Component {
     }
 
     static navigationOptions = {
-        headerTitle: 'search for a location',
+        headerTitle: I18nManager.isRTL ? 'بحث' : 'search',
         headerTintColor: '#638bba',
 
     }
@@ -86,20 +86,31 @@ class SearchForLocation extends Component {
                         :
                         <View>
                             <Text style={{
-                                fontSize: 18, margin: 20
-                            }}>Your choosen address  : </Text>
+                                fontSize: 18,
+                                textAlign: I18nManager.isRTL && 'left',
+                                margin: 20
+                            }}>{I18nManager.isRTL ? 'العنوان الذي اخترته:' : 'Your chosen address:'}</Text>
                             <Text style={{
                                 color: 'black',
+                                textAlign: I18nManager.isRTL && 'left',
                                 margin: 20
                             }}>
                                 {this.state.location}
                             </Text>
-                            <Text style={{ fontSize: 18, margin: 20 }}>More details</Text>
+                            <Text style={{
+                                fontSize: 18,
+                                textAlign: I18nManager.isRTL && 'left',
+                                margin: 20
+                            }}>{I18nManager.isRTL ? 'المزيد من التفاصيل' : 'More details'}</Text>
 
                             <TextInput
                                 multiline={true}
                                 style={{
-                                    borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15, padding: 5
+                                    borderWidth: 0.5,
+                                    borderColor: '#B8B8B8',
+                                    textAlign: I18nManager.isRTL && 'left',
+                                    margin: 15,
+                                    padding: 5
                                 }}
                                 numberOfLines={10}
                                 onChangeText={(text) => this.setState({ text })}
@@ -128,7 +139,11 @@ class SearchForLocation extends Component {
                                     marginTop: 20,
                                     borderWidth: 1
                                 }} >
-                                <Text style={{ fontWeight: '700', color: 'white' }}>Add</Text>
+                                <Text style={{
+                                    fontWeight: '700',
+                                    textAlign: I18nManager.isRTL && 'left',
+                                    color: 'white'
+                                }}>{I18nManager.isRTL ? 'إضافة' : 'Add'}</Text>
                             </Button>
                         </View>
                 }
