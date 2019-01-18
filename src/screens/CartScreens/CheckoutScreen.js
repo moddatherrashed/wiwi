@@ -3,6 +3,7 @@ import { View, Text, Dimensions, TextInput, I18nManager, ScrollView, AsyncStorag
 import { Button } from 'native-base'
 import translation from './../../controllers/translation'
 import ApiController from './../../controllers/ApiController'
+import { NavigationEvents } from 'react-navigation'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -10,8 +11,34 @@ class CheckoutScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            locations: []
+            locations: [],
+            slelected_location_id: null
         }
+    }
+
+    get_distance(resturant_coordiniation, user_coordiniation) {
+        
+        let API_KEY = 'AIzaSyD28i3GhTFA36utt_uXjUhIZfahcCVfWUQ'
+        let matrix_api_url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=47.559601,7.588576&destinations=47.376888,8.541694&key=' + API_KEY
+        fetch(matrix_api_url)
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        alert('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function (data) {
+                        alert(JSON.stringify(data));
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
+
     }
     getAddresses() {
         AsyncStorage.getItem('user_id').then((item) => {
@@ -30,6 +57,7 @@ class CheckoutScreen extends Component {
     }
     componentDidMount() {
         this.getAddresses()
+        // this.get_distance()
     }
     static navigationOptions = () => ({
         title: 'Last Step',
@@ -41,6 +69,12 @@ class CheckoutScreen extends Component {
             <ScrollView style={{
                 flex: 1, backgroundColor: 'white'
             }}>
+                <NavigationEvents
+                    onWillFocus={
+                        () => {
+                            this.getAddresses()
+                        }}
+                />
                 <View style={{
                     justifyContent: 'center',
                     borderTopColor: '#D3D3D3',
@@ -96,7 +130,7 @@ class CheckoutScreen extends Component {
                     style={{
                         borderWidth: 0.5,
                         borderColor: '#B8B8B8',
-                        height : 100,
+                        height: 100,
                         margin: 15, padding: 5
                     }}
                     numberOfLines={10}
@@ -106,9 +140,7 @@ class CheckoutScreen extends Component {
                     <View style={{ flex: 1 }}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.setState({
-                                    checked: 'ar'
-                                })
+                                this.props.navigation.navigate('AddNewLocation')
                             }}
                             style={{
                                 flexDirection: 'row',
@@ -126,8 +158,9 @@ class CheckoutScreen extends Component {
                                         key={index}
                                         onPress={() => {
                                             this.setState({
-                                                checked: 'ar'
+                                                slelected_location_id: item.id
                                             })
+                                            //alert(this.state.slelected_location_id)
                                         }}
                                         style={{
                                             flexDirection: 'row',
@@ -135,7 +168,7 @@ class CheckoutScreen extends Component {
                                             padding: 10,
                                             alignItems: 'center'
                                         }}>
-                                        <Image source={this.state.checked === 'en' ? require('../../Icons/Uncheck.png') : require('../../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
+                                        <Image source={this.state.slelected_location_id !== item.id ? require('../../Icons/Uncheck.png') : require('../../Icons/Check.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
                                         <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>{item.address}</Text>
                                     </TouchableOpacity>
                                 )
@@ -145,7 +178,11 @@ class CheckoutScreen extends Component {
                     </View>
                     <Button rounded
                         onPress={() => {
-                            this.props.navigation.navigate('SuccessScreen')
+                            if (this.state.slelected_location_id !== null) {
+                                this.props.navigation.navigate('SuccessScreen')
+                            } else {
+                                alert('please select an address')
+                            }
                         }}
                         style={{
                             backgroundColor: '#638bba',
