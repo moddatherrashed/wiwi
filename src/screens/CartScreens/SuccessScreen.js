@@ -48,16 +48,27 @@ export default class SuccessScreen extends React.Component {
                     style={{
                         color: 'gray',
                         textAlign: 'center',
-                        fontSize: 20
+                        fontSize: 18,
+                        fontWeight: '500',
+                        paddingVertical: 20,
                     }}
                 >Your order has been sent successfully</Text>
                 <Text
                     style={{
                         color: 'gray',
                         textAlign: 'center',
-                        fontSize: 20
+                        fontSize: 15
                     }}
-                >Estimated duration for delivery: {this.props.navigation.state.params.time}</Text>
+                >Estimated duration for delivery</Text>
+                <Text style={{
+                    color: 'gray',
+                    textAlign: 'center',
+                    fontSize: 18,
+                    fontWeight: '700',
+                    paddingVertical: 10
+                }}>
+                    {this.props.navigation.state.params.time}
+                </Text>
                 <TouchableOpacity
                     onPress={() => {
                         this.props.navigation.navigate('HomeScreen')
@@ -70,7 +81,7 @@ export default class SuccessScreen extends React.Component {
                         alignItems: 'center',
                         borderRadius: 5,
                         width: 200,
-                        margin: 40
+                        margin: 60
                     }}>
                     <Text style={{
                         color: '#44bd32',
