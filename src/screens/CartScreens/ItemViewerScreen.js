@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, FlatList, Text, StyleSheet, Dimensions, TouchableOpacity, I18nManager, ScrollView, SafeAreaView } from 'react-native'
 import ProductComponent from '../../components/HomeScreenComponents/ProductComponent'
 import { Button } from 'native-base'
+import ApiController from '../../controllers/ApiController'
 
 const viewportWidth = Dimensions.get('window').width
 
@@ -12,8 +13,9 @@ class ItemViewerScreen extends Component {
         this.state = {
             products: [],
             sub_total: 0,
-            delivery_cost: 10,
-            total_cost: 0
+            delivery_cost: 0,
+            total_cost: 0,
+            is_fixed_cost_flag: '',
         }
     }
     count_sub_total(type) {
@@ -28,14 +30,25 @@ class ItemViewerScreen extends Component {
         }
         return subTotal
     }
+    is_fix_cost_fun(rest_name) {
+        ApiController.is_fixed_cost(rest_name).then(res => {
+            //alert(JSON.stringify(res.data[0].is_fixed_delivery))
+            this.setState({
+                is_fixed_cost_flag: res.data[0].is_fixed_delivery,
+                delivery_cost: res.data[0].is_fixed_delivery === '1' ? parseFloat(res.data[0].fixed_delivery_value) : 0
+            })
+        })
+    }
     static navigationOptions = () => ({
         title: 'Cart',
         headerTintColor: '#638bba',
     })
     componentDidMount() {
+
         this.setState({
             products: this.props.navigation.getParam('resturantItems')
         })
+        this.is_fix_cost_fun(this.props.navigation.getParam('resturantItems')[0].resturantName)
     }
 
     render() {
@@ -154,7 +167,10 @@ class ItemViewerScreen extends Component {
                     <Button rounded
                         onPress={() => {
                             this.props.navigation.navigate('CheckoutScreen', {
-                                resturantName: this.state.products[0].resturantName
+                                resturantName: this.state.products[0].resturantName,
+                                delivery_cost: this.state.delivery_cost,
+                                fixed_flag: this.state.is_fixed_cost_flag,
+                                subTotal: this.state.sub_total
                             })
                         }}
                         style={{
