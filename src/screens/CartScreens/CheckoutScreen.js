@@ -34,8 +34,6 @@ class CheckoutScreen extends Component {
                             response.status);
                         return;
                     }
-
-                    // Examine the text in the response
                     response.json().then((data) => {
                         if (data.rows[0].elements[0].status !== 'ZERO_RESULTS') {
                             this.props.navigation.navigate('SuccessScreen', {
@@ -54,7 +52,9 @@ class CheckoutScreen extends Component {
             });
     }
     get_distance_real_time(rest_lat, rest_long, user_lat, user_long) {
-
+        this.setState({
+            delivery_cost: 0
+        })
         let API_KEY = 'AIzaSyD28i3GhTFA36utt_uXjUhIZfahcCVfWUQ'
         let matrix_api_url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + user_lat + ',' + user_long + '&destinations=' + rest_lat + ',' + rest_long + '&key=' + API_KEY
         fetch(matrix_api_url)
@@ -70,7 +70,7 @@ class CheckoutScreen extends Component {
                     response.json().then((data) => {
                         if (data.rows[0].elements[0].status !== 'ZERO_RESULTS') {
                             this.setState({
-                                delivery_cost: (data.rows[0].elements[0].distance.value / 1000) * this.props.navigation.state.params.delivery_cost_if_not_fixed
+                                delivery_cost: Math.round(((parseFloat(data.rows[0].elements[0].distance.value) / 1000) * this.props.navigation.state.params.delivery_cost_if_not_fixed) * 100) / 100
                             })
                             //console.log(data.rows[0].elements[0].distance.value)
                         }

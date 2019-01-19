@@ -99,7 +99,7 @@ class SearchForLocation extends Component {
                             </Text>
                             <Text style={{
                                 fontSize: 18,
-                                textAlign: I18nManager.isRTL && 'left',
+                                textAlign: I18nManager.isRTL ? 'left' : 'right',
                                 margin: 20
                             }}>{I18nManager.isRTL ? 'المزيد من التفاصيل' : 'More details'}</Text>
 
