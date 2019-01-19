@@ -29,11 +29,16 @@ class SendReportComponent extends Component {
     render() {
         return (
             <View style={{ backgroundColor: 'white', flex: 1 }}>
-                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10), textAlign: 'left' }}>{I18nManager.isRTL ? 'إسمك': 'Your name'}</Text>
+                <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10), textAlign: 'left' }}>{I18nManager.isRTL ? 'إسمك' : 'Your name'}</Text>
                 <TextInput
-                    multiline={true}
+                    underlineColorAndroid='transparent'
                     style={{
-                        borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15, padding: 5
+                        borderWidth: 0.5,
+                        borderColor: '#B8B8B8',
+                        margin: 15,
+                        padding: 5,
+                        height: 30,
+                        textAlign: !I18nManager.isRTL ? 'left' : 'right'
                     }}
                     numberOfLines={10}
                     onChangeText={(user_name) => this.setState({ user_name })}
@@ -41,8 +46,14 @@ class SendReportComponent extends Component {
                 <Text style={{ fontSize: this.scalling(18), marginLeft: this.scalling(20), marginTop: this.scalling(10), textAlign: 'left' }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
                 <TextInput
                     multiline={true}
+                    underlineColorAndroid='transparent'
                     style={{
-                        borderWidth: 0.5, borderColor: '#B8B8B8', margin: 15, padding: 5
+                        borderWidth: 0.5,
+                        borderColor: '#B8B8B8',
+                        margin: 15,
+                        padding: 5,
+                        height: 100,
+                        textAlign: !I18nManager.isRTL ? 'left' : 'right'
                     }}
                     numberOfLines={10}
                     onChangeText={(user_report) => this.setState({ user_report })}

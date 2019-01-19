@@ -177,6 +177,7 @@ class CheckoutScreen extends Component {
                 <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
                 <TextInput
                     multiline={true}
+                    underlineColorAndroid='transparent'
                     style={{
                         borderWidth: 0.5,
                         borderColor: '#B8B8B8',

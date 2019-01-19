@@ -87,29 +87,31 @@ class SearchForLocation extends Component {
                         <View>
                             <Text style={{
                                 fontSize: 18,
-                                textAlign: I18nManager.isRTL && 'left',
+                                textAlign: 'left',
                                 margin: 20
                             }}>{I18nManager.isRTL ? 'العنوان الذي اخترته:' : 'Your chosen address:'}</Text>
                             <Text style={{
                                 color: 'black',
-                                textAlign: I18nManager.isRTL && 'left',
+                                textAlign: 'left',
                                 margin: 20
                             }}>
                                 {this.state.location}
                             </Text>
                             <Text style={{
                                 fontSize: 18,
-                                textAlign: I18nManager.isRTL ? 'left' : 'right',
+                                textAlign: 'left',
                                 margin: 20
                             }}>{I18nManager.isRTL ? 'المزيد من التفاصيل' : 'More details'}</Text>
 
                             <TextInput
                                 multiline={true}
+                                underlineColorAndroid='transparent'
                                 style={{
                                     borderWidth: 0.5,
                                     borderColor: '#B8B8B8',
-                                    textAlign: I18nManager.isRTL ? 'left' : 'right',
+                                    textAlign: 'left',
                                     margin: 15,
+                                    height: 100,
                                     padding: 5
                                 }}
                                 numberOfLines={10}
@@ -141,7 +143,7 @@ class SearchForLocation extends Component {
                                 }} >
                                 <Text style={{
                                     fontWeight: '700',
-                                    textAlign: I18nManager.isRTL && 'left',
+                                    textAlign: 'left',
                                     color: 'white'
                                 }}>{I18nManager.isRTL ? 'إضافة' : 'Add'}</Text>
                             </Button>
