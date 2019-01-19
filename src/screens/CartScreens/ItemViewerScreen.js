@@ -134,11 +134,11 @@ class ItemViewerScreen extends Component {
                         marginTop: 20,
                         marginBottom: 5,
                     }}>
-                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Subtotal</Text>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>{I18nManager.isRTL ? 'المبلغ اللإجمالي' : 'Subtotal'}</Text>
                         <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.count_sub_total()} JOD</Text>
                     </View>
                     <View style={{ flexDirection: 'row', flex: 2, marginBottom: 10 }}>
-                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Delivery</Text>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>{I18nManager.isRTL ? 'تكلفة التوصيل' : 'Delivery'}</Text>
                         <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.state.delivery_cost} JOD</Text>
                     </View>
                     <View style={{
@@ -155,7 +155,7 @@ class ItemViewerScreen extends Component {
                             flex: 1,
                             padding: 10,
                             textAlign: 'left'
-                        }}>Order Total</Text>
+                        }}>{I18nManager.isRTL ? 'المجموع الكلي' : 'Order Total'}</Text>
                         <Text style={{
                             color: 'black',
                             fontSize: 18,
@@ -188,7 +188,7 @@ class ItemViewerScreen extends Component {
                             marginBottom: 10,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Proceed</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? 'تابع' : 'Proceed'}</Text>
                     </Button>
                 </SafeAreaView>
             </View>

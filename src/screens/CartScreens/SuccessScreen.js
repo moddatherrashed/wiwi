@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { Button, SafeAreaView, View, Text, TouchableOpacity, I18nManager } from 'react-native';
 import { DangerZone } from 'expo';
 
 const { Lottie } = DangerZone;
@@ -52,14 +52,14 @@ export default class SuccessScreen extends React.Component {
                         fontWeight: '500',
                         paddingVertical: 20,
                     }}
-                >Your order has been sent successfully</Text>
+                >{I18nManager.isRTL ? 'تم إرسال طلبك بنجاح' : 'Your order has been sent successfully'}</Text>
                 <Text
                     style={{
                         color: 'gray',
                         textAlign: 'center',
                         fontSize: 15
                     }}
-                >Estimated duration for delivery</Text>
+                >{I18nManager.isRTL ? 'المدة المقدرة للتسليم' : 'Estimated duration for delivery'}</Text>
                 <Text style={{
                     color: 'gray',
                     textAlign: 'center',
@@ -87,7 +87,7 @@ export default class SuccessScreen extends React.Component {
                         color: '#44bd32',
                         fontSize: 18,
                         padding: 10,
-                    }}>Done</Text>
+                    }}>{I18nManager.isRTL ? 'تم' : 'Done'}</Text>
                 </TouchableOpacity>
             </SafeAreaView>
         );

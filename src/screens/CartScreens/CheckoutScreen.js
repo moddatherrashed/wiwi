@@ -135,14 +135,14 @@ class CheckoutScreen extends Component {
                         marginTop: 20,
                         marginBottom: 5,
                     }}>
-                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Subtotal</Text>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>{I18nManager.isRTL ? 'المبلغ اللإجمالي' : 'Subtotal'}</Text>
                         <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.props.navigation.state.params.subTotal} JOD</Text>
                     </View>
                     <View style={{
                         flexDirection: 'row',
                         marginBottom: 10
                     }}>
-                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Delivery</Text>
+                        <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>{I18nManager.isRTL ? 'تكلفة التوصيل' : 'Delivery'}</Text>
                         <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.props.navigation.state.params.fixed_flag !== '0' ? this.props.navigation.state.params.delivery_cost : this.state.delivery_cost} JOD</Text>
                     </View>
                     <View style={{
@@ -162,7 +162,7 @@ class CheckoutScreen extends Component {
                             flex: 1,
                             padding: 10,
                             textAlign: 'left'
-                        }}>Order Total</Text>
+                        }}>{I18nManager.isRTL ? 'المجموع الكلي' : 'Order Total'}</Text>
                         <Text style={{
                             color: 'black',
                             fontSize: 18,
@@ -200,7 +200,7 @@ class CheckoutScreen extends Component {
                                 alignItems: 'center'
                             }}>
                             <Image source={require('../../ProductIcons/AddToCart.png')} resizeMode='contain' style={{ flex: 0.2, height: 24 }} />
-                            <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>Add New</Text>
+                            <Text style={{ fontSize: 17, flex: 0.8, textAlign: 'left' }}>{I18nManager.isRTL ? 'اضافة عنوان جديد' : 'Add New'}</Text>
                         </TouchableOpacity>
                         {
                             this.state.locations.map((item, index) => {
@@ -262,7 +262,7 @@ class CheckoutScreen extends Component {
                             marginBottom: 10,
                             borderWidth: 1
                         }} >
-                        <Text style={{ fontWeight: '700', color: 'white' }}>Confirm</Text>
+                        <Text style={{ fontWeight: '700', color: 'white' }}>{I18nManager.isRTL ? 'تأكيد' : 'Confirm'}</Text>
                     </Button>
                 </View>
             </ScrollView>
