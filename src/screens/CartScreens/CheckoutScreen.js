@@ -16,7 +16,9 @@ class CheckoutScreen extends Component {
             slelected_location_lat: '',
             slelected_location_long: '',
             rest_coordinates: [],
-            time: ''
+            time: '',
+            total: this.props.navigation.state.params.subTotal + this.props.navigation.state.params.delivery_cost,
+            delivery_cost: 0
         }
     }
 
@@ -35,22 +37,49 @@ class CheckoutScreen extends Component {
 
                     // Examine the text in the response
                     response.json().then((data) => {
-                         if (data.rows[0].elements[0].status !== 'ZERO_RESULTS') {
-                             this.props.navigation.navigate('SuccessScreen', {
-                                 time: data.rows[0].elements[0].duration.text
-                             })
-                         } else {
-                             this.props.navigation.navigate('SuccessScreen', {
-                                 time: '40 min'
-                             })
-                         }
+                        if (data.rows[0].elements[0].status !== 'ZERO_RESULTS') {
+                            this.props.navigation.navigate('SuccessScreen', {
+                                time: data.rows[0].elements[0].duration.text
+                            })
+                        } else {
+                            this.props.navigation.navigate('SuccessScreen', {
+                                time: '40 min'
+                            })
+                        }
                     });
                 }
             )
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
             });
+    }
+    get_distance_real_time(rest_lat, rest_long, user_lat, user_long) {
 
+        let API_KEY = 'AIzaSyD28i3GhTFA36utt_uXjUhIZfahcCVfWUQ'
+        let matrix_api_url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + user_lat + ',' + user_long + '&destinations=' + rest_lat + ',' + rest_long + '&key=' + API_KEY
+        fetch(matrix_api_url)
+            .then(
+                (response) => {
+                    if (response.status !== 200) {
+                        alert('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then((data) => {
+                        if (data.rows[0].elements[0].status !== 'ZERO_RESULTS') {
+                            this.setState({
+                                delivery_cost: (data.rows[0].elements[0].distance.value / 1000) * this.props.navigation.state.params.delivery_cost_if_not_fixed
+                            })
+                            //console.log(data.rows[0].elements[0].distance.value)
+                        }
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
     }
     getAddresses() {
         AsyncStorage.getItem('user_id').then((item) => {
@@ -107,14 +136,14 @@ class CheckoutScreen extends Component {
                         marginBottom: 5,
                     }}>
                         <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Subtotal</Text>
-                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>10 JOD</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.props.navigation.state.params.subTotal} JOD</Text>
                     </View>
                     <View style={{
                         flexDirection: 'row',
                         marginBottom: 10
                     }}>
                         <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>Delivery</Text>
-                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>10 JOD</Text>
+                        <Text style={{ color: 'black', fontSize: 18, fontWeight: '700', flex: 1, textAlign: 'right', padding: 10 }}>{this.props.navigation.state.params.fixed_flag !== '0' ? this.props.navigation.state.params.delivery_cost : this.state.delivery_cost} JOD</Text>
                     </View>
                     <View style={{
                         flexDirection: 'row',
@@ -142,7 +171,7 @@ class CheckoutScreen extends Component {
                             flex: 1,
                             padding: 10,
                             textAlign: 'right'
-                        }}>10 JOD</Text>
+                        }}>{this.state.total} JOD</Text>
                     </View>
                 </View>
                 <Text style={{ color: 'gray', fontSize: 18, flex: 1, textAlign: 'left', padding: 10 }}>{I18nManager.isRTL ? translation.ar.notes : translation.en.notes}</Text>
@@ -183,6 +212,14 @@ class CheckoutScreen extends Component {
                                                 slelected_location_lat: item.lat,
                                                 slelected_location_long: item.long
                                             })
+                                            if (this.props.navigation.state.params.fixed_flag === '0') {
+                                                this.get_distance_real_time(
+                                                    this.state.rest_coordinates[0].lat,
+                                                    this.state.rest_coordinates[0].long,
+                                                    this.state.slelected_location_lat,
+                                                    this.state.slelected_location_long
+                                                )
+                                            }
                                         }}
                                         style={{
                                             flexDirection: 'row',

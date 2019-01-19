@@ -16,6 +16,7 @@ class ItemViewerScreen extends Component {
             delivery_cost: 0,
             total_cost: 0,
             is_fixed_cost_flag: '',
+            delivery_cost_if_not_fixed: 0
         }
     }
     count_sub_total(type) {
@@ -35,7 +36,8 @@ class ItemViewerScreen extends Component {
             //alert(JSON.stringify(res.data[0].is_fixed_delivery))
             this.setState({
                 is_fixed_cost_flag: res.data[0].is_fixed_delivery,
-                delivery_cost: res.data[0].is_fixed_delivery === '1' ? parseFloat(res.data[0].fixed_delivery_value) : 0
+                delivery_cost: res.data[0].is_fixed_delivery === '1' ? parseFloat(res.data[0].fixed_delivery_value) : 0,
+                delivery_cost_if_not_fixed: res.data[0].is_fixed_delivery === '0' ? parseFloat(res.data[0].fixed_delivery_value) : 0
             })
         })
     }
@@ -170,7 +172,8 @@ class ItemViewerScreen extends Component {
                                 resturantName: this.state.products[0].resturantName,
                                 delivery_cost: this.state.delivery_cost,
                                 fixed_flag: this.state.is_fixed_cost_flag,
-                                subTotal: this.state.sub_total
+                                subTotal: this.count_sub_total(),
+                                delivery_cost_if_not_fixed: this.state.delivery_cost_if_not_fixed
                             })
                         }}
                         style={{
